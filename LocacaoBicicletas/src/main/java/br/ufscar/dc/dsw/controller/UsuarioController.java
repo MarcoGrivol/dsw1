@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import br.ufscar.dc.dsw.domain.Usuario;
-import br.ufscar.dc.dsw.util.Erro;
+import br.ufscar.dc.dsw.util.Error;
 
 @WebServlet(urlPatterns = "/usuario/*")
 public class UsuarioController extends HttpServlet {
@@ -26,7 +26,7 @@ public class UsuarioController extends HttpServlet {
 			throws ServletException, IOException {
 
 		Usuario usuario = (Usuario) request.getSession().getAttribute("usuarioLogado");
-		Erro erros = new Erro();
+		Error erros = new Error();
 		
 		if (usuario == null) {
 			response.sendRedirect(request.getContextPath());
