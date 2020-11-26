@@ -38,11 +38,15 @@ public class UsuarioDAO extends GenericDAO {
 
 	public List<Usuario> getAll() {
 		List<Usuario> listaUsuarios = new ArrayList<>();
-		String sql = "SELECT * from Usuario u";
+		String sql = "SELECT * from Usuario WHERE papel = ?";
 		try {
 			Connection conn = this.getConnection();
-			Statement statement = conn.createStatement();
-			ResultSet resultSet = statement.executeQuery(sql);
+			PreparedStatement statement = conn.prepareStatement(sql);
+			String papel = "USER";
+			statement.setString(1, papel);
+			ResultSet resultSet = statement.executeQuery();
+			// Statement statement = conn.createStatement();
+			// ResultSet resultSet = statement.executeQuery(sql);
 			while (resultSet.next()) {
 				String CPF = resultSet.getString("cpf");
 				String data_nascimento = resultSet.getString("data_nascimento");
@@ -52,7 +56,6 @@ public class UsuarioDAO extends GenericDAO {
 				String senha = resultSet.getString("senha");
 				String sexo = resultSet.getString("sexo");
 				String telefone = resultSet.getString("telefone");
-				String papel = resultSet.getString("papel");
 				Usuario usuario = new Usuario(CPF, data_nascimento, email, login, nome, senha, sexo, telefone, papel);
 				listaUsuarios.add(usuario);
 			}
