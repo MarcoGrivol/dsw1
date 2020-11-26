@@ -1,5 +1,4 @@
-/*
-package br.ufscar.dc.dsw.domain;
+/*package br.ufscar.dc.dsw.domain;
 
 public class Cliente {
 
@@ -12,13 +11,14 @@ public class Cliente {
 	private String senha;
 	private String sexo;
 	private String telefone;
+	private String papel;
 
 	public Cliente(Long id) {
 		this.id = id;
 	}
 
 	public Cliente(String CPF, String data_nascimento, String email, String login, String nome, String senha,
-			String sexo, String telefone) {
+			String sexo, String telefone, String papel) {
 		super();
 		this.CPF = CPF;
 		this.data_nascimento = data_nascimento;
@@ -28,10 +28,11 @@ public class Cliente {
 		this.senha = senha;
 		this.sexo = sexo;
 		this.telefone = telefone;
+		this.papel = papel;
 	}
 
 	public Cliente(Long id, String CPF, String data_nascimento, String email, String login, String nome, String senha,
-			String sexo, String telefone) {
+			String sexo, String telefone, String papel) {
 		super();
 		this.CPF = CPF;
 		this.data_nascimento = data_nascimento;
@@ -41,6 +42,7 @@ public class Cliente {
 		this.senha = senha;
 		this.sexo = sexo;
 		this.telefone = telefone;
+		this.papel = papel;
 	}
 
 	public Long getId() {
@@ -114,5 +116,12 @@ public class Cliente {
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
-}
-*/
+	
+	public String getPapel() {
+		return this.papel;
+	}
+
+	public void setPapel(String papel) {
+		this.papel = papel;
+	}
+}*/
