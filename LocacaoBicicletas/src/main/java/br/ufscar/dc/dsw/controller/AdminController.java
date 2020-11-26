@@ -18,8 +18,14 @@ import br.ufscar.dc.dsw.util.Erro;
 public class AdminController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private UsuarioDAO dao;
+	
+	@Override
+	public void init()
+	{
+		dao = new UsuarioDAO();
+	}
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -43,9 +49,7 @@ public class AdminController extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("/noAuth.jsp");
 			rd.forward(request, response);
 		}
-	}
-}
-		/*
+
 		String action = request.getPathInfo();
 		if (action == null) {
 			action = "";
@@ -53,20 +57,7 @@ public class AdminController extends HttpServlet {
 
 		try {
 			switch (action) {
-			case "/cadastro":
-				apresentaFormCadastro(request, response);
-				break;
-			case "/insercao":
-				insere(request, response);
-				break;
 			case "/remocao":
-				remove(request, response);
-				break;
-			case "/edicao":
-				apresentaFormEdicao(request, response);
-				break;
-			case "/atualizacao":
-				atualize(request, response);
 				break;
 			default:
 				lista(request, response);
@@ -83,7 +74,8 @@ public class AdminController extends HttpServlet {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/admin/lista.jsp");
 		dispatcher.forward(request, response);
 	}
-
+}
+/*
 	private void apresentaFormCadastro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/admin/formulario.jsp");
@@ -135,5 +127,4 @@ public class AdminController extends HttpServlet {
 		Usuario usuario = new Usuario(id);
 		dao.delete(usuario);
 		response.sendRedirect("lista");
-	}
-}*/
+	}*/

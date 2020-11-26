@@ -9,7 +9,9 @@
 <body>
 	<h1>Página do Administrador</h1>
 	<p>Olá ${sessionScope.usuarioLogado.papel}</p>
+	
 	<ul>
+		</li>
 		<li><a href="${pageContext.request.contextPath}/logout.jsp">Sair</a>
 		</li>
 	</ul>
