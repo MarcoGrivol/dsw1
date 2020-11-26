@@ -4,15 +4,15 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class Erro implements Serializable {
+public final class Error implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private final List<String> erros;
 
-	public Erro() {
+	public Error() {
 		erros = new ArrayList<>();
 	}
 
-	public Erro(String mensagem) {
+	public Error(String mensagem) {
 		erros = new ArrayList<>();
 		erros.add(mensagem);
 	}

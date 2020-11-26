@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import br.ufscar.dc.dsw.dao.UsuarioDAO;
 import br.ufscar.dc.dsw.domain.Usuario;
-import br.ufscar.dc.dsw.util.Erro;
+import br.ufscar.dc.dsw.util.Error;
 
 @WebServlet(name = "Index", urlPatterns = { "/index.jsp", "/logout.jsp" })
 public class IndexController extends HttpServlet {
@@ -24,7 +24,7 @@ public class IndexController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Erro erros = new Erro();
+		Error erros = new Error();
 		if (request.getParameter("bOK") != null) {
 			String login = request.getParameter("login");
 			String senha = request.getParameter("senha");

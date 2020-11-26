@@ -2,8 +2,8 @@ package br.ufscar.dc.dsw.domain;
 
 public class Usuario {
 
-	private String CPF;
-	private String data_nascimento;
+	private String cpf;
+	private String dataNascimento;
 	private String email;
 	private String login;
 	private String nome;
@@ -12,15 +12,15 @@ public class Usuario {
 	private String telefone;
 	private String papel;
 
-	public Usuario(String CPF) {
-		this.CPF = CPF;
+	public Usuario(String cpf) {
+		this.cpf = cpf;
 	}
 
-	public Usuario(String CPF, String data_nascimento, String email, String login, String nome, String senha,
+	public Usuario(String cpf, String dataNascimento, String email, String login, String nome, String senha,
 			String sexo, String telefone, String papel) {
 		super();
-		this.CPF = CPF;
-		this.data_nascimento = data_nascimento;
+		this.cpf = cpf;
+		this.dataNascimento = dataNascimento;
 		this.email = email;
 		this.login = login;
 		this.nome = nome;
@@ -30,20 +30,20 @@ public class Usuario {
 		this.papel = papel;
 	}
 
-	public String getCPF() {
-		return this.CPF;
+	public String getCpf() {
+		return this.cpf;
 	}
 
-	public void setCPF(String CPF) {
-		this.CPF = CPF;
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 
 	public String getDataNascimento() {
-		return this.data_nascimento;
+		return this.dataNascimento;
 	}
 
-	public void setDataNascimento(String data_nascimento) {
-		this.data_nascimento = data_nascimento;
+	public void setDataNascimento(String dataNascimento) {
+		this.dataNascimento = dataNascimento;
 	}
 
 	public String getEmail() {

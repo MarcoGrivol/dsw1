@@ -2,7 +2,7 @@ connect 'jdbc:derby:Login;create=true;user=root;password=root';
 
 create table Usuario(
 	cpf varchar(14) not null, 
-	data_nascimento varchar(10),
+	dataNascimento varchar(10),
 	email varchar (26),
 	login varchar(20) not null unique, 
 	nome varchar (26) not null,
@@ -12,11 +12,14 @@ create table Usuario(
 	papel varchar(10), 
 	CONSTRAINT Usuario_PK PRIMARY KEY (cpf));
 
-insert into Usuario(cpf, data_nascimento, email, login, nome, senha, sexo, telefone, papel) 
+insert into Usuario(cpf, dataNascimento, email, login, nome, senha, sexo, telefone, papel) 
 values ('111.111.111-11', '11/11/1111', 'aa@a.com', 'a1', 'Aaa Aaa', 'senha1', 'sexo1', 'tel1', 'ADMIN');
 
-insert into Usuario(cpf, data_nascimento, email, login, nome, senha, sexo, telefone, papel) 
-values ('222.222.222-22', '22/22/2222', 'bb@b.com', 'b1', 'Bbb Bbb', 'senha2', 'sexo2', 'tel2', 'USER');
+insert into Usuario(cpf, dataNascimento, email, login, nome, senha, sexo, telefone, papel) 
+values ('222.222.222-22', '22/22/2222', 'bb@b.com', 'b2', 'Bbb Bbb', 'senha2', 'sexo2', 'tel2', 'USER');
+
+insert into Usuario(cpf, dataNascimento, email, login, nome, senha, sexo, telefone, papel) 
+values ('333.333.333-33', '33/33/3333', 'cc@c.com', 'c3', 'Ccc Ccc', 'senha3', 'sexo3', 'tel3', 'USER');
 
 disconnect;
 
