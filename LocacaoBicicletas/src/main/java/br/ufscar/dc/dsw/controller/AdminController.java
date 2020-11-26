@@ -59,6 +59,12 @@ public class AdminController extends HttpServlet {
 			switch (action) {
 			case "/remocao":
 				break;
+			case "/cadastro":
+				apresentaFormCadastro(request, response);
+				break;
+			case "/edicao":
+				apresentaFormEdicao(request, response);
+				break;
 			default:
 				lista(request, response);
 				break;
@@ -74,22 +80,22 @@ public class AdminController extends HttpServlet {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/admin/lista.jsp");
 		dispatcher.forward(request, response);
 	}
-}
-/*
+
 	private void apresentaFormCadastro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/admin/formulario.jsp");
 		dispatcher.forward(request, response);
 	}
-
+	
 	private void apresentaFormEdicao(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Long id = Long.parseLong(request.getParameter("id"));
-		Usuario usuario = dao.get(id);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/usuario/formulario.jsp");
-		request.setAttribute("usuario", usuario);
+		//String CPF = request.getParameter("cpf");
+		//Usuario usuario = dao.getbyCPF(CPF);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/admin/formulario.jsp");
+		//request.setAttribute("usuario", usuario);
 		dispatcher.forward(request, response);
 	}
+}/*
 
 	private void insere(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");

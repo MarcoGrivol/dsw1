@@ -9,6 +9,10 @@
 <title>Insert title here</title>
 </head>
 <body>
+	
+	<a href="${pageContext.request.contextPath}/admin/cadastro">CADASTRO</a>
+	
+	
 	<table>
 		<c:forEach var="usuario" items="${requestScope.listaUsuarios}">
 			<tr>
@@ -16,6 +20,7 @@
 				<td><c:out value="${usuario.login}" /></td>
 				<td><c:out value="${usuario.senha}" /></td>
 				<td><c:out value="${usuario.nome}" /></td>
+				<td>Teste</td>
 			</tr>
 		</c:forEach>
 	</table>

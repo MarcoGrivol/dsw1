@@ -103,7 +103,7 @@ public class UsuarioDAO extends GenericDAO {
 		}
 	}
 
-	public Usuario getbyID(String CPF) {
+	public Usuario getbyCPF(String CPF) {
 		Usuario usuario = null;
 		String sql = "SELECT * from Usuario WHERE cpf = ?";
 		try {
