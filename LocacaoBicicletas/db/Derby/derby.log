@@ -1,0 +1,13 @@
+Wed Nov 25 20:55:34 BRT 2020 : Apache Derby Network Server - 10.15.2.0 - (1873585) started and ready to accept connections on port 1527
+----------------------------------------------------------------
+Wed Nov 25 20:55:51 BRT 2020:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.15.2.0 - (1873585): instance a816c00e-0176-01d5-6d0a-000045fc8ff8 
+on database directory /home/jack/Documents/dsw1/dsw1/LocacaoBicicletas/db/Derby/Login with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@55054057 
+Loaded from file:/home/jack/Documents/dsw1/derby/db-derby-10.15.2.0-bin/lib/derby.jar
+java.vendor=Ubuntu
+user.dir=/home/jack/Documents/dsw1/dsw1/LocacaoBicicletas
+os.name=Linux
+os.arch=amd64
+os.version=5.4.0-54-generic
+derby.system.home=./db/Derby
+Database Class Loader started - derby.database.classpath=''
