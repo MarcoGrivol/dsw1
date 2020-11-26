@@ -27,6 +27,7 @@ public class UsuarioController extends HttpServlet {
 
 		Usuario usuario = (Usuario) request.getSession().getAttribute("usuarioLogado");
 		Erro erros = new Erro();
+		
 		if (usuario == null) {
 			response.sendRedirect(request.getContextPath());
 		} else if (usuario.getPapel().equals("USER")) {

@@ -1,6 +1,6 @@
 connect 'jdbc:derby:Login;create=true;user=root;password=root';
 
-create table Usuario(id bigint not null generated always as identity, 
+create table Usuario(
 	cpf varchar(14) not null, 
 	data_nascimento varchar(10),
 	email varchar (26),
@@ -10,7 +10,7 @@ create table Usuario(id bigint not null generated always as identity,
 	sexo varchar (10),
 	telefone varchar (15),
 	papel varchar(10), 
-	CONSTRAINT Usuario_PK PRIMARY KEY (id));
+	CONSTRAINT Usuario_PK PRIMARY KEY (cpf));
 
 insert into Usuario(cpf, data_nascimento, email, login, nome, senha, sexo, telefone, papel) 
 values ('111.111.111-11', '11/11/1111', 'aa@a.com', 'a1', 'Aaa Aaa', 'senha1', 'sexo1', 'tel1', 'ADMIN');
