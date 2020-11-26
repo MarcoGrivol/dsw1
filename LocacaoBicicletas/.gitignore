@@ -1,4 +1,4 @@
 /target/
-.settings/
-db/Derby/Login/
-db/Derby/derby.txt
+/.settings/
+/db/Derby/Login/
+/db/Derby/derby.txt
