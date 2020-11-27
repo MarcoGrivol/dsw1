@@ -45,6 +45,22 @@ table, th, td {
 	</table>
 	
 		<h1>LISTA LOCADORAS</h1>
+		<table border="1">
+		<tr>
+			<th>CNPJ</th>
+			<th>E-mail</th>
+			<th>Nome</th>
+			<th>Cidade</th>
+		</tr>
+		<c:forEach var="locadora" items="${requestScope.listaLocadora}">
+			<tr>
+				<td><c:out value="${locadora.cnpj}" /></td>
+				<td><c:out value="${locadora.email}" /></td>
+				<td><c:out value="${locadora.nome}" /></td>
+				<td><c:out value="${locadora.cidade}" /></td>
+			</tr>
+		</c:forEach>
+	</table>
 </body>
 </html>
 
