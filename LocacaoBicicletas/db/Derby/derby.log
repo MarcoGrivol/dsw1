@@ -1,13 +1,13 @@
-Thu Nov 26 15:39:08 BRT 2020 : Apache Derby Network Server - 10.15.2.0 - (1873585) started and ready to accept connections on port 1527
+Fri Nov 27 02:10:00 BRT 2020 : Apache Derby Servidor de Rede - 10.15.1.3 - (1853019) iniciado e pronto para aceitar conexões na porta 1527 em {3}
 ----------------------------------------------------------------
-Thu Nov 26 15:39:42 BRT 2020:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.15.2.0 - (1873585): instance a816c00e-0176-05da-17e4-000045fc8ff8 
-on database directory /home/jack/Documents/dsw1/dsw1/LocacaoBicicletas/db/Derby/Login with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@55054057 
-Loaded from file:/home/jack/Documents/dsw1/derby/db-derby-10.15.2.0-bin/lib/derby.jar
+Fri Nov 27 02:10:03 BRT 2020:
+ Inicializando o Derby versão The Apache Software Foundation - Apache Derby - 10.15.1.3 - (1853019): instância a816c00e-0176-081b-ad36-fffffcaec897
+no diretório de banco de dados /home/isaacw/Documentos/repos/dsw1/LocacaoBicicletas/db/Derby/Login 
+
 java.vendor=Ubuntu
-user.dir=/home/jack/Documents/dsw1/dsw1/LocacaoBicicletas
+user.dir=/home/isaacw/Documentos/repos/dsw1/LocacaoBicicletas
 os.name=Linux
 os.arch=amd64
-os.version=5.4.0-54-generic
-derby.system.home=./db/Derby
-Database Class Loader started - derby.database.classpath=''
+os.version=5.4.0-53-generic
+derby.system.home=/home/isaacw/Documentos/repos/dsw1/LocacaoBicicletas/db/Derby
+Carregador de classe do banco de dados iniciado - derby.database.classpath=''

@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import br.ufscar.dc.dsw.domain.Locadora;
+import br.ufscar.dc.dsw.dao.LocadoraDAO;
+
 import br.ufscar.dc.dsw.domain.Usuario;
 import br.ufscar.dc.dsw.dao.UsuarioDAO;
 import br.ufscar.dc.dsw.util.Error;
@@ -20,11 +23,13 @@ public class AdminController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private UsuarioDAO dao;
+	private LocadoraDAO daoLocadora;
 	
 	@Override
 	public void init()
 	{
 		dao = new UsuarioDAO();
+		daoLocadora = new LocadoraDAO();
 	}
 
 	@Override
@@ -150,7 +155,9 @@ public class AdminController extends HttpServlet {
 	
 	private void lista(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Usuario> listaUsuarios = dao.getAll();
+		List<Locadora> listaLocadora = daoLocadora.getAll();
 		request.setAttribute("listaUsuarios", listaUsuarios);
+		request.setAttribute("listaLocadora", listaLocadora);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/admin/lista.jsp");
 		dispatcher.forward(request, response);
 	}
