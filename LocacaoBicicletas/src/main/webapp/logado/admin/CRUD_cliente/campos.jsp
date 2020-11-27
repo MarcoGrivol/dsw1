@@ -20,8 +20,16 @@
 
 	<tr>
 		<td><label for="cpf">CPF</label></td>
-		<td><input type="text" id="cpf" name="cpf" required
+		<c:choose>
+		<c:when test="${usuario != null}">
+			<td><input type="text" id="cpf" name="cpf" required
 			value="${usuario.cpf}" readonly/></td>
+		</c:when>
+		<c:otherwise>
+			<td><input type="text" id="cpf" name="cpf" required
+			value="${usuario.cpf}"/></td>
+		</c:otherwise>
+		</c:choose>
 	</tr>
 	<tr>
 		<td><label for="dataNascimento">Data de Nascimento</label></td>
