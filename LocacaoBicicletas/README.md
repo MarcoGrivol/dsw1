@@ -1,7 +1,7 @@
 # **Requisitos - Locação de Bicicletas**
 
 ### Requer login de administrador
-~~R1: CRUD de Clientes.~~
+~~R1: CRUD de Clientes.~~\
 R2: CRUD de Locadoras.
 
 ### Requer login do cliente (e-mail + senha)
@@ -11,7 +11,7 @@ R6: Listagem de todas as locações de um cliente.
 Depois de fazer login, o cliente pode visualizar todas as suas locações gravadas.
 
 ### Não requer login
-~~R3: Listagem de todas as locadoras em uma única página.~~
+~~R3: Listagem de todas as locadoras em uma única página.~~\
 R4: Listagem de todas as locadoras por cidade.
 
 ### Requisitos Funcionais
