@@ -1,3 +1,6 @@
+<!-- ESTA PAGINA NAO E CARREGADA AUTOMATICAMENTE 
+	IndexController.java e carregado em seu lugar, e passa as informacoes necessarias para esta pagina -->
+
 <%@ page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -12,6 +15,7 @@
 </head>
 <body>
 	<h1>Autenticação de Usuário</h1>
+	<!-- se o login falhar exibe a mensagem de erro que retorna de LoginController.java -->
 	<c:if test="${mensagens.existeErros}">
 		<div id="erro">
 			<ul>
@@ -21,7 +25,8 @@
 			</ul>
 		</div>
 	</c:if>
-	<form method="post" action="index.jsp">
+	<!-- Formulario de login controlado por LoginController.java -->
+	<form method="post" action="login.jsp">
 		<table>
 			<tr>
 				<th>Login:</th>
@@ -37,5 +42,24 @@
 			</tr>
 		</table>
 	</form>
+
+	<!-- Informacoes que nao precisam de nenhum login sao controladas por IndexController.java -->
+	<h1>LISTA LOCADORAS</h1>
+	<table border="1">
+		<tr>
+			<th>CNPJ</th>
+			<th>E-mail</th>
+			<th>Nome</th>
+			<th>Cidade</th>
+		</tr>
+		<c:forEach var="locadora" items="${requestScope.listaLocadoras}">
+			<tr>
+				<td><c:out value="${locadora.cnpj}" /></td>
+				<td><c:out value="${locadora.email}" /></td>
+				<td><c:out value="${locadora.nome}" /></td>
+				<td><c:out value="${locadora.cidade}" /></td>
+			</tr>
+		</c:forEach>
+	</table>
 </body>
 </html>

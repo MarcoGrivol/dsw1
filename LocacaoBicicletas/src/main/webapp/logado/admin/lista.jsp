@@ -52,7 +52,7 @@ table, th, td {
 			<th>Nome</th>
 			<th>Cidade</th>
 		</tr>
-		<c:forEach var="locadora" items="${requestScope.listaLocadora}">
+		<c:forEach var="locadora" items="${requestScope.listaLocadoras}">
 			<tr>
 				<td><c:out value="${locadora.cnpj}" /></td>
 				<td><c:out value="${locadora.email}" /></td>
