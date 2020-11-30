@@ -155,9 +155,9 @@ public class AdminController extends HttpServlet {
 	
 	private void lista(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Usuario> listaUsuarios = dao.getAll();
-		List<Locadora> listaLocadora = daoLocadora.getAll();
+		List<Locadora> listaLocadoras = daoLocadora.getAll();
 		request.setAttribute("listaUsuarios", listaUsuarios);
-		request.setAttribute("listaLocadora", listaLocadora);
+		request.setAttribute("listaLocadoras", listaLocadoras);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/admin/lista.jsp");
 		dispatcher.forward(request, response);
 	}
