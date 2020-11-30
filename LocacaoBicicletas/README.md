@@ -11,11 +11,11 @@ Depois de fazer login, o cliente pode cadastrar uma locação. Para isso, deve e
 Depois de fazer login, o cliente pode visualizar todas as suas locações gravadas.
 
 ### Requer login da locadora (e-mail + senha)
-**R6:** Listagem de todas as locações de uma locadora.\
+**R8:** Listagem de todas as locações de uma locadora.\
 Depois de fazer login, a locadora pode visualizar todas as suas locações gravadas.
 
 ### Não requer login
-~~**R3:** Listagem de todas as locadoras em uma única página.~~\
+~~**R3:** Listagem de todas as locadoras em uma única página.~~
 **R4:** Listagem de todas as locadoras por cidade.\
 
 ### Requisitos Funcionais
