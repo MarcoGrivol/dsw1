@@ -16,7 +16,7 @@ Depois de fazer login, a locadora pode visualizar todas as suas locações grava
 
 ### Não requer login
 ~~**R3:** Listagem de todas as locadoras em uma única página.~~\
-**R4:** Listagem de todas as locadoras por cidade.
+~~**R4:** Listagem de todas as locadoras por cidade.~~\
 
 ### Requisitos Funcionais
 **R7:** O sistema não deve permitir o cadastro de locações de um mesmo cliente ou de uma mesma locadora em um mesmo dia/horário.\
