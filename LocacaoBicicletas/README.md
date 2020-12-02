@@ -2,7 +2,7 @@
 
 ### Requer login de administrador
 ~~**R1:** CRUD de Clientes.~~\
-**R2:** CRUD de Locadoras.
+~~**R2:** CRUD de Locadoras.~~\
 
 ### Requer login do cliente (e-mail + senha)
 **R5:** Locacação de uma bicicleta em uma locadora.\

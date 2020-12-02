@@ -22,7 +22,7 @@ table, th, td {
 	<h1>LISTA CLIENTES</h1>
 	
 	<a href="${pageContext.request.contextPath}/admin/CRUD_cliente/cadastro">CADASTRO de novo cliente</a>
-
+	
 	<table border="1">
 		<tr>
 			<th>CPF</th>
@@ -40,16 +40,17 @@ table, th, td {
 				<td><c:out value="${usuario.login}" /></td>
 				<td><a href="${pageContext.request.contextPath}/admin/CRUD_cliente/edicao?cpf=${usuario.cpf}">EDICAO</a> &nbsp;&nbsp;&nbsp;&nbsp;
 					<a href="${pageContext.request.contextPath}/admin/CRUD_cliente/remocao?cpf=${usuario.cpf}">REMOCAO</a></td>
-			</tr>
-		</c:forEach>
-	</table>
-	
+				</tr>
+			</c:forEach>
+		</table>
+		
 		<h1>LISTA LOCADORAS</h1>
+		<a href="${pageContext.request.contextPath}/admin/CRUD_locadora/cadastro">CADASTRO de novas locadoras</a>
 		<table border="1">
-		<tr>
-			<th>CNPJ</th>
-			<th>E-mail</th>
-			<th>Nome</th>
+			<tr>
+				<th>CNPJ</th>
+				<th>E-mail</th>
+				<th>Nome</th>
 			<th>Cidade</th>
 		</tr>
 		<c:forEach var="locadora" items="${requestScope.listaLocadoras}">
@@ -58,6 +59,8 @@ table, th, td {
 				<td><c:out value="${locadora.email}" /></td>
 				<td><c:out value="${locadora.nome}" /></td>
 				<td><c:out value="${locadora.cidade}" /></td>
+				<td><a href="${pageContext.request.contextPath}/admin/CRUD_locadora/edicao?cnpj=${locadora.cnpj}">EDICAO</a> &nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="${pageContext.request.contextPath}/admin/CRUD_locadora/remocao?cnpj=${locadora.cnpj}">REMOCAO</a></td>
 			</tr>
 		</c:forEach>
 	</table>

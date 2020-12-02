@@ -6,20 +6,22 @@ public class Locadora {
 	private String email;
 	private String nome;
     private String senha;
-    private String cidade;
+	private String cidade;
+	private String papel;
 
 
 	public Locadora(String cnpj) {
 		this.cnpj = cnpj;
 	}
 
-	public Locadora(String cnpj, String email, String nome, String senha, String cidade) {
+	public Locadora(String cnpj, String email, String nome, String senha, String cidade, String papel) {
 		super();
 		this.cnpj = cnpj;
 		this.email = email;
 		this.nome = nome;
         this.senha = senha;
-        this.cidade = cidade;
+		this.cidade = cidade;
+		this.papel = papel;
 	}
 
 	public String getCnpj() {
@@ -61,10 +63,13 @@ public class Locadora {
 	public void setCidade(String cidade) {
 		this.cidade = cidade;
 	}
+	public String getPapel() {
+		return this.papel;
+	}
 
+	public void setPapel(String papel) {
+		this.papel = papel;
+	}
 
-	
-
-	
 	
 }

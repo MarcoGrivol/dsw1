@@ -13,7 +13,7 @@ import br.ufscar.dc.dsw.domain.Locadora;
 public class LocadoraDAO extends GenericDAO {
 
 	public void insert(Locadora locadora) {
-		String sql = "INSERT INTO Locadora (cnpj, email, nome, senha) VALUES (?, ?, ?, ?,?)";
+		String sql = "INSERT INTO Locadora (cnpj, email, nome, senha,cidade,papel) VALUES (?, ?, ?, ?,?,?)";
 		try {
 			Connection conn = this.getConnection();
 			PreparedStatement statement = conn.prepareStatement(sql);
@@ -24,6 +24,7 @@ public class LocadoraDAO extends GenericDAO {
 			statement.setString(3, locadora.getNome());
 			statement.setString(4, locadora.getSenha());
 			statement.setString(5, locadora.getCidade());
+			statement.setString(6, locadora.getPapel());
 
 			statement.executeUpdate();
 			statement.close();
@@ -47,8 +48,9 @@ public class LocadoraDAO extends GenericDAO {
 				String email = resultSet.getString("email");
 				String nome = resultSet.getString("nome");
                 String senha = resultSet.getString("senha");
-                String cidade = resultSet.getString("cidade");
-				Locadora locadora = new Locadora(cnpj,email,nome,senha,cidade);
+				String cidade = resultSet.getString("cidade");
+				String papel = resultSet.getString("papel");
+				Locadora locadora = new Locadora(cnpj,email,nome,senha,cidade,papel);
 				listaLocadora.add(locadora);
 			}
 			resultSet.close();
@@ -61,7 +63,7 @@ public class LocadoraDAO extends GenericDAO {
 	}
 
 	public void delete(Locadora locadora) {
-		String sql = "DELETE FROM Locadora where cpf = ?";
+		String sql = "DELETE FROM Locadora where cnpj = ?";
 		try {
 			Connection conn = this.getConnection();
 			PreparedStatement statement = conn.prepareStatement(sql);
@@ -74,7 +76,7 @@ public class LocadoraDAO extends GenericDAO {
 	}
 
 	public void update(Locadora locadora) {
-		String sql = "UPDATE locadora SET email = ?, nome = ?, senha = ?, cidade = ?, WHERE cnpj = ?";
+		String sql = "UPDATE locadora SET email = ?, nome = ?, senha = ?, cidade = ? WHERE cnpj = ?";
 
 		try {
 			Connection conn = this.getConnection();
@@ -104,8 +106,10 @@ public class LocadoraDAO extends GenericDAO {
 				String email = resultSet.getString("email");
 				String nome = resultSet.getString("nome");
                 String senha = resultSet.getString("senha");
-                String cidade = resultSet.getString("cidade");
-				locadora = new Locadora (cnpj,email,nome, senha,cidade);
+				String cidade = resultSet.getString("cidade");
+				String papel = resultSet.getString("papel");
+				
+				locadora = new Locadora (cnpj,email,nome, senha,cidade,papel);
 			}
 			resultSet.close();
 			statement.close();
@@ -129,7 +133,8 @@ public class LocadoraDAO extends GenericDAO {
 				String email = resultSet.getString("email");
 				String nome = resultSet.getString("nome");
                 String senha = resultSet.getString("senha");
-				Locadora Locadora = new Locadora(cnpj, email, nome, senha,cidade);
+                String papel = resultSet.getString("papel");
+				Locadora Locadora = new Locadora(cnpj, email, nome, senha,cidade,papel);
                 listaLocadora.add(Locadora);
             }
 			resultSet.close();
