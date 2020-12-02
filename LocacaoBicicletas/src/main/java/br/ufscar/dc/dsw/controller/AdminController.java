@@ -84,6 +84,21 @@ public class AdminController extends HttpServlet {
 			case "/CRUD_cliente/atualizacao":
 				atualize(request, response);
 				break;
+			case "/CRUD_locadora/remocao":
+				removeLocadora(request, response);
+				break;
+			case "/CRUD_locadora/cadastro":
+				apresentaFormCadastroLocadora(request, response);
+				break;
+			case "/CRUD_locadora/insercao":
+				insereLocadora(request, response);
+				break;
+			case "/CRUD_locadora/edicao":
+				apresentaFormEdicaoLocadora(request, response);
+				break;
+			case "/CRUD_locadora/atualizacao":
+				atualizeLocadora(request, response);
+				break;
 			default:
 				lista(request, response);
 				break;
@@ -93,6 +108,7 @@ public class AdminController extends HttpServlet {
 		}
 	}
 
+	// Funções para clientes
 	private void remove(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		String cpf = request.getParameter("cpf");
 
@@ -153,6 +169,62 @@ public class AdminController extends HttpServlet {
 		response.sendRedirect("lista");
 	}
 	
+	//Funções para locadoras
+	private void removeLocadora(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		String cnpj = request.getParameter("cnpj");
+
+		Locadora locadora = new Locadora(cnpj);
+		daoLocadora.delete(locadora);
+		response.sendRedirect("lista");
+	}
+
+	private void apresentaFormEdicaoLocadora(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String cnpj = request.getParameter("cnpj");
+		Locadora locadora = daoLocadora.getbyCnpj(cnpj);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/admin/CRUD_locadora/formulario.jsp");
+		request.setAttribute("locadora", locadora);
+		dispatcher.forward(request, response);
+	}
+
+	private void atualizeLocadora(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		
+		String cpf = request.getParameter("cnpj");
+		String email = request.getParameter("email");
+		String nome = request.getParameter("nome");
+		String senha = request.getParameter("senha");
+		String cidade = request.getParameter("cidade");
+		String papel = "USER";
+		Locadora locadora = new Locadora(cpf, email,nome, senha, cidade, papel);
+		
+		daoLocadora.update(locadora);
+		response.sendRedirect("lista");
+	}
+	private void apresentaFormCadastroLocadora(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/admin/CRUD_locadora/formulario.jsp");
+		dispatcher.forward(request, response);
+	}
+	
+	private void insereLocadora(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+
+		String cnpj = request.getParameter("cnpj");
+		String email = request.getParameter("email");
+		String nome = request.getParameter("nome");
+		String senha = request.getParameter("senha");
+		String cidade = request.getParameter("cidade");
+		String papel = "USER";
+		Locadora locadora = new Locadora(cnpj, email, nome, senha,cidade, papel);
+
+		daoLocadora.insert(locadora);
+		response.sendRedirect("lista");
+	}
+
+
+	//Funções para clientes e locadoras
 	private void lista(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Usuario> listaUsuarios = dao.getAll();
 		List<Locadora> listaLocadoras = daoLocadora.getAll();
