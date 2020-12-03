@@ -36,6 +36,15 @@ values ('44.444.444/0001-44', 'dd@d.com', 'Ddd Ddd', 'senha4','Sao carlos','USER
 insert into Locadora(cnpj, email, nome, senha, cidade,papel) 
 values ('55.555.555/0001-55', 'ee@e.com', 'Eee Eee', 'senha5','Sao Paulo','USER');
 
+create table Locacao(
+	cpf varchar(14) not null, 
+	data_locacao timestamp not null,
+	primary key (cpf, cnpj, data_locacao),
+	cnpj varchar (30),
+	CONSTRAINT FK_CPF FOREIGN KEY (cpf) REFERENCES Usuario(cpf),
+	FOREIGN KEY (cnpj) references Locadora(cnpj)
+);
+
 
 disconnect;
 
