@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +14,8 @@
 </head>
 
 <body>
-	<h2>Formulario de CADASTRO/EDICAO</h2>
+ 	<fmt:bundle basename="messages">
+	<h2><fmt:message key="CEform"/></h2>
 	<br>
 	<c:choose>
 		<c:when test="${usuario != null}">
@@ -26,5 +29,6 @@
 			</form>
 		</c:otherwise>
 	</c:choose>
+ 	</fmt:bundle>
 </body>
 </html>

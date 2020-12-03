@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,6 +17,10 @@ table, th, td {
 </head>
 
 <body>
+ 	<fmt:bundle basename="messages">
+	<h1><fmt:message key="adm_page"/></h1>
+	<p><fmt:message key="hello"/>  ${sessionScope.usuarioLogado.papel}</p>
+	
 	<ul>
 		<li><a href="${pageContext.request.contextPath}/logout.jsp">Sair</a>
 		</li>
@@ -26,10 +32,10 @@ table, th, td {
 	<table border="1">
 		<tr>
 			<th>CPF</th>
-			<th>Data de Nascimento</th>
+			<th><fmt:message key="birthdate"/> </th>
 			<th>E-mail</th>
-			<th>Nome</th>
-			<th>Login</th>
+			<th><fmt:message key="name"/> </th>
+			<th><fmt:message key="login"/> </th>
 		</tr>
 		<c:forEach var="usuario" items="${requestScope.listaUsuarios}">
 			<tr>
@@ -38,20 +44,20 @@ table, th, td {
 				<td><c:out value="${usuario.email}" /></td>
 				<td><c:out value="${usuario.nome}" /></td>
 				<td><c:out value="${usuario.login}" /></td>
-				<td><a href="${pageContext.request.contextPath}/admin/CRUD_cliente/edicao?cpf=${usuario.cpf}">EDICAO</a> &nbsp;&nbsp;&nbsp;&nbsp;
-					<a href="${pageContext.request.contextPath}/admin/CRUD_cliente/remocao?cpf=${usuario.cpf}">REMOCAO</a></td>
+				<td><a href="${pageContext.request.contextPath}/admin/CRUD_cliente/edicao?cpf=${usuario.cpf}"><fmt:message key="edit"/></a> &nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="${pageContext.request.contextPath}/admin/CRUD_cliente/remocao?cpf=${usuario.cpf}"><fmt:message key="remove"/></a></td>
 				</tr>
 			</c:forEach>
 		</table>
 		
-		<h1>LISTA LOCADORAS</h1>
-		<a href="${pageContext.request.contextPath}/admin/CRUD_locadora/cadastro">CADASTRO de novas locadoras</a>
+		<h1><fmt:message key="rent_list"/></h1>
+		<a href="${pageContext.request.contextPath}/admin/CRUD_locadora/cadastro"><fmt:message key="rent_regist"/></a>
 		<table border="1">
 			<tr>
 				<th>CNPJ</th>
 				<th>E-mail</th>
-				<th>Nome</th>
-			<th>Cidade</th>
+				<th><fmt:message key="name"/></th>
+			<th><fmt:message key="city"/></th>
 		</tr>
 		<c:forEach var="locadora" items="${requestScope.listaLocadoras}">
 			<tr>
@@ -59,11 +65,12 @@ table, th, td {
 				<td><c:out value="${locadora.email}" /></td>
 				<td><c:out value="${locadora.nome}" /></td>
 				<td><c:out value="${locadora.cidade}" /></td>
-				<td><a href="${pageContext.request.contextPath}/admin/CRUD_locadora/edicao?cnpj=${locadora.cnpj}">EDICAO</a> &nbsp;&nbsp;&nbsp;&nbsp;
-					<a href="${pageContext.request.contextPath}/admin/CRUD_locadora/remocao?cnpj=${locadora.cnpj}">REMOCAO</a></td>
+				<td><a href="${pageContext.request.contextPath}/admin/CRUD_locadora/edicao?cnpj=${locadora.cnpj}"><fmt:message key="edit"/></a> &nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="${pageContext.request.contextPath}/admin/CRUD_locadora/remocao?cnpj=${locadora.cnpj}"><fmt:message key="remove"/></a></td>
 			</tr>
 		</c:forEach>
 	</table>
+    </fmt:bundle>
 </body>
 </html>
 

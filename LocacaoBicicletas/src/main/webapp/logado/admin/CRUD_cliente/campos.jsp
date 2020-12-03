@@ -2,10 +2,12 @@
 	pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <h3>CAMPOS</h3>
 
 <table border="1">
+	
 	<caption>
 		<c:choose>
 			<c:when test="${usuario != null}">
@@ -18,6 +20,7 @@
 	</caption>
 
 
+ 	<fmt:bundle basename="messages">
 	<tr>
 		<td><label for="cpf">CPF</label></td>
 		<c:choose>
@@ -32,7 +35,7 @@
 		</c:choose>
 	</tr>
 	<tr>
-		<td><label for="dataNascimento">Data de Nascimento</label></td>
+		<td><label for="dataNascimento"><fmt:message key="birthdate"/></label></td>
 		<td><input type="text" id="dataNascimento" name="dataNascimento"
 			value="${usuario.dataNascimento}" /></td>
 	</tr>
@@ -42,28 +45,28 @@
 			value="${usuario.email}" /></td>
 	</tr>
 	<tr>
-		<td><label for="login">Login</label></td>
+		<td><label for="login"><fmt:message key="login"/></label></td>
 		<td><input type="text" id="login" name="login"
 			value="${usuario.login}" /></td>
 	</tr>
 	<tr>
-		<td><label for="nome">Nome</label></td>
+		<td><label for="nome"><fmt:message key="name"/></label></td>
 		<td><input type="text" id="nome" name="nome"
 			value="${usuario.nome}" /></td>
 	</tr>
 	<tr>
-		<td><label for="senha">Senha</label></td>
+		<td><label for="senha"><fmt:message key="password"/></label></td>
 		<td><input type="text" id="senha" name="senha"
 			value="${usuario.senha}" /></td>
 	</tr>
 
 	<tr>
-		<td><label for="sexo">Sexo</label></td>
+		<td><label for="sexo"><fmt:message key="gender"/></label></td>
 		<td><input type="text" id="sexo" name="sexo"
 			value="${usuario.sexo}" /></td>
 	</tr>
 	<tr>
-		<td><label for="telefone">Telefone</label></td>
+		<td><label for="telefone"><fmt:message key="tel"/></label></td>
 		<td><input type="text" id="telefone" name="telefone"
 			value="${usuario.telefone}" /></td>
 	</tr>
@@ -74,5 +77,7 @@
 	<tr>
 		<td colspan="2"><input type="submit" value="Salvar" /></td>
 	</tr>
+	
+    </fmt:bundle>
 </table>
 

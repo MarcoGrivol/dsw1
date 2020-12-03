@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <h3>CAMPOS</h3>
 
@@ -17,6 +18,7 @@
 		</c:choose>
 	</caption>
 
+ 	<fmt:bundle basename="messages">
 
 	<tr>
 		<td><label for="cnpj">CNPJ</label></td>
@@ -37,17 +39,17 @@
 			value="${locadora.email}" /></td>
 	</tr>
 	<tr>
-		<td><label for="nome">Nome</label></td>
+		<td><label for="nome"><fmt:message key="name"/></label></td>
 		<td><input type="text" id="nome" name="nome"
 			value="${locadora.nome}" /></td>
 	</tr>
 	<tr>
-		<td><label for="senha">Senha</label></td>
+		<td><label for="senha"><fmt:message key="password"/></label></td>
 		<td><input type="text" id="senha" name="senha"
 			value="${locadora.senha}" /></td>
 	</tr>
 	<tr>
-		<td><label for="cidade">Cidade</label></td>
+		<td><label for="cidade"><fmt:message key="city"/></label></td>
 		<td><input type="text" id="cidade" name="cidade"
 			value="${locadora.cidade}" /></td>
 	</tr>
@@ -58,5 +60,6 @@
 	<tr>
 		<td colspan="2"><input type="submit" value="Salvar" /></td>
 	</tr>
+    </fmt:bundle>
 </table>
 
