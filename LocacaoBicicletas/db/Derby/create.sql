@@ -2,14 +2,14 @@ connect 'jdbc:derby:Login;create=true;user=root;password=root';
 
 create table Usuario(
 	cpf varchar(20) not null, 
-	dataNascimento varchar(10),
-	email varchar (26),
+	dataNascimento varchar(10) not null,
+	email varchar (26) not null,
 	login varchar(20) not null unique, 
 	nome varchar (26) not null,
 	senha varchar(64) not null, 
-	sexo varchar (10),
-	telefone varchar (15),
-	papel varchar(10), 
+	sexo varchar (10) not null,
+	telefone varchar (15) not null,
+	papel varchar(10) not null, 
 	CONSTRAINT Usuario_PK PRIMARY KEY (cpf));
 
 create table Locadora(
