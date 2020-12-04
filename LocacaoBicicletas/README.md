@@ -20,5 +20,5 @@ Depois de fazer login, a locadora pode visualizar todas as suas locações grava
 
 ### Requisitos Funcionais
 **R7:** O sistema não deve permitir o cadastro de locações de um mesmo cliente ou de uma mesma locadora em um mesmo dia/horário.\
-~~**R9:** O sistema deve ser internacionalizado em pelo menos dois idiomas: pt + outro.~~
+**R9:** O sistema deve ser internacionalizado em pelo menos dois idiomas: pt + outro.
  

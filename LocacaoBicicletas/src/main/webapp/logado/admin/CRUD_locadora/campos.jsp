@@ -7,18 +7,18 @@
 <h3>CAMPOS</h3>
 
 <table border="1">
+ 	<fmt:bundle basename="messages">
 	<caption>
 		<c:choose>
 			<c:when test="${locadora != null}">
-		EDICAO
+		<label for="edit">
 	</c:when>
 			<c:otherwise>
-		CADASTRO
+		<label for="regist">
 	</c:otherwise>
 		</c:choose>
 	</caption>
 
- 	<fmt:bundle basename="messages">
 
 	<tr>
 		<td><label for="cnpj">CNPJ</label></td>

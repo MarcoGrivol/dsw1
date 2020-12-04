@@ -8,12 +8,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import br.ufscar.dc.dsw.domain.Locadora;
+import br.ufscar.dc.dsw.domain.Usuario;
+import br.ufscar.dc.dsw.domain.Locacao;
+import br.ufscar.dc.dsw.dao.LocacaoDAO;
 import br.ufscar.dc.dsw.util.Error;
+import java.util.List;
 
 @WebServlet(urlPatterns = "/locadora/*")
 public class LocadoraController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
+
+	private LocacaoDAO daoLocacao;
+
+	@Override
+	public void init() {
+		daoLocacao = new LocacaoDAO();
+	}
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -26,19 +37,25 @@ public class LocadoraController extends HttpServlet {
 			throws ServletException, IOException {
 
 		Locadora locadora = (Locadora) request.getSession().getAttribute("usuarioLogado");
-		Error erros = new Error();
-		
 		if (locadora == null) {
 			response.sendRedirect(request.getContextPath());
-		} else if (locadora.getPapel().equals("USER")) {
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/locadora/index.jsp");
-			dispatcher.forward(request, response);
-		} else {
-			erros.add("Acesso não autorizado!");
-			erros.add("Apenas Papel [USER] tem acesso a essa página");
-			request.setAttribute("mensagens", erros);
-			RequestDispatcher rd = request.getRequestDispatcher("/noAuth.jsp");
-			rd.forward(request, response);
 		}
+
+		String action = request.getPathInfo();
+		try {
+			if (action != null)
+			{
+				lista(request, response);
+			}
+		} catch (RuntimeException | IOException | ServletException e) {
+			throw new ServletException(e);
+		}
+	}
+
+	private void lista(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		List<Locacao> listaLocacoes = daoLocacao.getAll();
+		request.setAttribute("listaLocacoes", listaLocacoes);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/locadora/index.jsp");
+		dispatcher.forward(request, response);
 	}
 }

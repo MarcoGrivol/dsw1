@@ -22,12 +22,12 @@ table, th, td {
 	<p><fmt:message key="hello"/>  ${sessionScope.usuarioLogado.papel}</p>
 	
 	<ul>
-		<li><a href="${pageContext.request.contextPath}/logout.jsp">Sair</a>
+		<li><a href="${pageContext.request.contextPath}/logout.jsp"><fmt:message key="exit"/></a>
 		</li>
 	</ul>
-	<h1>LISTA CLIENTES</h1>
+	<h1><fmt:message key="cust_list"/>S</h1>
 	
-	<a href="${pageContext.request.contextPath}/admin/CRUD_cliente/cadastro">CADASTRO de novo cliente</a>
+	<a href="${pageContext.request.contextPath}/admin/CRUD_cliente/cadastro"><fmt:message key="customer_regist"/></a>
 	
 	<table border="1">
 		<tr>
