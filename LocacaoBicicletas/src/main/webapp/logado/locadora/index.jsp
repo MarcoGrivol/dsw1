@@ -19,17 +19,19 @@
 	</ul>
 	<table border="1">
 		<tr>
-			<th><fmt:message key="comp"/></th>
+			<th><fmt:message key="login"/></th>
 			<th><fmt:message key="date"/> </th>
 			<th><fmt:message key="time"/> </th>
 		</tr>
 			
 		<c:forEach var="locacao" items="${listaLocacoes}">
+			<c:when test = "${locacao.cnpj == usuario.cnpj}">
 			<tr>
-				<td><c:out value="${locacao.cnpj}" /></td>
+				<td><c:out value="${locacao.cpf}" /></td>
 				<td><c:out value="${locacao.data}" /></td>
 				<td><c:out value="${locacao.hora}" /></td>
 			</tr>
+			</c:when>
 		</c:forEach>
 	</table>
     </fmt:bundle>

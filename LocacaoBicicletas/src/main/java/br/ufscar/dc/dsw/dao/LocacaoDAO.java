@@ -93,7 +93,7 @@ public class LocacaoDAO extends GenericDAO{
 				String data_locacao = resultSet.getString("data_locacao");
 				String hora = resultSet.getString("hora");
 				
-				locacao = new Locacao (cnpj, cpf, data_locacao,hora);
+				locacao = new Locacao (cnpj, cpf, data_locacao, hora);
 				listaLocacao.add(locacao);
 			}
 			resultSet.close();
@@ -152,5 +152,53 @@ public class LocacaoDAO extends GenericDAO{
 			throw new RuntimeException(e);
 		}
 		return listaLocacao;
+	}
+
+	public Locacao getbydata_cpf(String data_locacao, String hora, String cpf) {
+		Locacao locacao = null;
+		String sql = "SELECT * from Locacao WHERE data_locacao = ? AND hora = ? AND cpf = ?";
+		try {
+			Connection conn = this.getConnection();
+			PreparedStatement statement = conn.prepareStatement(sql);
+			statement.setString(1, data_locacao);
+			statement.setString(2, hora);
+			statement.setString(3, cpf);
+			ResultSet resultSet = statement.executeQuery();
+			if (resultSet.next()) {
+				String cnpj = resultSet.getString("cnpj");
+				
+				locacao = new Locacao (cnpj, cpf, data_locacao,hora);
+			}
+			resultSet.close();
+			statement.close();
+			conn.close();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+		return locacao;
+	}
+
+	public Locacao getbydata_cnpj(String data_locacao, String hora, String cnpj) {
+		Locacao locacao = null;
+		String sql = "SELECT * from Locacao WHERE data_locacao = ? AND hora = ? AND cnpj = ?";
+		try {
+			Connection conn = this.getConnection();
+			PreparedStatement statement = conn.prepareStatement(sql);
+			statement.setString(1, data_locacao);
+			statement.setString(2, hora);
+			statement.setString(3, cnpj);
+			ResultSet resultSet = statement.executeQuery();
+			if (resultSet.next()) {
+				String cpf = resultSet.getString("cpf");
+				
+				locacao = new Locacao (cnpj, cpf, data_locacao,hora);
+			}
+			resultSet.close();
+			statement.close();
+			conn.close();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+		return locacao;
 	}
 }

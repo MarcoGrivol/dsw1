@@ -66,7 +66,7 @@ public class UsuarioController extends HttpServlet {
 			Cadastro(request, response);
 			break;
 		default:
-			lista(request, response);
+			lista(request, response, usuario);
 			break;
 		}
 
@@ -95,9 +95,11 @@ public class UsuarioController extends HttpServlet {
 		response.sendRedirect("index");
 	}
 
-	private void lista(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private void lista(HttpServletRequest request, HttpServletResponse response, Usuario usuario) throws ServletException, IOException {
 		List<Locacao> listaLocacoes = daoLocacao.getAll();
 		request.setAttribute("listaLocacoes", listaLocacoes);
+		List<Locacao> listaLocacoes_cpf = daoLocacao.getbyCpf(usuario.getCpf());
+		request.setAttribute("listaLocacoes_cpf", listaLocacoes_cpf);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/usuario/index.jsp");
 		dispatcher.forward(request, response);
 	}
