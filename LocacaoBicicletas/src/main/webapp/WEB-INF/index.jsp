@@ -4,6 +4,7 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <!DOCTYPE html>
 <html>
@@ -14,7 +15,8 @@
 	rel="stylesheet" type="text/css" />
 </head>
 <body>
-	<h1>Autenticação de Usuário</h1>
+	<fmt:bundle basename="messages">
+	<h1><fmt:message key="autentication"/></h1>
 	<!-- se o login falhar exibe a mensagem de erro que retorna de LoginController.java -->
 	<c:if test="${mensagens.existeErros}">
 		<div id="erro">
@@ -29,28 +31,28 @@
 	<form method="post" action="login.jsp">
 		<table>
 			<tr>
-				<th>Login:</th>
+				<th><fmt:message key="login"/>:</th>
 				<td><input type="text" name="login" value="${param.login}" /></td>
 			</tr>
 			<tr>
-				<th>Senha:</th>
+				<th><fmt:message key="password"/>:</th>
 				<td><input type="password" name="senha" /></td>
 			</tr>
 			<tr>
-				<td colspan="2"><input type="submit" name="bOK" value="Entrar" />
+				<td colspan="2"><input type="submit" name="bOK" value="<fmt:message key="enter"/>" />
 				</td>
 			</tr>
 		</table>
 	</form>
 
 	<!-- Informacoes que nao precisam de nenhum login sao controladas por IndexController.java -->
-	<h1>LISTA LOCADORAS</h1>
+	<h1><fmt:message key="rent_list"/></h1>
 	<table border="1">
 		<tr>
 			<th>CNPJ</th>
 			<th>E-mail</th>
-			<th>Nome</th>
-			<th>Cidade</th>
+			<th><fmt:message key="name"/></th>
+			<th><fmt:message key="city"/></th>
 		</tr>
 		<c:forEach var="locadora" items="${requestScope.listaLocadoras}">
 			<tr>
@@ -61,5 +63,6 @@
 			</tr>
 		</c:forEach>
 	</table>
+	</fmt:bundle>
 </body>
 </html>

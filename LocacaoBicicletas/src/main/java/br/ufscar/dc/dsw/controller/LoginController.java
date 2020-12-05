@@ -54,7 +54,7 @@ public class LoginController extends HttpServlet {
 				} else {
 					LocadoraDAO daolocadora = new LocadoraDAO();
 					Locadora locadora = daolocadora.getbyEmail(login);
-					if (locadora.getSenha().equals(senha)) {
+					if (locadora != null && locadora.getSenha().equals(senha)) {
 						request.getSession().setAttribute("usuarioLogado", locadora);
 						response.sendRedirect("locadora/");
 						return;
