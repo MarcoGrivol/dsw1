@@ -6,6 +6,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link href="${pageContext.request.contextPath}/layout.css"
+	rel="stylesheet" type="text/css" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Menu do Sistema</title>
 </head>
@@ -17,7 +19,7 @@
 		<li><a href="${pageContext.request.contextPath}/logout.jsp"><fmt:message key="exit"/></a>
 		</li>
 	</ul>
-	<table border="1">
+	<table >
 		<tr>
 			<th><fmt:message key="login"/></th>
 			<th><fmt:message key="date"/> </th>
@@ -25,13 +27,15 @@
 		</tr>
 			
 		<c:forEach var="locacao" items="${listaLocacoes}">
-			<c:when test = "${locacao.cnpj == usuario.cnpj}">
+			<c:choose>
+			<c:when test = "${locacao.cnpj.equals(sessionScope.usuarioLogado.cnpj)}">
 			<tr>
 				<td><c:out value="${locacao.cpf}" /></td>
 				<td><c:out value="${locacao.data}" /></td>
 				<td><c:out value="${locacao.hora}" /></td>
 			</tr>
 			</c:when>
+		</c:choose>
 		</c:forEach>
 	</table>
     </fmt:bundle>

@@ -50,7 +50,7 @@ public class LoginController extends HttpServlet {
 						return;
 					} else {
 						erros.add("Senha inválida!");
-					}
+					}	
 				} else {
 					LocadoraDAO daolocadora = new LocadoraDAO();
 					Locadora locadora = daolocadora.getbyEmail(login);

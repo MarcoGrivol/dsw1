@@ -1,6 +1,59 @@
+body{
+	background-color: rgb(251, 223, 186);
+}
+
 #erro {
 	width: 80%;
 	margin: 0 auto;
 	border: 1px solid red;
 	background-color: beige;
 }
+form{
+	text-align:center;
+
+}
+
+.edit{
+	border-radius: 20px;
+	
+	color: green;
+}
+.remove{
+	border-radius: 20px;
+	color: rgb(148, 33, 4);
+}
+
+
+input[type=text] {
+	width: 100%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	box-sizing: border-box;
+	border: 0.5px solid rgb(105, 105, 105);
+	background-color: #bcdef5;
+  }
+  input[type=submit] {
+	width: 100%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	background-color: rgb(143, 248, 110);
+	color :rgb(34, 34, 34);
+  }
+
+th{
+	padding: 15px;
+	text-align: left;
+	text-align: center;
+	background-color: rgb(117, 255, 117);
+	color: rgb(37, 36, 36);
+	border:0.5px
+}
+td{
+	padding: 15px;
+	text-align: left;
+	text-align: center;
+	background-color: rgb(195, 255, 219);
+	color: rgb(37, 36, 36);
+	border:0.5px
+}
+

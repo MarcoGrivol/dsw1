@@ -6,11 +6,22 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link href="${pageContext.request.contextPath}/layout.css"
+	rel="stylesheet" type="text/css" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Menu do Sistema</title>
 </head>
-<body>
- 	<fmt:bundle basename="messages">
+<fmt:bundle basename="messages">
+	<body>
+		<c:if test="${mensagens.existeErros}">
+				<div id="erro">
+					<ul>
+						<c:forEach var="erro" items="${mensagens.erros}">
+							<li>${erro}</li>
+						</c:forEach>
+					</ul>
+				</div>
+			</c:if>
 	<h1><fmt:message key="user_page"/></h1>
 	<p><fmt:message key="hello"/> ${sessionScope.usuarioLogado.papel}</p>
 	<ul>
@@ -21,19 +32,21 @@
 		<li><a href="${pageContext.request.contextPath}/logout.jsp"><fmt:message key="exit"/></a>
 		</li>
 	</ul>
-    <table border="1">
+    <table >
 		<tr>
 			<th><fmt:message key="company"/></th>
 			<th><fmt:message key="date"/> </th>
 			<th><fmt:message key="time"/> </th>
 		</tr>
-		<c:forEach var="locacao" items="${listaLocacoes_cpf}">
+		<c:forEach var="locacao" items="${listaLocacoes}">
 			<tr>
-				<c:when test = "${locacao.cpf == sessionScope.usuarioLogado.cpf}">
+				<c:choose>
+				<c:when test = "${locacao.cpf.equals(sessionScope.usuarioLogado.cpf)}">
 				<td><c:out value="${locacao.cnpj}" /></td>
 				<td><c:out value="${locacao.data}" /></td>
 				<td><c:out value="${locacao.hora}" /></td>
-			</c:when>
+				</c:when>
+			</c:choose>
 			</tr>
 		</c:forEach>
 	</table>

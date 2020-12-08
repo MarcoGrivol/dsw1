@@ -4,6 +4,8 @@
 
 <html>
     <head>
+        <link href="${pageContext.request.contextPath}/layout.css"
+        rel="stylesheet" type="text/css" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>AJAX (dynamic select)</title>
     </head>

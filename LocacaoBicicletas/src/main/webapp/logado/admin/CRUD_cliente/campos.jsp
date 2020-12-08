@@ -6,7 +6,7 @@
 
 <h3>CAMPOS</h3>
 
-<table border="1">
+<table >
 	
 	<caption>
 		<c:choose>
