@@ -84,15 +84,29 @@ public class UsuarioController extends HttpServlet {
 	private void Cadastro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-
+		Error erros = new Error();
 		String cnpj = request.getParameter("locadora");
 		String cpf = request.getParameter("usuario");
 		String data = request.getParameter("Data");
 		String hora = request.getParameter("hora");
-		Locacao locacao = new Locacao(cnpj, cpf, data, hora);
+		if (daoLocacao.getbydata_cnpj(data, hora, cnpj) == null){
+			if (daoLocacao.getbydata_cpf(data, hora, cpf) == null){
+				Locacao locacao = new Locacao(cnpj, cpf, data, hora);
 
-		daoLocacao.insert(locacao);
-		response.sendRedirect("index");
+				daoLocacao.insert(locacao);
+				response.sendRedirect("index");
+			}else {
+				erros.add("Locação não autorizada!");
+				erros.add("Você ja possuiu uma locação nesse horario");
+				request.setAttribute("mensagens", erros);
+				lista(request, response, (Usuario) request.getSession().getAttribute("usuarioLogado"));
+			}
+		}else {
+				erros.add("Locação não autorizada!");
+				erros.add("Este horario ja está reservado");
+				request.setAttribute("mensagens", erros);
+				lista(request, response, (Usuario) request.getSession().getAttribute("usuarioLogado"));
+			}
 	}
 
 	private void lista(HttpServletRequest request, HttpServletResponse response, Usuario usuario) throws ServletException, IOException {

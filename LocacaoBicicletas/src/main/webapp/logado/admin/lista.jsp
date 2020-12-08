@@ -44,8 +44,8 @@ table, th, td {
 				<td><c:out value="${usuario.email}" /></td>
 				<td><c:out value="${usuario.nome}" /></td>
 				<td><c:out value="${usuario.login}" /></td>
-				<td><a href="${pageContext.request.contextPath}/admin/CRUD_cliente/edicao?cpf=${usuario.cpf}"><fmt:message key="edit"/></a> &nbsp;&nbsp;&nbsp;&nbsp;
-					<a href="${pageContext.request.contextPath}/admin/CRUD_cliente/remocao?cpf=${usuario.cpf}"><fmt:message key="remove"/></a></td>
+				<td><a class=edit href="${pageContext.request.contextPath}/admin/CRUD_cliente/edicao?cpf=${usuario.cpf}"><fmt:message key="edit"/></a> &nbsp;&nbsp;&nbsp;&nbsp;
+					<a class=remove href="${pageContext.request.contextPath}/admin/CRUD_cliente/remocao?cpf=${usuario.cpf}"><fmt:message key="remove"/></a></td>
 				</tr>
 			</c:forEach>
 		</table>

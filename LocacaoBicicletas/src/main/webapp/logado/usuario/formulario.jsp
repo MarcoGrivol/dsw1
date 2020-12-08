@@ -3,13 +3,18 @@
 <%@ page isELIgnored="false"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-
+<html>
+	<head>
+		<link href="${pageContext.request.contextPath}/layout.css"
+		rel="stylesheet" type="text/css" />
+	</head>
 <h3>CAMPOS</h3>
 
-<table border="1">
+<table >
  	<fmt:bundle basename="messages">
 	
 	<form action="cadastroAluguel">
+		
 		<tr>
 			<td><label for="Locadora"><fmt:message key="company"/></label></td>
 			<td><select name="locadora" id="locadora">
@@ -42,3 +47,4 @@
     </fmt:bundle>
 </table>
 
+</html>
