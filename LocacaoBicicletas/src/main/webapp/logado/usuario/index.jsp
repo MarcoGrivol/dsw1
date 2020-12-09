@@ -35,11 +35,11 @@
 						key="rent_bike" /></a></li>
 		</ul>
 		<form action="${pageContext.request.contextPath}/logout" method="post">
-			<input type="submit" value="Logout" />
+			<input type="submit" value="<fmt:message key="exit"/>"/>
 		</form>
 		<table>
 			<tr>
-				<th><fmt:message key="company" /></th>
+				<th><fmt:message key="comp" /></th>
 				<th><fmt:message key="date" /></th>
 				<th><fmt:message key="time" /></th>
 			</tr>

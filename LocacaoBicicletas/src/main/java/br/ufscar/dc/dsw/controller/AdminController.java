@@ -113,7 +113,7 @@ public class AdminController extends HttpServlet {
 
 		Usuario usuario = new Usuario(cpf);
 		dao.delete(usuario);
-		response.sendRedirect("lista");
+		response.sendRedirect("index.jsp");
 	}
 
 	private void apresentaFormCadastro(HttpServletRequest request, HttpServletResponse response)
@@ -137,7 +137,7 @@ public class AdminController extends HttpServlet {
 		Usuario usuario = new Usuario(cpf, dataNascimento, email, login, nome, senha, sexo, telefone, papel);
 
 		dao.insert(usuario);
-		response.sendRedirect("lista");
+		response.sendRedirect("index.jsp");
 	}
 	
 	private void apresentaFormEdicao(HttpServletRequest request, HttpServletResponse response)
@@ -165,7 +165,7 @@ public class AdminController extends HttpServlet {
 		Usuario usuario = new Usuario(cpf, dataNascimento, email, login, nome, senha, sexo, telefone, papel);
 		
 		dao.update(usuario);
-		response.sendRedirect("lista");
+		response.sendRedirect("index.jsp");
 	}
 	
 	//Funções para locadoras
@@ -174,7 +174,7 @@ public class AdminController extends HttpServlet {
 
 		Locadora locadora = new Locadora(cnpj);
 		daoLocadora.delete(locadora);
-		response.sendRedirect("lista");
+		response.sendRedirect("index.jsp");
 	}
 
 	private void apresentaFormEdicaoLocadora(HttpServletRequest request, HttpServletResponse response)
@@ -199,7 +199,7 @@ public class AdminController extends HttpServlet {
 		Locadora locadora = new Locadora(cpf, email,nome, senha, cidade, papel);
 		
 		daoLocadora.update(locadora);
-		response.sendRedirect("lista");
+		response.sendRedirect("index.jsp");
 	}
 	private void apresentaFormCadastroLocadora(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -219,7 +219,7 @@ public class AdminController extends HttpServlet {
 		Locadora locadora = new Locadora(cnpj, email, nome, senha,cidade, papel);
 
 		daoLocadora.insert(locadora);
-		response.sendRedirect("lista");
+		response.sendRedirect("index.jsp");
 	}
 
 
@@ -229,7 +229,7 @@ public class AdminController extends HttpServlet {
 		List<Locadora> listaLocadoras = daoLocadora.getAll();
 		request.setAttribute("listaUsuarios", listaUsuarios);
 		request.setAttribute("listaLocadoras", listaLocadoras);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/admin/lista.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/admin/index.jsp");
 		dispatcher.forward(request, response);
 	}
 	

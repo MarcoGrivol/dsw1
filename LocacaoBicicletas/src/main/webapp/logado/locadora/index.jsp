@@ -21,7 +21,7 @@
 			${sessionScope.usuarioLogado.papel}
 		</p>
 		<form action="${pageContext.request.contextPath}/logout" method="post">
-			<input type="submit" value="Logout" />
+			<input type="submit" value="<fmt:message key="exit"/>"/>
 		</form>
 		<table>
 			<tr>
