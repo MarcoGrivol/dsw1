@@ -1,5 +1,6 @@
 body{
-	background-color: rgb(251, 223, 186);
+	background-image: url('images/travel-cycling-mountain-vacation-lifestyle.jpg');
+	background-size:cover;
 }
 
 #erro {
@@ -9,7 +10,28 @@ body{
 	background-color: beige;
 }
 form{
-	text-align:center;
+	padding: 12px 20px;
+	margin: 8px 0;
+
+}
+table{
+	padding: 12px 20px;
+	margin: 8px 0;
+	background-color: #d9e9f3d2;
+	border: 1px;
+
+}
+
+tr,th,td{
+	border: 1px solid black;
+}
+
+
+.lista-locadoras-index{
+	padding: 12px 20px;
+	margin: 8px 0;
+	background-color: #d9e9f3e3;
+	text-align: center;
 
 }
 
@@ -24,36 +46,7 @@ form{
 }
 
 
-input[type=text] {
-	width: 100%;
-	padding: 12px 20px;
-	margin: 8px 0;
-	box-sizing: border-box;
-	border: 0.5px solid rgb(105, 105, 105);
-	background-color: #bcdef5;
-  }
-  input[type=submit] {
-	width: 100%;
-	padding: 12px 20px;
-	margin: 8px 0;
-	background-color: rgb(143, 248, 110);
-	color :rgb(34, 34, 34);
-  }
 
-th{
-	padding: 15px;
-	text-align: left;
-	text-align: center;
-	background-color: rgb(117, 255, 117);
-	color: rgb(37, 36, 36);
-	border:0.5px
-}
-td{
-	padding: 15px;
-	text-align: left;
-	text-align: center;
-	background-color: rgb(195, 255, 219);
-	color: rgb(37, 36, 36);
-	border:0.5px
-}
+
+
 

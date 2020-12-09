@@ -45,9 +45,9 @@
 	
 		<!-- Informacoes que nao precisam de nenhum login sao controladas por IndexController.java -->
 		<form method="post" action="index.jsp">
-			<div align="center">
+			<div class="lisca-locadoras-index">
 				<p>Lista de Locadoras</p>
-				<label for="cidade">Nome</label> <select id="cidade" name="cidade"
+				<h1 for="cidade">Escolha a cidade</h1> <select id="cidade" name="cidade"
 					onchange="this.form.submit()">
 					<option value='--'>Selecione</option>
 					<option value='todasCidades'>Todas</option>
@@ -75,5 +75,6 @@
 				</div>
 			</div>
 		</form>
+		<a style="text-align: center;" href='https://www.freepik.com/photos/background'>Background photo created by jcomp - www.freepik.com</a>
 	</body>
 	</html>
