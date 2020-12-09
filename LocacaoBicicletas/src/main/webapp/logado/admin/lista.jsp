@@ -7,6 +7,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link href="${pageContext.request.contextPath}/layout.css"
+		rel="stylesheet" type="text/css" />
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
@@ -65,8 +67,8 @@ table, th, td {
 				<td><c:out value="${locadora.email}" /></td>
 				<td><c:out value="${locadora.nome}" /></td>
 				<td><c:out value="${locadora.cidade}" /></td>
-				<td><a href="${pageContext.request.contextPath}/admin/CRUD_locadora/edicao?cnpj=${locadora.cnpj}"><fmt:message key="edit"/></a> &nbsp;&nbsp;&nbsp;&nbsp;
-					<a href="${pageContext.request.contextPath}/admin/CRUD_locadora/remocao?cnpj=${locadora.cnpj}"><fmt:message key="remove"/></a></td>
+				<td><a class=edit href="${pageContext.request.contextPath}/admin/CRUD_locadora/edicao?cnpj=${locadora.cnpj}"><fmt:message key="edit"/></a> &nbsp;&nbsp;&nbsp;&nbsp;
+					<a class=remove href="${pageContext.request.contextPath}/admin/CRUD_locadora/remocao?cnpj=${locadora.cnpj}"><fmt:message key="remove"/></a></td>
 			</tr>
 		</c:forEach>
 	</table>
