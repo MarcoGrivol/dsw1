@@ -1,7 +1,9 @@
 package br.ufscar.dc.dsw.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import br.ufscar.dc.dsw.domain.Locadora;
 import br.ufscar.dc.dsw.dao.LocadoraDAO;
+import br.ufscar.dc.dsw.dao.LocacaoDAO;
 
 import br.ufscar.dc.dsw.domain.Usuario;
 import br.ufscar.dc.dsw.dao.UsuarioDAO;
@@ -24,12 +27,14 @@ public class AdminController extends HttpServlet {
 
 	private UsuarioDAO dao;
 	private LocadoraDAO daoLocadora;
+	private LocacaoDAO daoLocacao;
 	
 	@Override
 	public void init()
 	{
 		dao = new UsuarioDAO();
 		daoLocadora = new LocadoraDAO();
+		daoLocacao = new LocacaoDAO();
 	}
 
 	@Override
@@ -48,8 +53,9 @@ public class AdminController extends HttpServlet {
 		if (usuario == null) {
 			response.sendRedirect(request.getContextPath());
 		} else if (!usuario.getPapel().equals("ADMIN")) {
-			erros.add("Acesso não autorizado!");
-			erros.add("Apenas Papel [ADMIN] tem acesso a essa página");
+			erros.add("erroUsuarioNaoAutorizado");
+			erros.add("erroApenasAdmin");
+			request.setAttribute("mensagens", erros);
 			RequestDispatcher rd = request.getRequestDispatcher("/noAuth.jsp");
 			rd.forward(request, response);
 		}
@@ -227,8 +233,12 @@ public class AdminController extends HttpServlet {
 	private void lista(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Usuario> listaUsuarios = dao.getAll();
 		List<Locadora> listaLocadoras = daoLocadora.getAll();
+		List<String> listaLocacoesCpf = daoLocacao.getAllCPF();
+		List<String> listaLocacoesCnpj = daoLocacao.getAllCNPJ();
 		request.setAttribute("listaUsuarios", listaUsuarios);
 		request.setAttribute("listaLocadoras", listaLocadoras);
+		request.setAttribute("listaLocacoesCpf", listaLocacoesCpf);
+		request.setAttribute("listaLocacoesCnpj", listaLocacoesCnpj);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/admin/index.jsp");
 		dispatcher.forward(request, response);
 	}

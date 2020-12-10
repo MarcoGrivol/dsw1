@@ -56,7 +56,7 @@
 	</tr>
 	<tr>
 		<td><label for="senha"><fmt:message key="password"/></label></td>
-		<td><input type="text" id="senha" name="senha"
+		<td><input type="password" id="senha" name="senha"
 			value="${usuario.senha}" /></td>
 	</tr>
 
@@ -69,10 +69,6 @@
 		<td><label for="telefone"><fmt:message key="tel"/></label></td>
 		<td><input type="text" id="telefone" name="telefone"
 			value="${usuario.telefone}" /></td>
-	</tr>
-		<tr>
-		<td><input type="hidden" id="papel" name="papel"
-			value="${usuario.papel}" /></td>
 	</tr>
 	<tr>
 		<td colspan="2"><input type="submit" value="Salvar" /></td>

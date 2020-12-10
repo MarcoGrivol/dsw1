@@ -31,10 +31,10 @@ public class LoginController extends HttpServlet {
 			String login = request.getParameter("login");
 			String senha = request.getParameter("senha");
 			if (login == null || login.isEmpty()) {
-				erros.add("Login não informado!");
+				erros.add("erroEmptyLogin");
 			}
 			if (senha == null || senha.isEmpty()) {
-				erros.add("Senha não informada!");
+				erros.add("erroEmptyPassword");
 			}
 			if (!erros.isExisteErros()) {
 				UsuarioDAO dao = new UsuarioDAO();
@@ -49,7 +49,7 @@ public class LoginController extends HttpServlet {
 						}
 						return;
 					} else {
-						erros.add("Senha inválida!");
+						erros.add("erroLogin");
 					}	
 				} else {
 					LocadoraDAO daolocadora = new LocadoraDAO();
@@ -60,7 +60,7 @@ public class LoginController extends HttpServlet {
 						return;
 						}
 					 else {
-						erros.add("Senha inválida!");
+						erros.add("erroLogin");
 					}
 				}
 			}

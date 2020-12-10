@@ -45,7 +45,7 @@
 	</tr>
 	<tr>
 		<td><label for="senha"><fmt:message key="password"/></label></td>
-		<td><input type="text" id="senha" name="senha"
+		<td><input type="password" id="senha" name="senha"
 			value="${locadora.senha}" /></td>
 	</tr>
 	<tr>
