@@ -4,17 +4,15 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
-<h3>CAMPOS</h3>
-
 <table border="1">
  	<fmt:bundle basename="messages">
 	<caption>
 		<c:choose>
 			<c:when test="${locadora != null}">
-		<label for="edit">
+		<fmt:message key="edit"/>
 	</c:when>
 			<c:otherwise>
-		<label for="regist">
+		<fmt:message key="cadastro"/>
 	</c:otherwise>
 		</c:choose>
 	</caption>
@@ -35,30 +33,26 @@
 	</tr>
 	<tr>
 		<td><label for="email">E-mail</label></td>
-		<td><input type="text" id="email" name="email"
+		<td><input type="text" id="email" name="email" required
 			value="${locadora.email}" /></td>
 	</tr>
 	<tr>
 		<td><label for="nome"><fmt:message key="name"/></label></td>
-		<td><input type="text" id="nome" name="nome"
+		<td><input type="text" id="nome" name="nome" required
 			value="${locadora.nome}" /></td>
 	</tr>
 	<tr>
 		<td><label for="senha"><fmt:message key="password"/></label></td>
-		<td><input type="text" id="senha" name="senha"
+		<td><input type="password" id="senha" name="senha" required
 			value="${locadora.senha}" /></td>
 	</tr>
 	<tr>
 		<td><label for="cidade"><fmt:message key="city"/></label></td>
-		<td><input type="text" id="cidade" name="cidade"
+		<td><input type="text" id="cidade" name="cidade" required
 			value="${locadora.cidade}" /></td>
 	</tr>
-		<tr>
-		<td><input type="hidden" id="papel" name="papel"
-			value="${locadora.papel}" /></td>
-	</tr>
 	<tr>
-		<td colspan="2"><input type="submit" value="Salvar" /></td>
+		<td colspan="2"><input type="submit" value="<fmt:message key="salvar"/>" /></td>
 	</tr>
     </fmt:bundle>
 </table>

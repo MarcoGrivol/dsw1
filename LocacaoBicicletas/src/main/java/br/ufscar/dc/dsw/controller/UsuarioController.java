@@ -12,7 +12,6 @@ import br.ufscar.dc.dsw.domain.Usuario;
 import br.ufscar.dc.dsw.domain.Locacao;
 import br.ufscar.dc.dsw.domain.Locadora;
 import br.ufscar.dc.dsw.util.Error;
-import java.util.ArrayList;
 
 import br.ufscar.dc.dsw.dao.LocadoraDAO;
 import br.ufscar.dc.dsw.dao.LocacaoDAO;
@@ -96,14 +95,14 @@ public class UsuarioController extends HttpServlet {
 				daoLocacao.insert(locacao);
 				response.sendRedirect("index");
 			}else {
-				erros.add("Locação não autorizada!");
-				erros.add("Você ja possuiu uma locação nesse horario");
+				erros.add("erroLocacaoNaoAutorizada");
+				erros.add("erroVoceJaReservouNesseHorario");
 				request.setAttribute("mensagens", erros);
 				lista(request, response, (Usuario) request.getSession().getAttribute("usuarioLogado"));
 			}
 		}else {
-				erros.add("Locação não autorizada!");
-				erros.add("Este horario ja está reservado");
+				erros.add("erroLocacaoNaoAutorizada");
+				erros.add("erroHorarioReservado");
 				request.setAttribute("mensagens", erros);
 				lista(request, response, (Usuario) request.getSession().getAttribute("usuarioLogado"));
 			}

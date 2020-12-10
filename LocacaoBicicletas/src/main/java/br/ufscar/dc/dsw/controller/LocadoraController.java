@@ -8,10 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import br.ufscar.dc.dsw.domain.Locadora;
-import br.ufscar.dc.dsw.domain.Usuario;
 import br.ufscar.dc.dsw.domain.Locacao;
 import br.ufscar.dc.dsw.dao.LocacaoDAO;
-import br.ufscar.dc.dsw.util.Error;
 import java.util.List;
 
 @WebServlet(urlPatterns = "/locadora/*")

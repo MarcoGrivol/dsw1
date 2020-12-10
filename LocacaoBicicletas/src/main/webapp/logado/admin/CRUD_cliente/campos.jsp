@@ -4,17 +4,15 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
-<h3>CAMPOS</h3>
-
 <table >
 	
 	<caption>
 		<c:choose>
 			<c:when test="${usuario != null}">
-		EDICAO
+		<fmt:message key="edit"/>
 	</c:when>
 			<c:otherwise>
-		CADASTRO
+		<fmt:message key="cadastro"/>
 	</c:otherwise>
 		</c:choose>
 	</caption>
@@ -36,46 +34,42 @@
 	</tr>
 	<tr>
 		<td><label for="dataNascimento"><fmt:message key="birthdate"/></label></td>
-		<td><input type="text" id="dataNascimento" name="dataNascimento"
+		<td><input type="text" id="dataNascimento" name="dataNascimento" required
 			value="${usuario.dataNascimento}" /></td>
 	</tr>
 	<tr>
 		<td><label for="email">E-mail</label></td>
-		<td><input type="text" id="email" name="email"
+		<td><input type="text" id="email" name="email" required
 			value="${usuario.email}" /></td>
 	</tr>
 	<tr>
 		<td><label for="login"><fmt:message key="login"/></label></td>
-		<td><input type="text" id="login" name="login"
+		<td><input type="text" id="login" name="login" required
 			value="${usuario.login}" /></td>
 	</tr>
 	<tr>
 		<td><label for="nome"><fmt:message key="name"/></label></td>
-		<td><input type="text" id="nome" name="nome"
+		<td><input type="text" id="nome" name="nome" required
 			value="${usuario.nome}" /></td>
 	</tr>
 	<tr>
 		<td><label for="senha"><fmt:message key="password"/></label></td>
-		<td><input type="text" id="senha" name="senha"
+		<td><input type="password" id="senha" name="senha" required
 			value="${usuario.senha}" /></td>
 	</tr>
 
 	<tr>
 		<td><label for="sexo"><fmt:message key="gender"/></label></td>
-		<td><input type="text" id="sexo" name="sexo"
+		<td><input type="text" id="sexo" name="sexo" required
 			value="${usuario.sexo}" /></td>
 	</tr>
 	<tr>
 		<td><label for="telefone"><fmt:message key="tel"/></label></td>
-		<td><input type="text" id="telefone" name="telefone"
+		<td><input type="text" id="telefone" name="telefone" required
 			value="${usuario.telefone}" /></td>
 	</tr>
-		<tr>
-		<td><input type="hidden" id="papel" name="papel"
-			value="${usuario.papel}" /></td>
-	</tr>
 	<tr>
-		<td colspan="2"><input type="submit" value="Salvar" /></td>
+		<td colspan="2"><input type="submit" value="<fmt:message key="salvar"/>" /></td>
 	</tr>
 	
     </fmt:bundle>

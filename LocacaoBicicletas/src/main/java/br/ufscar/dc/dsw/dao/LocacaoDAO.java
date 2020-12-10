@@ -5,7 +5,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -200,5 +199,45 @@ public class LocacaoDAO extends GenericDAO{
 			throw new RuntimeException(e);
 		}
 		return locacao;
+	}
+	
+	public List<String> getAllCPF() {
+		List<String> listaCpf = new ArrayList<>();
+		String sql = "SELECT cpf from Locacao";
+		try {
+			Connection conn = this.getConnection();
+			PreparedStatement statement = conn.prepareStatement(sql);
+			ResultSet resultSet = statement.executeQuery();
+			while (resultSet.next()) {
+				String cpf  = resultSet.getString("cpf");
+				listaCpf.add(cpf);
+			}
+			resultSet.close();
+			statement.close();
+			conn.close();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+		return listaCpf;
+	}
+	
+	public List<String> getAllCNPJ() {
+		List<String> listaCnpj = new ArrayList<>();
+		String sql = "SELECT cnpj from Locacao";
+		try {
+			Connection conn = this.getConnection();
+			PreparedStatement statement = conn.prepareStatement(sql);
+			ResultSet resultSet = statement.executeQuery();
+			while (resultSet.next()) {
+				String cnpj  = resultSet.getString("cnpj");
+				listaCnpj.add(cnpj);
+			}
+			resultSet.close();
+			statement.close();
+			conn.close();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+		return listaCnpj;
 	}
 }

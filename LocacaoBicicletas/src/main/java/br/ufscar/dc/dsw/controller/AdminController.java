@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import br.ufscar.dc.dsw.domain.Locadora;
 import br.ufscar.dc.dsw.dao.LocadoraDAO;
+import br.ufscar.dc.dsw.dao.LocacaoDAO;
 
 import br.ufscar.dc.dsw.domain.Usuario;
 import br.ufscar.dc.dsw.dao.UsuarioDAO;
@@ -22,14 +23,16 @@ public class AdminController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
-	private UsuarioDAO dao;
+	private UsuarioDAO daoUsuario;
 	private LocadoraDAO daoLocadora;
+	private LocacaoDAO daoLocacao;
 	
 	@Override
 	public void init()
 	{
-		dao = new UsuarioDAO();
+		daoUsuario = new UsuarioDAO();
 		daoLocadora = new LocadoraDAO();
+		daoLocacao = new LocacaoDAO();
 	}
 
 	@Override
@@ -48,8 +51,9 @@ public class AdminController extends HttpServlet {
 		if (usuario == null) {
 			response.sendRedirect(request.getContextPath());
 		} else if (!usuario.getPapel().equals("ADMIN")) {
-			erros.add("Acesso não autorizado!");
-			erros.add("Apenas Papel [ADMIN] tem acesso a essa página");
+			erros.add("erroUsuarioNaoAutorizado");
+			erros.add("erroApenasAdmin");
+			request.setAttribute("mensagens", erros);
 			RequestDispatcher rd = request.getRequestDispatcher("/noAuth.jsp");
 			rd.forward(request, response);
 		}
@@ -99,7 +103,7 @@ public class AdminController extends HttpServlet {
 				atualizeLocadora(request, response);
 				break;
 			default:
-				lista(request, response);
+				lista(request, response, erros);
 				break;
 			}
 		} catch (RuntimeException | IOException | ServletException e) {
@@ -112,8 +116,8 @@ public class AdminController extends HttpServlet {
 		String cpf = request.getParameter("cpf");
 
 		Usuario usuario = new Usuario(cpf);
-		dao.delete(usuario);
-		response.sendRedirect("lista");
+		daoUsuario.delete(usuario);
+		response.sendRedirect("index.jsp");
 	}
 
 	private void apresentaFormCadastro(HttpServletRequest request, HttpServletResponse response)
@@ -124,26 +128,35 @@ public class AdminController extends HttpServlet {
 	
 	private void insere(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-
+		
+		Error erros = new Error();
+		
 		String cpf = request.getParameter("cpf");
-		String dataNascimento = request.getParameter("dataNascimento");
-		String email = request.getParameter("email");
-		String login = request.getParameter("login");
-		String nome = request.getParameter("nome");
-		String senha = request.getParameter("senha");
-		String sexo = request.getParameter("sexo");
-		String telefone = request.getParameter("telefone");
-		String papel = "USER";
-		Usuario usuario = new Usuario(cpf, dataNascimento, email, login, nome, senha, sexo, telefone, papel);
-
-		dao.insert(usuario);
-		response.sendRedirect("lista");
+		// verifica se ja existe usuario com o mesmo cpf
+		if (daoUsuario.getbyCpf(cpf) != null)
+		{
+			erros.add("erroUsuarioJaExiste");
+		} else
+		{
+			String dataNascimento = request.getParameter("dataNascimento");
+			String email = request.getParameter("email");
+			String login = request.getParameter("login");
+			String nome = request.getParameter("nome");
+			String senha = request.getParameter("senha");
+			String sexo = request.getParameter("sexo");
+			String telefone = request.getParameter("telefone");
+			String papel = "USER";
+			Usuario usuario = new Usuario(cpf, dataNascimento, email, login, nome, senha, sexo, telefone, papel);
+			daoUsuario.insert(usuario);
+		}
+		
+		lista(request, response, erros);
 	}
 	
 	private void apresentaFormEdicao(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String cpf = request.getParameter("cpf");
-		Usuario usuario = dao.getbyCpf(cpf);
+		Usuario usuario = daoUsuario.getbyCpf(cpf);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/admin/CRUD_cliente/formulario.jsp");
 		request.setAttribute("usuario", usuario);
 		dispatcher.forward(request, response);
@@ -164,8 +177,8 @@ public class AdminController extends HttpServlet {
 		String papel = "USER";
 		Usuario usuario = new Usuario(cpf, dataNascimento, email, login, nome, senha, sexo, telefone, papel);
 		
-		dao.update(usuario);
-		response.sendRedirect("lista");
+		daoUsuario.update(usuario);
+		response.sendRedirect("index.jsp");
 	}
 	
 	//Funções para locadoras
@@ -174,7 +187,7 @@ public class AdminController extends HttpServlet {
 
 		Locadora locadora = new Locadora(cnpj);
 		daoLocadora.delete(locadora);
-		response.sendRedirect("lista");
+		response.sendRedirect("index.jsp");
 	}
 
 	private void apresentaFormEdicaoLocadora(HttpServletRequest request, HttpServletResponse response)
@@ -199,7 +212,7 @@ public class AdminController extends HttpServlet {
 		Locadora locadora = new Locadora(cpf, email,nome, senha, cidade, papel);
 		
 		daoLocadora.update(locadora);
-		response.sendRedirect("lista");
+		response.sendRedirect("index.jsp");
 	}
 	private void apresentaFormCadastroLocadora(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -209,27 +222,39 @@ public class AdminController extends HttpServlet {
 	
 	private void insereLocadora(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
+		
+		Error erros = new Error();
 
 		String cnpj = request.getParameter("cnpj");
-		String email = request.getParameter("email");
-		String nome = request.getParameter("nome");
-		String senha = request.getParameter("senha");
-		String cidade = request.getParameter("cidade");
-		String papel = "USER";
-		Locadora locadora = new Locadora(cnpj, email, nome, senha,cidade, papel);
-
-		daoLocadora.insert(locadora);
-		response.sendRedirect("lista");
+		if (daoLocadora.getbyCnpj(cnpj) != null)
+		{
+			erros.add("erroLocadoraJaExiste");
+		} else
+		{
+			String email = request.getParameter("email");
+			String nome = request.getParameter("nome");
+			String senha = request.getParameter("senha");
+			String cidade = request.getParameter("cidade");
+			String papel = "USER";
+			Locadora locadora = new Locadora(cnpj, email, nome, senha,cidade, papel);
+			daoLocadora.insert(locadora);
+		}
+		lista(request, response, erros);
 	}
 
 
 	//Funções para clientes e locadoras
-	private void lista(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<Usuario> listaUsuarios = dao.getAll();
+	private void lista(HttpServletRequest request, HttpServletResponse response, Error erros) throws ServletException, IOException {
+		request.setAttribute("mensagens", erros);
+		List<Usuario> listaUsuarios = daoUsuario.getAll();
 		List<Locadora> listaLocadoras = daoLocadora.getAll();
+		List<String> listaLocacoesCpf = daoLocacao.getAllCPF();
+		List<String> listaLocacoesCnpj = daoLocacao.getAllCNPJ();
 		request.setAttribute("listaUsuarios", listaUsuarios);
 		request.setAttribute("listaLocadoras", listaLocadoras);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/admin/lista.jsp");
+		request.setAttribute("listaLocacoesCpf", listaLocacoesCpf);
+		request.setAttribute("listaLocacoesCnpj", listaLocacoesCnpj);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/admin/index.jsp");
 		dispatcher.forward(request, response);
 	}
 	
