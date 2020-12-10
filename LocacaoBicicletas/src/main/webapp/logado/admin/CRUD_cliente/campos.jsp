@@ -4,17 +4,15 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
-<h3>CAMPOS</h3>
-
 <table >
 	
 	<caption>
 		<c:choose>
 			<c:when test="${usuario != null}">
-		EDICAO
+		<fmt:message key="edit"/>
 	</c:when>
 			<c:otherwise>
-		CADASTRO
+		<fmt:message key="cadastro"/>
 	</c:otherwise>
 		</c:choose>
 	</caption>
@@ -71,7 +69,7 @@
 			value="${usuario.telefone}" /></td>
 	</tr>
 	<tr>
-		<td colspan="2"><input type="submit" value="Salvar" /></td>
+		<td colspan="2"><input type="submit" value="<fmt:message key="salvar"/>" /></td>
 	</tr>
 	
     </fmt:bundle>

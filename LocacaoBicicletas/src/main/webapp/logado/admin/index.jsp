@@ -10,7 +10,7 @@
 <link href="${pageContext.request.contextPath}/layout.css"
 	rel="stylesheet" type="text/css" />
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>LocacaoBicicletas</title>
 <style>
 table, th, td {
 	border: 1px solid black;
@@ -44,7 +44,6 @@ table, th, td {
 
 		<h1>
 			<fmt:message key="cust_list" />
-			S
 		</h1>
 
 		<a

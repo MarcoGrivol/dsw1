@@ -14,7 +14,7 @@
 <body>
 	<fmt:bundle basename="messages">
 		<h1>
-			<fmt:message key="edit" />
+			<fmt:message key="rent_page" />
 		</h1>
 		<p>
 			<fmt:message key="hello" />

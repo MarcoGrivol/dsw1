@@ -31,15 +31,15 @@
 		<form method="post" action="login.jsp">
 			<table>
 				<tr>
-					<th>Login:</th>
+					<th><fmt:message key="login"/>:</th>
 					<td><input type="text" name="login" value="${param.login}" /></td>
 				</tr>
 				<tr>
-					<th>Senha:</th>
+					<th><fmt:message key="password"/>:</th>
 					<td><input type="password" name="senha" /></td>
 				</tr>
 				<tr>
-					<td colspan="2"><input type="submit" name="bOK" value="Entrar" />
+					<td colspan="2"><input type="submit" name="bOK" value="<fmt:message key="enter"/>" />
 					</td>
 				</tr>
 			</table>
@@ -47,12 +47,12 @@
 
 		<!-- Informacoes que nao precisam de nenhum login sao controladas por IndexController.java -->
 		<form method="post" action="index.jsp">
-			<div class="lisca-locadoras-index">
-				<p>Lista de Locadoras</p>
-				<h1 for="cidade">Escolha a cidade</h1>
+			<div class="lisca-locadoras-index" style="centering">
+				<h1 for="cidade"><fmt:message key="escolhaCidade"/></h1>
+				<p><fmt:message key="rent_list"/></p>
 				<select id="cidade" name="cidade" onchange="this.form.submit()">
-					<option value='--'>Selecione</option>
-					<option value='todasCidades'>Todas</option>
+					<option value='--'><fmt:message key="selecione"/></option>
+					<option value='todasCidades'><fmt:message key="todas"/></option>
 					<c:forEach items='${listaLocadorasOpcoes}' var='locadora'>
 						<option value='${locadora.cidade}'>${locadora.cidade}</option>
 					</c:forEach>
@@ -62,8 +62,8 @@
 						<tr>
 							<th>CNPJ</th>
 							<th>E-mail</th>
-							<th>Nome</th>
-							<th>Cidade</th>
+							<th><fmt:message key="name"/></th>
+							<th><fmt:message key="city"/></th>
 						</tr>
 						<c:forEach var="locadora" items="${listaLocadoras}">
 							<tr>

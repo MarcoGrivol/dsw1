@@ -8,14 +8,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>LocacaoBicicletas</title>
 <link href="${pageContext.request.contextPath}/layout.css"
 	rel="stylesheet" type="text/css" />
 </head>
 
 <body>
  	<fmt:bundle basename="messages">
-	<h2><fmt:message key="CEform"/></h2>
+	<h2><fmt:message key="form"/></h2>
 	<br>
 	<c:choose>
 		<c:when test="${usuario != null}">
