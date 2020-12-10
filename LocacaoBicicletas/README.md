@@ -1,24 +1,29 @@
-# Requisitos - Locação de Bicicletas
+# Roteiro de execução
 
-### Requer login de administrador
-~~**R1:** CRUD de Clientes.~~\
-~~**R2:** CRUD de Locadoras.~~\
+    Para criar e popular o banco de dados deve se executar o comando abaixo dentro da pasta db/Derby:  
 
-### Requer login do cliente (e-mail + senha)
-**R5:** Locacação de uma bicicleta em uma locadora.\
-Depois de fazer login, o cliente pode cadastrar uma locação. Para isso, deve escolher uma locadora (escolhendo a partir de uma lista), uma data, e deve ser gravado a locação na base de dados.\
-~~**R6:** Listagem de todas as locações de um cliente.\
-Depois de fazer login, o cliente pode visualizar todas as suas locações gravadas.~~
+    'java Dderby.system.home=<Local_do_banco_de_dados_no_projeto> -Dij.protocol=jdbc:derby: -jar <local_de-instalação_do_Derby>/lib/derbyrun.jar ij'
 
-### Requer login da locadora (e-mail + senha)
-~~**R8:** Listagem de todas as locações de uma locadora.\
-Depois de fazer login, a locadora pode visualizar todas as suas locações gravadas.~~
+    E então exeutar o comando abaixo para criar e polular o banco:
 
-### Não requer login
-~~**R3:** Listagem de todas as locadoras em uma única página.~~\
-~~**R4:** Listagem de todas as locadoras por cidade.~~
+    'run 'create.sql';'
 
-### Requisitos Funcionais
-**R7:** O sistema não deve permitir o cadastro de locações de um mesmo cliente ou de uma mesma locadora em um mesmo dia/horário.\
-~~**R9:** O sistema deve ser internacionalizado em pelo menos dois idiomas: pt + outro.~~
+    Após isso no terminal executar o servidor tomcat e Derby.
+
+    Realizar o deploy do sistema.
+
+    
+
+
+# Divisão de requisitos
+
+    Todos os requisitos foram implementados. 
+
+    Não foi possivel realizar a separação da contribuição de cada membro,
+    tivemos muitos bugs e não necessariamente quem arrumou foi quem iniciou o requisito,
+    sendo assim fica muito difícil quantificar a contribuição de cada um, mas todos se dedicaram 
+    no projeto e conhecem todas as partes.
+
+
+
  
