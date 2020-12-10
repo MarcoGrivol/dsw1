@@ -14,5 +14,10 @@ public class BuscaPorCidadeBean {
         }
         return dao.getbyCidade(cidade);
     }
+    
+    public List<String> getAllCidade() {
+    	LocadoraDAO dao = new LocadoraDAO();
+    	return dao.getAllCidade();
+    }
          
 }

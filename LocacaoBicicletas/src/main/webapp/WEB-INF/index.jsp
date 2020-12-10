@@ -53,8 +53,8 @@
 				<select id="cidade" name="cidade" onchange="this.form.submit()">
 					<option value='--'><fmt:message key="selecione"/></option>
 					<option value='todasCidades'><fmt:message key="todas"/></option>
-					<c:forEach items='${listaLocadorasOpcoes}' var='locadora'>
-						<option value='${locadora.cidade}'>${locadora.cidade}</option>
+					<c:forEach items='${listaLocadorasOpcoes}' var='locadoraCidade'>
+						<option value='${locadoraCidade}'>${locadoraCidade}</option>
 					</c:forEach>
 				</select>
 				<div id="tabela">

@@ -27,8 +27,9 @@ public class IndexController extends HttpServlet {
 		List<Locadora> listaLocadoras = new BuscaPorCidadeBean().getLocadoras(cidade);
 		request.setAttribute("listaLocadoras",  listaLocadoras);		
 		// listaLocadoraOpcoes sao as cidades exibidas no dropdown menu
-		List<Locadora> lostaLocadoraOpcoes = new BuscaPorCidadeBean().getLocadoras("");
-		request.setAttribute("listaLocadorasOpcoes", lostaLocadoraOpcoes);
+//		List<Locadora> lostaLocadoraOpcoes = new BuscaPorCidadeBean().getLocadoras("");
+		List<String> listaLocadoraOpcoes = new BuscaPorCidadeBean().getAllCidade();
+		request.setAttribute("listaLocadorasOpcoes", listaLocadoraOpcoes);
 		
 		// !importante manter esse request dispatcher para garantir que a pagina inicial sera carregada!
 		request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
