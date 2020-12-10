@@ -169,4 +169,25 @@ public class LocadoraDAO extends GenericDAO {
 		}
 		return listaLocadora;
 	}
+
+	public List<Locadora> getCidades() {
+		List <Locadora> listaLocadora = new ArrayList<>();
+		String sql = "SELECT DISTINCT cidade from locadora";
+		try {
+			Connection conn = this.getConnection();
+			PreparedStatement statement = conn.prepareStatement(sql);
+			ResultSet resultSet = statement.executeQuery();
+			if (resultSet.next()) {
+				String cidade = resultSet.getString("cidade");
+				Locadora Locadora = new Locadora("00", "aa", "aa", "senha", cidade, "papel");
+                listaLocadora.add(Locadora);
+            }
+			resultSet.close();
+			statement.close(); 
+			conn.close();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+		return listaLocadora;
+	}
 }
