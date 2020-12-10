@@ -33,22 +33,22 @@
 	</tr>
 	<tr>
 		<td><label for="email">E-mail</label></td>
-		<td><input type="text" id="email" name="email"
+		<td><input type="text" id="email" name="email" required
 			value="${locadora.email}" /></td>
 	</tr>
 	<tr>
 		<td><label for="nome"><fmt:message key="name"/></label></td>
-		<td><input type="text" id="nome" name="nome"
+		<td><input type="text" id="nome" name="nome" required
 			value="${locadora.nome}" /></td>
 	</tr>
 	<tr>
 		<td><label for="senha"><fmt:message key="password"/></label></td>
-		<td><input type="password" id="senha" name="senha"
+		<td><input type="password" id="senha" name="senha" required
 			value="${locadora.senha}" /></td>
 	</tr>
 	<tr>
 		<td><label for="cidade"><fmt:message key="city"/></label></td>
-		<td><input type="text" id="cidade" name="cidade"
+		<td><input type="text" id="cidade" name="cidade" required
 			value="${locadora.cidade}" /></td>
 	</tr>
 	<tr>

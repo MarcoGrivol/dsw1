@@ -24,7 +24,7 @@ table, th, td {
 			<div id="erro">
 				<ul>
 					<c:forEach var="erro" items="${mensagens.erros}">
-						<li>${erro}</li>
+						<li><fmt:message key="${erro}" /></li>
 					</c:forEach>
 				</ul>
 			</div>

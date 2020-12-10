@@ -17,7 +17,7 @@
 			<div id="erro">
 				<ul>
 					<c:forEach var="erro" items="${mensagens.erros}">
-						<li>${erro}</li>
+						<li><fmt:message key="${erro}" /></li>
 					</c:forEach>
 				</ul>
 			</div>
@@ -35,7 +35,7 @@
 						key="rent_bike" /></a></li>
 		</ul>
 		<form action="${pageContext.request.contextPath}/logout" method="post">
-			<input type="submit" value="<fmt:message key="exit"/>"/>
+			<input type="submit" value="<fmt:message key="exit"/>" />
 		</form>
 		<table>
 			<tr>
