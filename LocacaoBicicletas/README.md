@@ -12,6 +12,26 @@
 
     Realizar o deploy do sistema.
 
+# Usuarios
+    Admin:
+            Login: a1
+            Senha: senha1
+    
+    Usuarios:
+            Login: b2
+            Senha: senha2
+            
+            Login: c3
+            Senha: senha3
+            
+    Locadoras:
+            Login: dd@d.com
+            Senha: senha4
+            
+            Login: ee@e.com
+            Senha: senha5
+            
+    Esses cadastros são criados por padrao com nosso create.sql, é possivel criar novos alterando esse arquivo ou adicionar/remover quando estiver logado como Admin
     
 
 
