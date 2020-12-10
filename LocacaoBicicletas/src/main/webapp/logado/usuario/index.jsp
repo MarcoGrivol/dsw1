@@ -39,7 +39,7 @@
 		</form>
 		<table>
 			<tr>
-				<th><fmt:message key="comp" /></th>
+				<th><fmt:message key="company" /></th>
 				<th><fmt:message key="date" /></th>
 				<th><fmt:message key="time" /></th>
 			</tr>

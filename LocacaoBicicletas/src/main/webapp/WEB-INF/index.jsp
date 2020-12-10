@@ -65,12 +65,17 @@
 							<th><fmt:message key="name"/></th>
 							<th><fmt:message key="city"/></th>
 						</tr>
-						<c:forEach var="locadora" items="${listaLocadoras}">
+						<c:forEach var="locadora" items="${listaLocadorasOpcoes}">
 							<tr>
-								<td>${locadora.cnpj}</td>
-								<td>${locadora.email}</td>
-								<td>${locadora.nome}</td>
-								<td>${locadora.cidade}</td>
+								<c:choose>
+									<c:when
+									test="${locadora.cidade.equals(cidadeescolhida) || cidadeescolhida == null || cidadeescolhida.equals('todasCidades') }">
+									<td>${locadora.cnpj}</td>
+									<td>${locadora.email}</td>
+									<td>${locadora.nome}</td>
+									<td>${locadora.cidade}</td>
+									</c:when>
+							</c:choose>
 							</tr>
 						</c:forEach>
 					</table>

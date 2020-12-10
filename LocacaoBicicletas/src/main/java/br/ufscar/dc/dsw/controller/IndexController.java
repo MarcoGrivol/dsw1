@@ -23,12 +23,13 @@ public class IndexController extends HttpServlet {
 			throws ServletException, IOException {
 		
 		// listaLocadoras sao as cidades exibidas pela tabela
-        String cidade = request.getParameter("cidade");
+		String cidade = request.getParameter("cidade");
+		request.setAttribute("cidadeescolhida", cidade);
 		List<Locadora> listaLocadoras = new BuscaPorCidadeBean().getLocadoras(cidade);
-		request.setAttribute("listaLocadoras",  listaLocadoras);		
+		request.setAttribute("listaLocadoras",  listaLocadoras);	
 		// listaLocadoraOpcoes sao as cidades exibidas no dropdown menu
-//		List<Locadora> lostaLocadoraOpcoes = new BuscaPorCidadeBean().getLocadoras("");
 		List<String> listaLocadoraOpcoes = new BuscaPorCidadeBean().getAllCidade();
+
 		request.setAttribute("listaLocadorasOpcoes", listaLocadoraOpcoes);
 		
 		// !importante manter esse request dispatcher para garantir que a pagina inicial sera carregada!
