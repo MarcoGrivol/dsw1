@@ -1,0 +1,14 @@
+Tue Dec 29 17:59:52 BRT 2020 : Apache Derby Network Server - 10.14.2.0 - (1828579) started and ready to accept connections on port 1527
+----------------------------------------------------------------
+Tue Dec 29 18:00:06 BRT 2020:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0176-b04c-cf7e-00000015a5ff 
+on database directory /home/marco/cs/dsw1/dsw1/LocacaoBicicletas2/db/AlugaBicicleta with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@55054057 
+Loaded from file:/home/marco/cs/dsw1/derby/lib/derby.jar
+java.vendor=Ubuntu
+java.runtime.version=11.0.9.1+1-Ubuntu-0ubuntu1.20.04
+user.dir=/home/marco/cs/dsw1/dsw1/LocacaoBicicletas2
+os.name=Linux
+os.arch=amd64
+os.version=5.4.0-58-generic
+derby.system.home=./db/
+Database Class Loader started - derby.database.classpath=''
