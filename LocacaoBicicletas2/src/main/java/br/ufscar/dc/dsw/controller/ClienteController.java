@@ -1,5 +1,7 @@
 package br.ufscar.dc.dsw.controller;
 
+import java.util.Optional;
+
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -45,9 +47,20 @@ public class ClienteController {
 	}
 	
 	@GetMapping("/editar/{email}")
-	public String preEditar(@PathVariable("email") String email, ModelMap model)
-	{
-		model.addAttribute("cliente", service.buscarPorEmail(email));
+	public String preEditar(@PathVariable("email") String email, ModelMap model) {
+		Optional<Cliente> teste = service.buscarPorEmail(email);
+		if (teste.isPresent())
+		{
+			Cliente cliente = new Cliente();
+			cliente.setCpf(teste.get().getCpf());
+			cliente.setDataNascimento(teste.get().getDataNascimento());
+			cliente.setEmail(teste.get().getEmail());
+			cliente.setNome(teste.get().getNome());
+			cliente.setSenha(teste.get().getSenha());
+			cliente.setSexo(teste.get().getSexo());
+			cliente.setTelefone(teste.get().getTelefone());
+			model.addAttribute("cliente", cliente);
+		}
 		return "cliente/cadastro";
 	}
 	
@@ -57,9 +70,9 @@ public class ClienteController {
 		if (result.hasErrors()) {
 			return "cliente/cadastro";
 		}
-		
+
 		service.salvar(cliente);
-		attr.addFlashAttribute("sucess", "Cliente editada com sucesso.");
+		attr.addFlashAttribute("sucess", "Cliente editado com sucesso.");
 		return "redirect:/clientes/listar";
 	}
 	

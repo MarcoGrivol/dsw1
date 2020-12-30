@@ -14,8 +14,9 @@ dia/horário da locação. Assume-se que a duração da locação é de 1 hora e
 “hora cheia” (13h 00min etc)
 
 ## Requer login de administrador (user_login + senha)
-* R1: CRUD de clientes
-* R2: CRUD de locadoras
+* ~~R1: CRUD de clientes~~
+* ~~R2: CRUD de locadoras~~
+* PS: falta fazer a autenticacao, fiz apenas o crud (assinado: marco)
 
 ## Requer login do cliente (email + senha)
 * R5: Locação de uma bicicleta em uma locadora.
