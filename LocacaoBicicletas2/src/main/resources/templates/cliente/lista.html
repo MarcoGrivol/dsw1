@@ -11,12 +11,12 @@
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item active">
 						<i class="oi oi-caret-right"></i>
-						<span>Lista de Editoras</span>
+						<span>Lista de Clientes</span>
 					</li>
 				</ul>
-				<a class="btn btn-primary btn-md" th:href="@{/editoras/cadastrar}" role="button"> 
+				<a class="btn btn-primary btn-md" th:href="@{/clientes/cadastrar}" role="button"> 
 					<span class="oi oi-plus" title="Cadastro" aria-hidden="true"></span> 
-					<span>Nova Editora</span>
+					<span>Novo Cliente</span>
 				</a>
 			</div>
 		</nav>
@@ -30,23 +30,23 @@
 					<thead>
 						<tr>
 							<th>#</th>
-							<th>CNPJ</th>
 							<th>Nome</th>
-							<th>Ação</th>
+							<th>CPF</th>
+							<th>Acao</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="editora : ${editoras}">
-							<td th:text="${editora.id}"></td>
-							<td th:text="${editora.CNPJ}"></td>
-							<td th:text="${editora.nome}"></td>
+						<tr th:each="cliente : ${clientes}">
+							<td th:text="${cliente.email}"></td>
+							<td th:text="${cliente.nome}"></td>
+							<td th:text="${cliente.cpf}"></td>
 							<td colspan="2">
-								<a class="btn btn-info btn-sm" th:href="@{/editoras/editar/{id} (id=${editora.id}) }"
+								<a class="btn btn-info btn-sm" th:href="@{/clientes/editar/{email} (email=${cliente.email}) }"
 									role="button"> 
 									<span class="oi oi-brush" title="Editar" aria-hidden="true"> </span>
 								</a>
 								<button
-									th:id="${'btn_editoras/excluir/' + editora.id}"
+									th:id="${'btn_clientes/excluir/' + cliente.email}"
 									type="button" class="btn btn-danger btn-sm"
 									data-toggle="modal" data-target="#myModal">
 									<span class="oi oi-circle-x" title="Excluir" aria-hidden="true"></span>

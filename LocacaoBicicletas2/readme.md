@@ -1,3 +1,7 @@
+# Instrucoes
+1. Rodar o arquivo create.sql e iniciar o servidor
+2. Executar o spring
+
 # Requisitos
 O sistema deve possuir um cadastro de clientes, com os seguintes dados: e-mail, senha, CPF,
 nome, telefone, sexo e data de nascimento.
