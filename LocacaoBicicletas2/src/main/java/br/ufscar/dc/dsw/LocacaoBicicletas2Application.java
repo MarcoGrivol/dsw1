@@ -29,7 +29,7 @@ public class LocacaoBicicletas2Application {
 			u1.setSenha(encoder.encode("admin"));
 			u1.setNome("Administrador");
 			u1.setRole("ROLE_ADMIN");
-			u1.setEnabled(true);
+			u1.setEnabled(false);
 			usuarioDAO.save(u1);
 
 			Cliente u2 = new Cliente();
@@ -37,7 +37,7 @@ public class LocacaoBicicletas2Application {
 			u2.setSenha(encoder.encode("c1"));
 			u2.setNome("cliente 1");
 			u2.setRole("ROLE_USER");
-			u2.setEnabled(true);
+			u2.setEnabled(false);
 			u2.setCpf("111.111.111-11");
 			u2.setDataNascimento("11/11/1111");
 			u2.setSexo("sexo1");
@@ -49,7 +49,7 @@ public class LocacaoBicicletas2Application {
 			u3.setSenha(encoder.encode("l1"));
 			u3.setNome("locadora 1");
 			u3.setRole("ROLE_USER");
-			u3.setEnabled(true);
+			u3.setEnabled(false);
 			u3.setCidade("cidade 1");
 			u3.setCnpj("11.111.111/1111-11");
 			locadoraDAO.save(u3);
