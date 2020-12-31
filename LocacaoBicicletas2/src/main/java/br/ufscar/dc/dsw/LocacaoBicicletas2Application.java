@@ -9,6 +9,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import br.ufscar.dc.dsw.dao.IClienteDAO;
 import br.ufscar.dc.dsw.domain.Cliente;
 import br.ufscar.dc.dsw.domain.Locadora;
+import br.ufscar.dc.dsw.domain.Usuario;
+import br.ufscar.dc.dsw.dao.IUsuarioDAO;
 import br.ufscar.dc.dsw.dao.ILocadoraDAO;
 
 @SpringBootApplication
@@ -19,41 +21,37 @@ public class LocacaoBicicletas2Application {
 	}
 
 	@Bean
-	public CommandLineRunner demo(IClienteDAO clienteDAO, ILocadoraDAO locadoraDAO, BCryptPasswordEncoder encoder) {
+	public CommandLineRunner demo(IUsuarioDAO usuarioDAO, IClienteDAO clienteDAO, ILocadoraDAO locadoraDAO, BCryptPasswordEncoder encoder) {
 		return (args) -> {
 
-			Cliente u1 = new Cliente();
-			u1.setEmail("c1@c1.com");
-			u1.setSenha(encoder.encode("c1"));
-			u1.setNome("usuario 1");
-			u1.setRole("ROLE_USER");
+			Usuario u1 = new Usuario();
+			u1.setEmail("admin");
+			u1.setSenha(encoder.encode("admin"));
+			u1.setNome("Administrador");
+			u1.setRole("ROLE_ADMIN");
 			u1.setEnabled(true);
-			u1.setCpf("111.111.111-11");
-			u1.setDataNascimento("11/11/1111");
-			u1.setSexo("sexo1");
-			u1.setTelefone("(11)1111-1111");
-			clienteDAO.save(u1);
+			usuarioDAO.save(u1);
 
 			Cliente u2 = new Cliente();
-			u2.setEmail("admin");
-			u2.setSenha(encoder.encode("admin"));
-			u2.setNome("usuario 2");
-			u2.setRole("ROLE_ADMIN");
+			u2.setEmail("c1@c1.com");
+			u2.setSenha(encoder.encode("c1"));
+			u2.setNome("cliente 1");
+			u2.setRole("ROLE_USER");
 			u2.setEnabled(true);
-			u2.setCpf("222.222.222-22");
-			u2.setDataNascimento("22/22/2222");
-			u2.setSexo("sexo2");
-			u2.setTelefone("(22)2222-2222");
+			u2.setCpf("111.111.111-11");
+			u2.setDataNascimento("11/11/1111");
+			u2.setSexo("sexo1");
+			u2.setTelefone("(11)1111-1111");
 			clienteDAO.save(u2);
 			
 			Locadora u3 = new Locadora();
 			u3.setEmail("l1@l1.com");
 			u3.setSenha(encoder.encode("l1"));
-			u3.setNome("usuario 3");
+			u3.setNome("locadora 1");
 			u3.setRole("ROLE_USER");
 			u3.setEnabled(true);
-			u3.setCidade("cidade 3");
-			u3.setCnpj("33.333.333/3333-33");
+			u3.setCidade("cidade 1");
+			u3.setCnpj("11.111.111/1111-11");
 			locadoraDAO.save(u3);
 		};
 	}

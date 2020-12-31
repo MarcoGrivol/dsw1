@@ -19,7 +19,7 @@ import javax.persistence.InheritanceType;
 @Entity
 @Table(name = "Usuario")
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Usuario extends AbstractEntity<Long> {
+public class Usuario extends AbstractEntity<Long> {
 
 	@NotBlank
 	@Size(min = 2, max = 64)
