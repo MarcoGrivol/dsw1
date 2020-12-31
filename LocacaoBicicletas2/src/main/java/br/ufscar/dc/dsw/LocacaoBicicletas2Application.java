@@ -8,7 +8,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import br.ufscar.dc.dsw.dao.IClienteDAO;
 import br.ufscar.dc.dsw.domain.Cliente;
-import br.ufscar.dc.dsw.domain.Usuario;
+import br.ufscar.dc.dsw.domain.Locadora;
+import br.ufscar.dc.dsw.dao.ILocadoraDAO;
 
 @SpringBootApplication
 public class LocacaoBicicletas2Application {
@@ -18,12 +19,12 @@ public class LocacaoBicicletas2Application {
 	}
 
 	@Bean
-	public CommandLineRunner demo(IClienteDAO dao, BCryptPasswordEncoder encoder) {
+	public CommandLineRunner demo(IClienteDAO clienteDAO, ILocadoraDAO locadoraDAO, BCryptPasswordEncoder encoder) {
 		return (args) -> {
 
 			Cliente u1 = new Cliente();
-			u1.setEmail("user");
-			u1.setSenha(encoder.encode("user"));
+			u1.setEmail("c1@c1.com");
+			u1.setSenha(encoder.encode("c1"));
 			u1.setNome("usuario 1");
 			u1.setRole("ROLE_USER");
 			u1.setEnabled(true);
@@ -31,7 +32,7 @@ public class LocacaoBicicletas2Application {
 			u1.setDataNascimento("11/11/1111");
 			u1.setSexo("sexo1");
 			u1.setTelefone("(11)1111-1111");
-			dao.save(u1);
+			clienteDAO.save(u1);
 
 			Cliente u2 = new Cliente();
 			u2.setEmail("admin");
@@ -43,7 +44,17 @@ public class LocacaoBicicletas2Application {
 			u2.setDataNascimento("22/22/2222");
 			u2.setSexo("sexo2");
 			u2.setTelefone("(22)2222-2222");
-			dao.save(u2);
+			clienteDAO.save(u2);
+			
+			Locadora u3 = new Locadora();
+			u3.setEmail("l1@l1.com");
+			u3.setSenha(encoder.encode("l1"));
+			u3.setNome("usuario 3");
+			u3.setRole("ROLE_USER");
+			u3.setEnabled(true);
+			u3.setCidade("cidade 3");
+			u3.setCnpj("33.333.333/3333-33");
+			locadoraDAO.save(u3);
 		};
 	}
 
