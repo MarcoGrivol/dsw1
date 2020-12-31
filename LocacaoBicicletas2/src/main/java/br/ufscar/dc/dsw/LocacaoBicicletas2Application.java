@@ -8,7 +8,9 @@ import org.springframework.context.annotation.Bean;
 import br.ufscar.dc.dsw.dao.IClienteDAO;
 import br.ufscar.dc.dsw.domain.Cliente;
 import br.ufscar.dc.dsw.domain.Locadora;
+import br.ufscar.dc.dsw.domain.Usuario;
 import br.ufscar.dc.dsw.dao.ILocadoraDAO;
+import br.ufscar.dc.dsw.dao.IUsuarioDAO;
 
 @SpringBootApplication
 public class LocacaoBicicletas2Application {
@@ -18,8 +20,16 @@ public class LocacaoBicicletas2Application {
 	}
 
 	@Bean
-	public CommandLineRunner demo(IClienteDAO clienteDAO, ILocadoraDAO locadoraDAO) {
+	public CommandLineRunner demo(IUsuarioDAO usuarioDAO, IClienteDAO clienteDAO, ILocadoraDAO locadoraDAO) {
 		return (args) -> {
+			Usuario u1 = new Usuario();
+			u1.setEmail("u1@u1.com");
+			u1.setNome("u1");
+			u1.setSenha("u1");
+			u1.setRole("ROLE_ADMIN");
+			u1.setEnabled(true);
+			usuarioDAO.save(u1);
+			
 			Cliente c1 = new Cliente();
 			c1.setEmail("c1@c1.com");
 			c1.setSenha("c1");
@@ -28,6 +38,8 @@ public class LocacaoBicicletas2Application {
 			c1.setTelefone("(11)1111-1111");
 			c1.setSexo("sexoC1");
 			c1.setDataNascimento("11/11/1111");
+			c1.setRole("ROLE_USER");
+			c1.setEnabled(true);
 			clienteDAO.save(c1);
 			
 			Locadora l1 = new Locadora();
@@ -36,6 +48,8 @@ public class LocacaoBicicletas2Application {
 			l1.setSenha("l1");
 			l1.setCnpj("11.111.111/1111-11");
 			l1.setCidade("cidade1");
+			l1.setRole("ROLE_USER");
+			l1.setEnabled(true);
 			locadoraDAO.save(l1);
 		};
 	}

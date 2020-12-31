@@ -37,6 +37,13 @@ public class Usuario {
 	@Column(nullable = false, unique = false, length = 26)
 	private String senha;
 
+	@NotBlank
+	@Column(nullable = false, length = 10)
+	private String role;
+
+	@Column(nullable = false)
+	private boolean enabled;
+
 	public String getEmail() {
 		return this.email;
 	}
@@ -60,10 +67,25 @@ public class Usuario {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
 	@Override
-	public String toString()
-	{
+	public String toString() {
 		return "email=" + email;
 	}
 }

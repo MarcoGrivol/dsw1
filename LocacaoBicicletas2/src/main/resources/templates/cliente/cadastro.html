@@ -22,11 +22,11 @@
 		<div class="container" id="cadastro">
 
 			<div th:replace="fragments/alert"></div>
-			
+
 			<form
 				th:action="${cliente.email == null} ? @{/clientes/salvar} : @{/clientes/editar}"
 				th:object="${cliente}" method="POST">
-			
+
 				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="nome">Nome</label> <input type="text"
@@ -54,14 +54,13 @@
 						<label for="email">E-mail</label> <input type="text"
 							class="form-control" id="email" placeholder="E-mail"
 							autofocus="autofocus" th:field="*{email}"
-							th:classappend="${#fields.hasErrors('email')} ? is-invalid" 
-							th:readonly="${(cliente.email == null) ? disabled : true}"/>
+							th:classappend="${#fields.hasErrors('email')} ? is-invalid"/>
 
 						<div class="invalid-feedback">
 							<span th:errors="*{email}"></span>
 						</div>
 					</div>
-	
+
 					<div class="form-group col-md-6">
 						<label for="cpf">CPF</label> <input type="text"
 							class="form-control" id="cpf" placeholder="___.___.___-__"
@@ -73,7 +72,7 @@
 							<span th:errors="*{cpf}"></span>
 						</div>
 					</div>
-					
+
 					<div class="form-group col-md-6">
 						<label for="telefone">telefone</label> <input type="text"
 							class="form-control" id="telefone" placeholder="Telefone"
@@ -84,7 +83,7 @@
 							<span th:errors="*{telefone}"></span>
 						</div>
 					</div>
-					
+
 					<div class="form-group col-md-6">
 						<label for="sexo">Sexo</label> <input type="text"
 							class="form-control" id="sexo" placeholder="Sexo"
@@ -97,9 +96,10 @@
 					</div>
 
 					<div class="form-group col-md-6">
-						<label for="dataNascimento">Data de Nascimento</label> <input type="text"
-							class="form-control" id="dataNascimento" placeholder="DD/MM/YYYY"
-							autofocus="autofocus" th:field="*{dataNascimento}"
+						<label for="dataNascimento">Data de Nascimento</label> <input
+							type="text" class="form-control" id="dataNascimento"
+							placeholder="DD/MM/YYYY" autofocus="autofocus"
+							th:field="*{dataNascimento}"
 							th:classappend="${#fields.hasErrors('dataNascimento')} ? is-invalid"
 							data-mask="00/00/0000" data-mask-reverse="true" />
 
@@ -108,13 +108,24 @@
 						</div>
 					</div>
 
+					<div class="form-group col-md-6">
+						<label th:text="#{cliente.role.label}" for="role"></label> <select
+							id="role" class="form-control" th:field="*{role}"
+							th:classappend="${#fields.hasErrors('role')} ? is-invalid">
+							<option value="ROLE_USER">Usuario</option>
+						</select>
+
+						<div class="invalid-feedback">
+							<span th:errors="*{role}"></span>
+						</div>
+					</div> 
+
 				</div>
-		
 				<button type="submit" class="btn btn-primary btn-sm">Salvar</button>
 			</form>
 		</div>
-		
-	</section> 
+
+	</section>
 </body>
 </html>
 

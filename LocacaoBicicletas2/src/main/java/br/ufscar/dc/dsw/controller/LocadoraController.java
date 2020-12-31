@@ -48,16 +48,10 @@ public class LocadoraController {
 	
 	@GetMapping("/editar/{email}")
 	public String preEditar(@PathVariable("email") String email, ModelMap model) {
-		Optional<Locadora> teste = service.buscarPorEmail(email);
-		if (teste.isPresent())
+		Optional<Locadora> locadora = service.buscarPorEmail(email);
+		if (locadora.isPresent())
 		{
-			Locadora locadora = new Locadora();
-			locadora.setCnpj(teste.get().getCnpj());
-			locadora.setCidade(teste.get().getCidade());
-			locadora.setEmail(teste.get().getEmail());
-			locadora.setNome(teste.get().getNome());
-			locadora.setSenha(teste.get().getSenha());
-			model.addAttribute("locadora", locadora);
+			model.addAttribute("locadora", locadora.get());
 		}
 		return "locadora/cadastro";
 	}

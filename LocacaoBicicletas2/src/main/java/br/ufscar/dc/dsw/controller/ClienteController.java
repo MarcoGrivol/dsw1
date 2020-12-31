@@ -48,18 +48,10 @@ public class ClienteController {
 	
 	@GetMapping("/editar/{email}")
 	public String preEditar(@PathVariable("email") String email, ModelMap model) {
-		Optional<Cliente> teste = service.buscarPorEmail(email);
-		if (teste.isPresent())
+		Optional<Cliente> cliente = service.buscarPorEmail(email);
+		if (cliente.isPresent())
 		{
-			Cliente cliente = new Cliente();
-			cliente.setCpf(teste.get().getCpf());
-			cliente.setDataNascimento(teste.get().getDataNascimento());
-			cliente.setEmail(teste.get().getEmail());
-			cliente.setNome(teste.get().getNome());
-			cliente.setSenha(teste.get().getSenha());
-			cliente.setSexo(teste.get().getSexo());
-			cliente.setTelefone(teste.get().getTelefone());
-			model.addAttribute("cliente", cliente);
+			model.addAttribute("cliente", cliente.get());
 		}
 		return "cliente/cadastro";
 	}
