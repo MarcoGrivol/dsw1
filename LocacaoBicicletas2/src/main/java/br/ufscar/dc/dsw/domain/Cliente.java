@@ -6,6 +6,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+@SuppressWarnings("serial")
 @Entity
 @Table(name = "Cliente")
 public class Cliente extends Usuario {
@@ -67,5 +68,18 @@ public class Cliente extends Usuario {
 
 	public void setDataNascimento(String dataNascimento) {
 		this.dataNascimento = dataNascimento;
+	}
+	
+	@Override
+	public String toString()
+	{
+		return "[Id=" + this.getId() + 
+					   ", Email=" + this.getEmail() +
+					   ", Nome=" + this.getNome() +
+					   ", Senha=" + this.getSenha() +
+					   ", Cpf=" + this.getCpf() + 
+					   ", Telefone=" + this.getTelefone() +
+					   ", Sexo=" + this.getSexo() + 
+					   ", DataNascimento=" + this.getDataNascimento() + "]";
 	}
 }

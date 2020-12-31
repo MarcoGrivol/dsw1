@@ -6,6 +6,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+@SuppressWarnings("serial")
 @Entity
 @Table(name = "Locadora")
 public class Locadora extends Usuario
@@ -46,5 +47,16 @@ public class Locadora extends Usuario
 	public void setCidade(String cidade)
 	{
 		this.cidade = cidade;
+	}
+	
+	@Override
+	public String toString()
+	{
+		return "[Id=" + this.getId() + 
+					   ", Email=" + this.getEmail() +
+					   ", Nome=" + this.getNome() +
+					   ", Senha=" + this.getSenha() + 
+					   ", cnpj=" + this.getCnpj() +
+					   ", Cidade=" + this.getCidade() + "]";
 	}
 }

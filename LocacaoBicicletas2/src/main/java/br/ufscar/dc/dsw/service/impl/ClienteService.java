@@ -17,4 +17,24 @@ public class ClienteService implements IClienteService {
 	@Autowired
 	IClienteDAO dao;
 	
+	public void salvar(Cliente cliente)
+	{
+		dao.save(cliente);
+	}
+	
+	public void excluir(Long id)
+	{
+		dao.deleteById(id);
+	}
+	
+	@Transactional(readOnly = true)
+	public Cliente buscarPorId(Long id) {
+		return dao.findById(id.longValue());
+	}
+	
+	@Transactional(readOnly = true)
+	public List<Cliente> buscarTodos()
+	{
+		return dao.findAll();
+	}
 }

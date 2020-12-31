@@ -92,12 +92,12 @@ public class Usuario extends AbstractEntity<Long> {
 		this.enabled = enabled;
 	}
 
-//	@Override
-//	public String toString()
-//	{
-//		return "Pessoa [Id=" + this.getId() + 
-//					   ", Email=" + this.getEmail() +
-//					   ", Nome=" + this.getNome() +
-//					   ", Senha=" + this.getSenha() + "]";
-//	}
+	@Override
+	public String toString()
+	{
+		return "[Id=" + this.getId() + 
+					   ", Email=" + this.getEmail() +
+					   ", Nome=" + this.getNome() +
+					   ", Senha=" + this.getSenha() + "]";
+	}
 }

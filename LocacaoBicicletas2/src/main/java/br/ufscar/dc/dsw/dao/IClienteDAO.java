@@ -12,5 +12,11 @@ import br.ufscar.dc.dsw.domain.Usuario;
 
 @SuppressWarnings("unchecked")
 public interface IClienteDAO extends CrudRepository<Cliente, Long> {
+	Cliente findById(long id);
+	
+	List<Cliente> findAll();
+	
 	Cliente save(Cliente cliente);
+	
+	void deleteById(Long id);
 }
