@@ -33,8 +33,7 @@ public class Usuario {
 	private String nome;
 
 	@NotBlank
-	@Size(min = 2, max = 26)
-	@Column(nullable = false, unique = false, length = 26)
+	@Column(nullable = false, length = 64)
 	private String senha;
 
 	@NotBlank

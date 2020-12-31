@@ -5,8 +5,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import java.util.Optional;
-
 import br.ufscar.dc.dsw.dao.IUsuarioDAO;
 import br.ufscar.dc.dsw.domain.Usuario;
  
@@ -18,13 +16,12 @@ public class UsuarioDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email)
             throws UsernameNotFoundException {
-    	
-        Optional<Usuario> usuario = dao.findById(email);
+        Usuario usuario = dao.getUserByEmail(email);
          
-        if (!usuario.isPresent()) {
+        if (usuario == null) {
             throw new UsernameNotFoundException("Could not find user");
         }
          
-        return new UsuarioDetails(usuario.get());
+        return new UsuarioDetails(usuario);
     }
 }

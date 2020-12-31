@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -21,6 +22,9 @@ public class LocadoraController {
 	
 	@Autowired
 	private ILocadoraService service;
+
+	@Autowired
+	private BCryptPasswordEncoder encoder;
 	
 	@GetMapping("/cadastrar")
 	public String cadastrar(Locadora locadora)
@@ -41,6 +45,7 @@ public class LocadoraController {
 		{
 			return "locadora/cadastro";
 		}
+		locadora.setSenha(encoder.encode(locadora.getSenha()));
 		service.salvar(locadora);
 		attr.addFlashAttribute("success", "Locadora Inserida com sucesso.");
 		return "redirect:/locadoras/listar";
