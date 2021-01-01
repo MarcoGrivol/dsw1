@@ -2,8 +2,6 @@
 package br.ufscar.dc.dsw.service.spec;
 
 import java.util.List;
-import java.util.Optional;
-
 import br.ufscar.dc.dsw.domain.Cliente;
 
 public interface IClienteService {
@@ -14,4 +12,8 @@ public interface IClienteService {
 	void salvar(Cliente cliente);
 	
 	void excluir(Long id);
+    
+    Cliente buscarClientePorEmail(String email);
+    
+    Cliente buscarClientePorCpf(String cpf);
 }

@@ -78,12 +78,11 @@
 					</div>
 
 					<div class="form-group col-md-6">
-						<label th:text="#{cliente.dataNascimento.label}"
-							for="dataNascimento"></label> <input type="text"
-							class="form-control" id="dataNascimento"
-							th:placeholder="#{cliente.dataNascimento.label}"
-							autofocus="autofocus" th:field="*{dataNascimento}"
-							th:classappend="${#fields.hasErrors('dataNascimento')} ? is-invalid" />
+						<label th:text="#{cliente.dataNascimento.label}" for="dataNascimento"></label> <input
+							type="text" class="form-control" id="dataNascimento" th:field="*{dataNascimento}"
+							autofocus="autofocus" placeholder="DD/MM/YYYY"
+							th:classappend="${#fields.hasErrors('dataNascimento')} ? is-invalid"
+							data-mask="00/00/0000" data-mask-reverse="true" />
 
 						<div class="invalid-feedback">
 							<span th:errors="*{dataNascimento}"></span>
@@ -91,11 +90,11 @@
 					</div>
 
 					<div class="form-group col-md-6">
-						<label th:text="#{cliente.telefone.label}" for="telefone"></label>
-						<input type="text" class="form-control" id="telefone"
-							th:placeholder="#{cliente.telefone.label}" autofocus="autofocus"
-							th:field="*{telefone}"
-							th:classappend="${#fields.hasErrors('telefone')} ? is-invalid" />
+						<label th:text="#{cliente.telefone.label}" for="telefone"></label> <input
+							type="text" class="form-control" id="telefone" th:field="*{telefone}"
+							autofocus="autofocus" placeholder="__ _____-____"
+							th:classappend="${#fields.hasErrors('telefone')} ? is-invalid"
+							data-mask="00 00000-0000" data-mask-reverse="true" />
 
 						<div class="invalid-feedback">
 							<span th:errors="*{telefone}"></span>
@@ -118,7 +117,7 @@
 						<label th:text="#{cliente.role.label}" for="role"></label> <select
 							id="role" class="form-control" th:field="*{role}"
 							th:classappend="${#fields.hasErrors('role')} ? is-invalid">
-							<option value="ROLE_ADMIN">ROLE_ADMIN</option>
+							<!-- <option value="ROLE_ADMIN">ROLE_ADMIN</option> -->
 							<option value="ROLE_USER">ROLE_USER</option>
 						</select>
 
@@ -132,6 +131,7 @@
 				<button type="submit" th:text="#{button.salvar.label}"
 					class="btn btn-primary btn-sm"></button>
 			</form>
+			
 		</div>
 	</section>
 </body>

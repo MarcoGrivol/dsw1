@@ -1,7 +1,6 @@
 package br.ufscar.dc.dsw.controller;
 
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -12,9 +11,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import br.ufscar.dc.dsw.domain.Locadora;
 import br.ufscar.dc.dsw.service.spec.ILocadoraService;
+import br.ufscar.dc.dsw.service.spec.IUsuarioService;
+
 
 @Controller
 @RequestMapping("/locadoras")
@@ -22,6 +22,9 @@ public class LocadoraController {
 
 	@Autowired
 	private ILocadoraService service;
+	
+	@Autowired
+	private IUsuarioService userService;
 	
 	@Autowired
 	private BCryptPasswordEncoder encoder;
@@ -40,6 +43,13 @@ public class LocadoraController {
 	@PostMapping("/salvar")
 	public String salvar(@Valid Locadora locadora, BindingResult result, RedirectAttributes attr) {
 		if (result.hasErrors()) {
+			return "locadora/cadastro";
+		}
+
+		if (service.buscarLocadoraPorCnpj(locadora.getCnpj()) != null
+				|| userService.buscarUsuarioPorEmail(locadora.getEmail()) != null)
+		{
+			// Acusar erro locadora.jaExiste.label
 			return "locadora/cadastro";
 		}
 		locadora.setSenha(encoder.encode(locadora.getSenha()));

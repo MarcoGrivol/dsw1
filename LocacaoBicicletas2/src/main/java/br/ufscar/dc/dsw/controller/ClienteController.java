@@ -1,7 +1,5 @@
 package br.ufscar.dc.dsw.controller;
 
-import java.util.Optional;
-
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -15,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import br.ufscar.dc.dsw.domain.Cliente;
 import br.ufscar.dc.dsw.service.spec.IClienteService;
+import br.ufscar.dc.dsw.service.spec.IUsuarioService;
 
 @Controller
 @RequestMapping("/clientes")
@@ -22,6 +21,9 @@ public class ClienteController {
 
 	@Autowired
 	private IClienteService service;
+	
+	@Autowired
+	private IUsuarioService userService;
 	
 	@Autowired
 	private BCryptPasswordEncoder encoder;
@@ -40,6 +42,12 @@ public class ClienteController {
 	@PostMapping("/salvar")
 	public String salvar(@Valid Cliente cliente, BindingResult result, RedirectAttributes attr) {
 		if (result.hasErrors()) {
+			return "cliente/cadastro";
+		}
+		if (service.buscarClientePorCpf(cliente.getCpf()) != null
+				|| userService.buscarUsuarioPorEmail(cliente.getEmail()) != null)
+		{
+			// Acusar erro, cliente.jaExiste.label 
 			return "cliente/cadastro";
 		}
 		cliente.setSenha(encoder.encode(cliente.getSenha()));
