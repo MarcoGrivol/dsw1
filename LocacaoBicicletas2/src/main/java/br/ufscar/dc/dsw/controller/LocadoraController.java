@@ -1,9 +1,10 @@
 package br.ufscar.dc.dsw.controller;
 
-import java.util.Optional;
+import java.util.List;
 
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -14,57 +15,68 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import br.ufscar.dc.dsw.domain.Locadora;
 import br.ufscar.dc.dsw.service.spec.ILocadoraService;
+import br.ufscar.dc.dsw.service.spec.IUsuarioService;
+
 
 @Controller
 @RequestMapping("/locadoras")
 public class LocadoraController {
-	
+
 	@Autowired
 	private ILocadoraService service;
 	
+	@Autowired
+	private IUsuarioService userService;
+	
+	@Autowired
+	private BCryptPasswordEncoder encoder;
+
 	@GetMapping("/cadastrar")
-	public String cadastrar(Locadora locadora)
-	{
+	public String cadastrar(Locadora locadora) {
 		return "locadora/cadastro";
 	}
-	
+
 	@GetMapping("/listar")
-	public String listar(ModelMap model){
+	public String listar(ModelMap model) {
+		model.addAttribute("cidades", service.buscarTodasCidades());
 		model.addAttribute("locadoras", service.buscarTodos());
 		return "locadora/lista";
 	}
 	
+	@GetMapping("/listar/{cidade}")
+	public String listarCidade(@PathVariable("cidade") String cidade, ModelMap model) {
+		model.addAttribute("cidades", service.buscarTodasCidades());
+		model.addAttribute("locadoras", service.buscarTodasPorCidade(cidade));
+		return "locadora/lista";
+	}
+
 	@PostMapping("/salvar")
-	public String salvar(@Valid Locadora locadora, BindingResult result, RedirectAttributes attr)
-	{
-		if (result.hasErrors())
-		{
+	public String salvar(@Valid Locadora locadora, BindingResult result, RedirectAttributes attr) {
+		if (result.hasErrors()) {
 			return "locadora/cadastro";
 		}
+
+		if (service.buscarLocadoraPorCnpj(locadora.getCnpj()) != null
+				|| userService.buscarUsuarioPorEmail(locadora.getEmail()) != null)
+		{
+			// Acusar erro locadora.jaExiste.label
+			return "locadora/cadastro";
+		}
+		locadora.setSenha(encoder.encode(locadora.getSenha()));
 		service.salvar(locadora);
 		attr.addFlashAttribute("success", "Locadora Inserida com sucesso.");
 		return "redirect:/locadoras/listar";
 	}
-	
-	@GetMapping("/editar/{email}")
-	public String preEditar(@PathVariable("email") String email, ModelMap model) {
-		Optional<Locadora> teste = service.buscarPorEmail(email);
-		if (teste.isPresent())
-		{
-			Locadora locadora = new Locadora();
-			locadora.setCnpj(teste.get().getCnpj());
-			locadora.setCidade(teste.get().getCidade());
-			locadora.setEmail(teste.get().getEmail());
-			locadora.setNome(teste.get().getNome());
-			locadora.setSenha(teste.get().getSenha());
-			model.addAttribute("locadora", locadora);
-		}
+
+	@GetMapping("/editar/{id}")
+	public String preEditar(@PathVariable("id") Long id, ModelMap model) {
+		model.addAttribute("locadora", service.buscarPorId(id));
 		return "locadora/cadastro";
 	}
-	
+
 	@PostMapping("/editar")
 	public String editar(@Valid Locadora locadora, BindingResult result, RedirectAttributes attr) {
-		
+
 		if (result.hasErrors()) {
 			return "locadora/cadastro";
 		}
@@ -73,12 +85,11 @@ public class LocadoraController {
 		attr.addFlashAttribute("sucess", "Locadora editado com sucesso.");
 		return "redirect:/locadoras/listar";
 	}
-	
-	@GetMapping("/excluir/{email}")
-	public String excluir(@PathVariable("email") String email, ModelMap model)
-	{
-		service.excluir(email);
-		model.addAttribute("success", "Locadora excluida com sucesso.");
+
+	@GetMapping("/excluir/{id}")
+	public String excluir(@PathVariable("id") Long id, ModelMap model) {
+		service.excluir(id);
+		model.addAttribute("success", "locadora excluido com sucesso.");
 		return listar(model);
 	}
 }

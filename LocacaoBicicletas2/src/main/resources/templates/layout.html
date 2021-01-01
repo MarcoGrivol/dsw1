@@ -3,16 +3,13 @@
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
-
-<title>Livraria Virtual</title>
-<meta charset="UTF-8" />
+<title th:text="#{title.label}"></title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
 <link rel="icon" th:href="@{/image/favicon.png}" />
-
 <!-- Bootstrap core CSS -->
 <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
 <link th:href="@{/webjars/open-iconic/font/css/open-iconic-bootstrap.min.css}"
@@ -22,23 +19,19 @@
 <link th:href="@{/css/style.css}" rel="stylesheet" />
 </head>
 <body>
-
 	<header th:replace="fragments/header :: cabecalho">
 		<div>header</div>
 	</header>
-
 	<div class="layout-main">
 		<aside>
 			<nav th:replace="fragments/sidebar :: nav-sidebar">
 				<span>menu</span>
 			</nav>
 		</aside>
-
 		<section layout:fragment="corpo">
 			<div>conteúdo principal das páginas</div>
 		</section>
 	</div>
-
 	<footer th:replace="fragments/footer :: rodape">
 		<div>footer</div>
 	</footer>

@@ -1,8 +1,6 @@
 package br.ufscar.dc.dsw.service.impl;
 
 import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,20 +20,29 @@ public class ClienteService implements IClienteService {
 		dao.save(cliente);
 	}
 	
-	public void excluir(String email)
+	public void excluir(Long id)
 	{
-		dao.deleteById(email);
+		dao.deleteById(id);
 	}
 	
 	@Transactional(readOnly = true)
-	public Optional<Cliente> buscarPorEmail(String email)
-	{
-		return dao.findById(email);
+	public Cliente buscarPorId(Long id) {
+		return dao.findById(id.longValue());
 	}
 	
 	@Transactional(readOnly = true)
 	public List<Cliente> buscarTodos()
 	{
 		return dao.findAll();
+	}
+	
+	@Transactional(readOnly = true)
+	public Cliente buscarClientePorEmail(String email) {
+		return dao.getClienteByEmail(email);
+	}
+	
+	@Transactional(readOnly = true)
+	public Cliente buscarClientePorCpf(String cpf) {
+		return dao.getClienteByCpf(cpf);
 	}
 }

@@ -13,10 +13,9 @@ O sistema deve possuir um cadastro de locações, com os seguintes dados: client
 dia/horário da locação. Assume-se que a duração da locação é de 1 hora e sempre inicia-se em
 “hora cheia” (13h 00min etc)
 
-## Requer login de administrador (user_login + senha)
+## Requer login de administrador (user_login("admin") + senha("admin))
 * ~~R1: CRUD de clientes~~
 * ~~R2: CRUD de locadoras~~
-* PS: falta fazer a autenticacao, fiz apenas o crud (assinado: marco)
 
 ## Requer login do cliente (email + senha)
 * R5: Locação de uma bicicleta em uma locadora.
@@ -31,14 +30,13 @@ Depois de fazer login, o cliente pode visualizar todas as suas locações gravad
 Depois de fazer login, a locadora pode visualizar todas as suas locações gravadas.
 
 ## Nao requer login
-* R3: Listagem de todos as locadoras em uma única página
-* R4: Listagem de todos as locadoras por cidade. 
-Preferencialmente a cidade deveria ser escolhida através de uma lista.
+* ~~R3: Listagem de todos as locadoras em uma única página~~
+* ~~R4: Listagem de todos as locadoras por cidade. ~~
+~~Preferencialmente a cidade deveria ser escolhida através de uma lista.~~
 
 ## Requisitos funcionais
 * R7: O sistema não deve permitir o cadastro de locações de um mesmo cliente ou de um
 mesma locadora em um mesmo dia/horário.
 * R9: O sistema deve ser internacionalizado em pelo menos dois idiomas: português + outro
 de sua escolha.
-* R10: O sistema deve validar (tamanho, formato, etc) todas as informações (campos nos
-formulários) cadastradas e/ou editadas.
+* ~~R10: O sistema deve validar (tamanho, formato, etc) todas as informações (campos nos formulários) cadastradas e/ou editadas.~~

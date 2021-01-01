@@ -1,8 +1,6 @@
 package br.ufscar.dc.dsw.service.impl;
 
 import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,26 +14,45 @@ public class LocadoraService implements ILocadoraService {
 	
 	@Autowired
 	ILocadoraDAO dao;
-	
+
 	public void salvar(Locadora locadora)
 	{
 		dao.save(locadora);
 	}
 	
-	public void excluir(String email)
+	public void excluir(Long id)
 	{
-		dao.deleteById(email);
+		dao.deleteById(id);
 	}
 	
 	@Transactional(readOnly = true)
-	public Optional<Locadora> buscarPorEmail(String email)
-	{
-		return dao.findById(email);
+	public Locadora buscarPorId(Long id) {
+		return dao.findById(id.longValue());
 	}
 	
 	@Transactional(readOnly = true)
 	public List<Locadora> buscarTodos()
 	{
 		return dao.findAll();
+	}
+	
+	@Transactional(readOnly = true)
+	public Locadora buscarLocadoraPorEmail(String email) {
+		return dao.getLocadoraByEmail(email);
+	}
+	
+	@Transactional(readOnly = true)
+	public Locadora buscarLocadoraPorCnpj(String cnpj) {
+		return dao.getLocadoraByCnpj(cnpj);
+	}
+	
+	@Transactional(readOnly = true)
+	public List<String> buscarTodasCidades() {
+		return dao.getAllCities();
+	}
+	
+	@Transactional(readOnly = true)
+	public List<Locadora> buscarTodasPorCidade(String cidade) {
+		return dao.getAllByCidade(cidade);
 	}
 }
