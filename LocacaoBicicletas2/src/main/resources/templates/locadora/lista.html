@@ -14,7 +14,8 @@
 						<span th:text="#{locadora.listar.label}"></span>
 					</li>
 				</ul>
-				<a class="btn btn-primary btn-md" th:href="@{/locadoras/cadastrar}" role="button"> 
+				<a sec:authorize="hasRole('ROLE_ADMIN')"
+					class="btn btn-primary btn-md" th:href="@{/locadoras/cadastrar}" role="button"> 
 					<span class="oi oi-plus" title="Cadastro" aria-hidden="true"></span> 
 					<span th:text="#{locadora.cadastrar.label}"></span>
 				</a>
@@ -24,25 +25,36 @@
 		<div class="container" id="listagem">
 
 			<div th:replace="fragments/alert"></div>
-
+			
+			<div class="dropdown">
+				<button class="dropbtn">DropDown</button>
+				<div class="dropdown-content">
+					<a th:each="cidade : ${cidades}" th:text="${cidade}"
+						th:href="@{/locadoras/listar/{cidade} (cidade=${cidade})}">
+					</a>
+				</div>
+			</div>
+			
 			<div class="table-responsive">
 				<table class="table table-striped table-hover table-sm">
 					<thead>
 						<tr>
 							<th>#</th>
+							<th th:text="#{locadora.email.label}"></th>
 							<th th:text="#{locadora.cnpj.label}"></th>
 							<th th:text="#{locadora.nome.label}"></th>
 							<th th:text="#{locadora.cidade.label}"></th>
-							<th th:text="#{acao.label}"></th>
+							<th sec:authorize="hasRole('ROLE_ADMIN')" th:text="#{acao.label}"></th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr th:each="locadora : ${locadoras}">
 							<td th:text="${locadora.id}"></td>
+							<td th:text="${locadora.email}"></td>
 							<td th:text="${locadora.cnpj}"></td>
 							<td th:text="${locadora.nome}"></td>
-							<th th:text="#{locadora.cidade.label}"></th>
-							<td colspan="2">
+							<th th:text="${locadora.cidade}"></th>
+							<td sec:authorize="hasRole('ROLE_ADMIN')" colspan="2">
 								<a class="btn btn-info btn-sm" th:href="@{/locadoras/editar/{id} (id=${locadora.id}) }"
 									role="button"> 
 									<span class="oi oi-brush" th:title="#{link.editar.label}" aria-hidden="true"> </span>

@@ -15,4 +15,8 @@ public interface ILocadoraService {
 	Locadora buscarLocadoraPorEmail(String email);
 	
 	Locadora buscarLocadoraPorCnpj(String cpnj);
+	
+	List<String> buscarTodasCidades();
+	
+	List<Locadora> buscarTodasPorCidade(String cidade);
 }

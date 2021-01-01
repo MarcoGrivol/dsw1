@@ -45,4 +45,14 @@ public class LocadoraService implements ILocadoraService {
 	public Locadora buscarLocadoraPorCnpj(String cnpj) {
 		return dao.getLocadoraByCnpj(cnpj);
 	}
+	
+	@Transactional(readOnly = true)
+	public List<String> buscarTodasCidades() {
+		return dao.getAllCities();
+	}
+	
+	@Transactional(readOnly = true)
+	public List<Locadora> buscarTodasPorCidade(String cidade) {
+		return dao.getAllByCidade(cidade);
+	}
 }

@@ -1,5 +1,7 @@
 package br.ufscar.dc.dsw.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -36,7 +38,15 @@ public class LocadoraController {
 
 	@GetMapping("/listar")
 	public String listar(ModelMap model) {
+		model.addAttribute("cidades", service.buscarTodasCidades());
 		model.addAttribute("locadoras", service.buscarTodos());
+		return "locadora/lista";
+	}
+	
+	@GetMapping("/listar/{cidade}")
+	public String listarCidade(@PathVariable("cidade") String cidade, ModelMap model) {
+		model.addAttribute("cidades", service.buscarTodasCidades());
+		model.addAttribute("locadoras", service.buscarTodasPorCidade(cidade));
 		return "locadora/lista";
 	}
 
@@ -60,8 +70,7 @@ public class LocadoraController {
 
 	@GetMapping("/editar/{id}")
 	public String preEditar(@PathVariable("id") Long id, ModelMap model) {
-		Locadora locadora = service.buscarPorId(id);
-		model.addAttribute("locadora", locadora);
+		model.addAttribute("locadora", service.buscarPorId(id));
 		return "locadora/cadastro";
 	}
 
