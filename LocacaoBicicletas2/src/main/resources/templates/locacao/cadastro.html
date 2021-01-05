@@ -30,9 +30,29 @@
 				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label th:text="#{locacao.locadora.label}" for="locadora"></label> 
-						<select class="form-control" name="locadoras" id="locadora" >
-                            <option value="">Selecione a Locadora</option>
+						<select class="form-control" name="locadora" id="locadora" >
+                            <option value="" th:text="#{locacao.locadora.text}"></option>
                             <option th:each="locadora:${locadoras}" th:value=${locadora.id} th:text="${locadora.nome}"></option>
+                          </select>
+                    </div> 
+				</div>
+
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label th:text="#{locacao.data.label}" for="data"></label> 
+						<input type="date" class="form-control" name="data" id="data" 
+						autofocus="autofocus"th:field="*{data}" 
+						th:classappend="${#fields.hasErrors('data')} ? is-invalid" />
+                            
+                    </div> 
+				</div>
+
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label th:text="#{locacao.horario.label}" for="horario"></label> 
+						<select class="form-control" name="horario" id="horario" >
+                            <option value="" th:text="#{locacao.horario.text}"></option>
+                            <option th:each="i: ${#numbers.sequence(0, 23)}" th:value=${i} th:text="${i}"></option>
                           </select>
                     </div> 
 				</div>

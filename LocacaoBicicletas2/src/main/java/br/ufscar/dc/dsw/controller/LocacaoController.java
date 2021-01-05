@@ -55,5 +55,11 @@ public class LocacaoController {
 		return "redirect:/locacao/listar";
 	}
 
+
+	@GetMapping("/listar")
+	public String listar(ModelMap model) {
+		model.addAttribute("locacoes", service.buscarTodos());
+		return "locacao/lista";
+	}
 	
 }
