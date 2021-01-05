@@ -19,7 +19,8 @@ public class LocadoraConversor implements Converter<String, Locadora>{
 		if (text.isEmpty()) {
 		 return null;	
 		}
-		
+
+        System.out.println("entrou aqui");
 		Long id = Long.valueOf(text);	
 		return service.buscarPorId(id);
 	}

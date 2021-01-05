@@ -17,7 +17,6 @@ import br.ufscar.dc.dsw.domain.Locadora;
 @Table(name = "Locacao")
 public class Locacao extends AbstractEntity<Long> 
 {
-	@NotNull
 	@ManyToOne
 	@JoinColumn(name="cliente_id")
 	private Cliente cliente;

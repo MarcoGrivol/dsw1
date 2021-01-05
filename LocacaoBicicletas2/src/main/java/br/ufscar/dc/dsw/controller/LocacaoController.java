@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -19,6 +20,8 @@ import br.ufscar.dc.dsw.domain.Locacao;
 import br.ufscar.dc.dsw.service.spec.ILocadoraService;
 import br.ufscar.dc.dsw.service.spec.ILocacaoService;
 import br.ufscar.dc.dsw.service.spec.IUsuarioService;
+import br.ufscar.dc.dsw.domain.Usuario;
+import br.ufscar.dc.dsw.security.UsuarioDetails;
 
 
 @Controller
@@ -42,14 +45,19 @@ public class LocacaoController {
         model.addAttribute("locadoras",locadoraService.buscarTodos());
 		return "locacao/cadastro";
 	}
-
+	
+	private Usuario getUsuario() {
+		UsuarioDetails usuarioDetails = (UsuarioDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		return usuarioDetails.getUsuario();
+	}
 
 	@PostMapping("/salvar")
-	public String salvar(@Valid Locacao locacao, BindingResult result, RedirectAttributes attr) {
+	public String salvar(Locacao locacao, BindingResult result, RedirectAttributes attr) {
+		locacao.setCliente((Cliente)this.getUsuario());
 		if (result.hasErrors()) {
+	        System.out.println(result);
 			return "locacao/cadastro";
 		}
-		
 		service.salvar(locacao);
 		attr.addFlashAttribute("success", "Locadora Inserida com sucesso.");
 		return "redirect:/locacao/listar";
