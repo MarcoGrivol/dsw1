@@ -53,6 +53,7 @@ public class LocacaoBicicletas2Application {
 			u3.setCidade("cidade 1");
 			u3.setCnpj("11.111.111/1111-11");
 			locadoraDAO.save(u3);
+		
 		};
 	}
 
