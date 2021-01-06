@@ -56,10 +56,17 @@ public class LocadoraController {
 			return "locadora/cadastro";
 		}
 
-		if (service.buscarLocadoraPorCnpj(locadora.getCnpj()) != null
-				|| userService.buscarUsuarioPorEmail(locadora.getEmail()) != null)
+		if (service.buscarLocadoraPorCnpj(locadora.getCnpj()) != null)
 		{
 			// Acusar erro locadora.jaExiste.label
+			attr.addFlashAttribute("show_error_alert", "CNPJ já cadastrado");
+			return "locadora/cadastro";
+		}
+		if (userService.buscarUsuarioPorEmail(locadora.getEmail()) != null)
+		{
+			// Acusar erro locadora.jaExiste.label
+			System.out.print("erro no email");
+			attr.addFlashAttribute("show_error_alert", "Email já cadastrado.");
 			return "locadora/cadastro";
 		}
 		locadora.setSenha(encoder.encode(locadora.getSenha()));

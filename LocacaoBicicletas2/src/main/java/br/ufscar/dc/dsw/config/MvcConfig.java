@@ -22,7 +22,6 @@ public class MvcConfig implements WebMvcConfigurer {
     @Override
     public void addFormatters(FormatterRegistry registry) {
         registry.addConverter(new DataConversor());
-        registry.addConverter(new LocadoraConversor());
     }
 
 	public void addViewControllers(ViewControllerRegistry registry) {

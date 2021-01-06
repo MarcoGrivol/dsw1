@@ -52,7 +52,7 @@ public class LocacaoController {
 	}
 
 	@PostMapping("/salvar")
-	public String salvar(Locacao locacao, BindingResult result, RedirectAttributes attr) {
+	public String salvar(@Valid Locacao locacao, BindingResult result, RedirectAttributes attr) {
 		locacao.setCliente((Cliente)this.getUsuario());
 		if (result.hasErrors()) {
 	        System.out.println(result);

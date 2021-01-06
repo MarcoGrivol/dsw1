@@ -53,7 +53,6 @@ public class UsuarioDetails implements UserDetails {
     }
 
 	public Usuario getUsuario() {
-		// TODO Auto-generated method stub
 		return usuario;
 	}
 
