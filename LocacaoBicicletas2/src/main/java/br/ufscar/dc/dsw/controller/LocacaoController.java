@@ -22,7 +22,7 @@ import br.ufscar.dc.dsw.service.spec.ILocacaoService;
 import br.ufscar.dc.dsw.service.spec.IUsuarioService;
 import br.ufscar.dc.dsw.domain.Usuario;
 import br.ufscar.dc.dsw.security.UsuarioDetails;
-
+import java.util.ArrayList;
 
 @Controller
 @RequestMapping("/locacao")
@@ -52,16 +52,30 @@ public class LocacaoController {
 	}
 
 	@PostMapping("/salvar")
-	public String salvar(@Valid Locacao locacao, BindingResult result, RedirectAttributes attr) {
+	public String salvar(@Valid Locacao locacao, BindingResult result, RedirectAttributes attr, ModelMap model) {
 		locacao.setCliente((Cliente)this.getUsuario());
 		if (result.hasErrors()) {
 	        System.out.println(result);
 			return "locacao/cadastro";
 		}
+	
+		List<Locacao> locacoes_no_dia_e_hora = new ArrayList<>();
+		locacoes_no_dia_e_hora = service.buscarPorDataeHorario(locacao.getData(),locacao.getHorario());
+		for (Locacao locacao_ja_feita : locacoes_no_dia_e_hora){
+	
+			if((locacao_ja_feita.getCliente().getId().equals(locacao.getCliente().getId()) ) || (locacao_ja_feita.getLocadora().getId() == locacao.getLocadora().getId())){				
+				System.out.println("Deu conflito");
+				attr.addFlashAttribute("fail", "Conflito de horarios");
+				return "redirect:/locacao/cadastrar";
+			}
+		}
 		service.salvar(locacao);
-		attr.addFlashAttribute("success", "Locadora Inserida com sucesso.");
+		attr.addFlashAttribute("sucess", "Locadora Inserida com sucesso.");
 		return "redirect:/locacao/listar";
+		
+			
 	}
+
 
 
 	@GetMapping("/listar")

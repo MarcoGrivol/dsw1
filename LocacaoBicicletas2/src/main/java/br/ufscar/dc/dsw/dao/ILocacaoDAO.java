@@ -7,6 +7,7 @@ import org.springframework.data.repository.query.Param;
 import br.ufscar.dc.dsw.domain.Locacao;
 import br.ufscar.dc.dsw.domain.Cliente;
 import br.ufscar.dc.dsw.domain.Locadora;
+import java.util.Date;
 
 @SuppressWarnings("unchecked")
 public interface ILocacaoDAO extends CrudRepository<Locacao, Long> {
@@ -24,4 +25,6 @@ public interface ILocacaoDAO extends CrudRepository<Locacao, Long> {
     @Query("SELECT x FROM Locacao x WHERE x.locadora = :locadora")
     public Locacao getLocacaoByLocadora(@Param("locadora") Locadora locadora);
 
+    @Query("SELECT x FROM Locacao x WHERE x.data = :data and x.horario = :horario")
+    public List<Locacao> getLocacaoByDataeHorario(@Param("data") Date data,@Param("horario") Integer horario);
 }

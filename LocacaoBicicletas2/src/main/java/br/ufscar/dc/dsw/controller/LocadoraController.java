@@ -18,6 +18,7 @@ import br.ufscar.dc.dsw.service.spec.ILocadoraService;
 import br.ufscar.dc.dsw.service.spec.IUsuarioService;
 
 
+
 @Controller
 @RequestMapping("/locadoras")
 public class LocadoraController {

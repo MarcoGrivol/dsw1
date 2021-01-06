@@ -4,6 +4,7 @@ import java.util.List;
 import br.ufscar.dc.dsw.domain.Locacao;
 import br.ufscar.dc.dsw.domain.Cliente;
 import br.ufscar.dc.dsw.domain.Locadora;
+import java.util.Date;
 
 public interface ILocacaoService {
 	Locacao buscarPorId(Long id);
@@ -17,5 +18,7 @@ public interface ILocacaoService {
 	Locacao buscarLocacaoPorCliente(Cliente cliente);
 	
 	Locacao buscarLocacaoPorLocadora(Locadora Locadora);
+
+	List<Locacao> buscarPorDataeHorario(Date data, Integer horario);
 	
 }

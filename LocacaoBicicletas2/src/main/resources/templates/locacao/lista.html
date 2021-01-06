@@ -39,7 +39,7 @@
 					<tbody>
 						<tr th:each="locacao : ${locacoes}">
 							<td th:text="${locacao.locadora.Nome}"></td>
-							<td th:text="${locacao.data.day}"></td>
+							<td th:text="${locacao.data}"></td>
 							<td th:text="${locacao.horario}"></td>
 						</tr>
 					</tbody>
