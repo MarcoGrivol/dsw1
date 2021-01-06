@@ -34,8 +34,7 @@ Depois de fazer login, a locadora pode visualizar todas as suas locações grava
 * ~~R4: Listagem de todos as locadoras por cidade. Preferencialmente a cidade deveria ser escolhida através de uma lista.~~
 
 ## Requisitos funcionais
-* R7: O sistema não deve permitir o cadastro de locações de um mesmo cliente ou de um
-mesma locadora em um mesmo dia/horário.
+* ~~R7: O sistema não deve permitir o cadastro de locações de um mesmo cliente ou de um mesma locadora em um mesmo dia/horário.~~
 * R9: O sistema deve ser internacionalizado em pelo menos dois idiomas: português + outro
 de sua escolha.
 * ~~R10: O sistema deve validar (tamanho, formato, etc) todas as informações (campos nos formulários) cadastradas e/ou editadas.~~
