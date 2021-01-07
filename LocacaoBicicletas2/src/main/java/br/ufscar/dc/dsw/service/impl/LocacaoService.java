@@ -41,12 +41,12 @@ public class LocacaoService implements ILocacaoService {
 	}
 	
 	@Transactional(readOnly = true)
-	public Locacao buscarLocacaoPorCliente(Cliente cliente) {
+	public List<Locacao> buscarLocacaoPorCliente(Cliente cliente) {
 		return dao.getLocacaoByCliente(cliente);
 	}
 	
 	@Transactional(readOnly = true)
-	public Locacao buscarLocacaoPorLocadora(Locadora locadora) {
+	public List<Locacao> buscarLocacaoPorLocadora(Locadora locadora) {
 		return dao.getLocacaoByLocadora(locadora);
 	}
 	

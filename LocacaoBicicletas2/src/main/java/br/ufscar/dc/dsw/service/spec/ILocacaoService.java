@@ -15,9 +15,9 @@ public interface ILocacaoService {
 	
 	void excluir(Long id);
 	
-	Locacao buscarLocacaoPorCliente(Cliente cliente);
+	List<Locacao> buscarLocacaoPorCliente(Cliente cliente);
 	
-	Locacao buscarLocacaoPorLocadora(Locadora Locadora);
+	List<Locacao> buscarLocacaoPorLocadora(Locadora Locadora);
 
 	List<Locacao> buscarPorDataeHorario(Date data, Integer horario);
 	

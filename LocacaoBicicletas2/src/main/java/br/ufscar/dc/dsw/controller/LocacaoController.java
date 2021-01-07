@@ -18,6 +18,7 @@ import br.ufscar.dc.dsw.domain.Locadora;
 import br.ufscar.dc.dsw.domain.Cliente;
 import br.ufscar.dc.dsw.domain.Locacao;
 import br.ufscar.dc.dsw.service.spec.ILocadoraService;
+import br.ufscar.dc.dsw.service.spec.IClienteService;
 import br.ufscar.dc.dsw.service.spec.ILocacaoService;
 import br.ufscar.dc.dsw.service.spec.IUsuarioService;
 import br.ufscar.dc.dsw.domain.Usuario;
@@ -36,6 +37,9 @@ public class LocacaoController {
 	
 	@Autowired
 	private IUsuarioService userService;
+	
+	@Autowired 
+	private IClienteService clienteService;
 	
 	@Autowired
 	private BCryptPasswordEncoder encoder;
@@ -80,19 +84,19 @@ public class LocacaoController {
 
 	@GetMapping("/listar")
 	public String listar(ModelMap model) {
-		model.addAttribute("locacoes", service.buscarTodos());
+		Usuario user = this.getUsuario();
+		if (user.getRole().equals("ROLE_USER")) // usuario is cliente
+		{
+			Cliente cliente = clienteService.buscarPorId(user.getId());
+			model.addAttribute("locacoes", service.buscarLocacaoPorCliente(cliente));
+		}
+		else if (user.getRole().equals("ROLE_LOCADORA")) // usuario is locadora
+		{
+			Locadora locadora = locadoraService.buscarPorId(user.getId());
+			model.addAttribute("locacoes", service.buscarLocacaoPorLocadora(locadora));
+		}
+		
+//		model.addAttribute("locacoes", service.buscarTodos());
 		return "locacao/lista";
 	}
-	
-	// lista apenas as locacoes da locadora logada 
-	// chamado por sidebar.html quando o usuario tem role=LOCADORA
-	@GetMapping("/listar/porLocadora")
-	public String listarPorLocadora(ModelMap model) {
-		Usuario user = (Locadora)this.getUsuario();
-		Locadora locadora = locadoraService.buscarPorId(user.getId());
-		model.addAttribute("locacoes", service.buscarLocacaoPorLocadora(locadora));
-		System.out.println(user.getId());
-		return "locacao/lista";
-	}
-	
 }
