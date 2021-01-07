@@ -50,8 +50,7 @@ public class LocacaoController {
 	public String salvar(@Valid Locacao locacao, BindingResult result, RedirectAttributes attr, ModelMap model) {
 		locacao.setCliente((Cliente)this.getUsuario());
 		if (result.hasErrors()) {
-	        System.out.println(result);
-			return "locacao/cadastro";
+			return "redirect:/locacao/cadastrar";
 		}
 	
 		List<Locacao> locacoes_no_dia_e_hora = new ArrayList<>();
@@ -59,7 +58,6 @@ public class LocacaoController {
 		for (Locacao locacao_ja_feita : locacoes_no_dia_e_hora){
 	
 			if((locacao_ja_feita.getCliente().getId().equals(locacao.getCliente().getId()) ) || (locacao_ja_feita.getLocadora().getId() == locacao.getLocadora().getId())){				
-				System.out.println("Deu conflito");
 				attr.addFlashAttribute("fail", "Conflito de horarios");
 				return "redirect:/locacao/cadastrar";
 			}
