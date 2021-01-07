@@ -58,12 +58,12 @@ public class LocacaoController {
 		for (Locacao locacao_ja_feita : locacoes_no_dia_e_hora){
 	
 			if((locacao_ja_feita.getCliente().getId().equals(locacao.getCliente().getId()) ) || (locacao_ja_feita.getLocadora().getId() == locacao.getLocadora().getId())){				
-				attr.addFlashAttribute("fail", "Conflito de horarios");
+				attr.addFlashAttribute("fail", "locacao.erroConflito.label");
 				return "redirect:/locacao/cadastrar";
 			}
 		}
 		service.salvar(locacao);
-		attr.addFlashAttribute("sucess", "Locadora Inserida com sucesso.");
+		attr.addFlashAttribute("sucess", "locacao.sucessoInserida.label");
 		return "redirect:/locacao/listar";
 		
 			
