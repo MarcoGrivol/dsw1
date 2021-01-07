@@ -9,15 +9,14 @@
 		<nav class="navbar navbar-expand-md bg-light">
 			<div class="collapse navbar-collapse" id="navbarsExampleDefault">
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active">
-						<i class="oi oi-caret-right"></i>
-						<span th:text="#{locacao.listar.label}"></span>
-					</li>
+					<li class="nav-item active"><i class="oi oi-caret-right"></i>
+						<span th:text="#{locacao.listar.label}"></span></li>
 				</ul>
 				<a sec:authorize="hasRole('ROLE_ADMIN')"
-					class="btn btn-primary btn-md" th:href="@{/locacao/cadastrar}" role="button"> 
-					<span class="oi oi-plus" title="Cadastro" aria-hidden="true"></span> 
-					<span th:text="#{locacao.cadastrar.label}"></span>
+					class="btn btn-primary btn-md" th:href="@{/locacao/cadastrar}"
+					role="button"> <span class="oi oi-plus" title="Cadastro"
+					aria-hidden="true"></span> <span
+					th:text="#{locacao.cadastrar.label}"></span>
 				</a>
 			</div>
 		</nav>
@@ -25,20 +24,26 @@
 		<div class="container" id="listagem">
 
 			<div th:replace="fragments/alert"></div>
-			
-			
+
+
 			<div class="table-responsive">
 				<table class="table table-striped table-hover table-sm">
 					<thead>
 						<tr>
-							<th th:text="#{locacao.locadora.label}"></th>
+							<td sec:authorize="hasRole('ROLE_USER')"
+								th:text="#{locacao.locadora.label}"></td>
+							<td sec:authorize="hasRole('ROLE_LOCADORA')"
+								th:text="#{locacao.cliente.label}"></td>
 							<th th:text="#{locacao.data.label}"></th>
 							<th th:text="#{locacao.horario.label}"></th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr th:each="locacao : ${locacoes}">
-							<td th:text="${locacao.locadora.Nome}"></td>
+							<td sec:authorize="hasRole('ROLE_USER')"
+								th:text="${locacao.locadora.Nome}"></td>
+							<td sec:authorize="hasRole('ROLE_LOCADORA')"
+								th:text="${locacao.cliente.Nome}"></td>
 							<td th:text="${locacao.data}"></td>
 							<td th:text="${locacao.horario}"></td>
 						</tr>

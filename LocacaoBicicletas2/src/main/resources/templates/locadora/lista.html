@@ -27,8 +27,10 @@
 			<div th:replace="fragments/alert"></div>
 			
 			<div class="dropdown">
-				<button class="dropbtn">DropDown</button>
+				<button class="dropbtn" th:text="#{locadora.selecionarCidade.label}"></button>
 				<div class="dropdown-content">
+					<a th:text="#{locadora.todasCidades.label}" 
+						th:href="@{/locadoras/listar/todas}"></a>
 					<a th:each="cidade : ${cidades}" th:text="${cidade}"
 						th:href="@{/locadoras/listar/{cidade} (cidade=${cidade})}">
 					</a>

@@ -6,6 +6,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.br.CNPJ;
+
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "Locadora")
@@ -13,6 +15,7 @@ public class Locadora extends Usuario
 {
 	@NotBlank
 	@Size(min = 18, max = 18)
+	@CNPJ(message="{CNPJ.locadora}")
 	@Column(nullable = false, unique = true, length = 18)
 	private String cnpj;
 	

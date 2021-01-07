@@ -1,10 +1,14 @@
 package br.ufscar.dc.dsw.domain;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.br.CPF;
 
 @SuppressWarnings("serial")
 @Entity
@@ -12,6 +16,7 @@ import javax.validation.constraints.Size;
 public class Cliente extends Usuario {
 	@NotBlank
 	@Size(min = 14, max = 14)
+	@CPF(message="{CPF.cliente}")
 	@Column(nullable = false, unique = true, length = 14)
 	private String cpf;
 
@@ -24,7 +29,7 @@ public class Cliente extends Usuario {
 	@Size(min = 5, max = 20)
 	@Column(nullable = false, unique = false, length = 20)
 	private String sexo;
-
+	
 	@NotBlank
 	@Size(min = 10, max = 10)
 	@Column(nullable = false, unique = false, length = 10)
@@ -61,7 +66,7 @@ public class Cliente extends Usuario {
 	public void setSexo(String sexo) {
 		this.sexo = sexo;
 	}
-
+	
 	public String getDataNascimento() {
 		return this.dataNascimento;
 	}

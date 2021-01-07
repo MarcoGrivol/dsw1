@@ -31,7 +31,7 @@ public class LocacaoBicicletas2Application {
 		return (args) -> {
 
 			Usuario u1 = new Usuario();
-			u1.setEmail("admin");
+			u1.setEmail("admin@admin.com");
 			u1.setSenha(encoder.encode("admin"));
 			u1.setNome("Administrador");
 			u1.setRole("ROLE_ADMIN");
@@ -44,7 +44,7 @@ public class LocacaoBicicletas2Application {
 			u2.setNome("cliente 1");
 			u2.setRole("ROLE_USER");
 			u2.setEnabled(false);
-			u2.setCpf("111.111.111-11");
+			u2.setCpf("986.187.740-14");
 			u2.setDataNascimento("11/11/1111");
 			u2.setSexo("sexo1");
 			u2.setTelefone("(11)1111-1111");
@@ -57,7 +57,7 @@ public class LocacaoBicicletas2Application {
 			u3.setRole("ROLE_LOCADORA");
 			u3.setEnabled(false);
 			u3.setCidade("Sao Paulo");
-			u3.setCnpj("11.111.111/1111-11");
+			u3.setCnpj("16.305.638/0001-70");
 			locadoraDAO.save(u3);
 			
 			Locadora u4 = new Locadora();
@@ -67,7 +67,7 @@ public class LocacaoBicicletas2Application {
 			u4.setRole("ROLE_LOCADORA");
 			u4.setEnabled(false);
 			u4.setCidade("Ribeirao Preto");
-			u4.setCnpj("11.111.111/1111-12");
+			u4.setCnpj("03.543.141/0001-49");
 			locadoraDAO.save(u4);
 			
 			Locadora u5 = new Locadora();
@@ -77,7 +77,7 @@ public class LocacaoBicicletas2Application {
 			u5.setRole("ROLE_LOCADORA");
 			u5.setEnabled(false);
 			u5.setCidade("Sao Paulo");
-			u5.setCnpj("11.111.111/1111-13");
+			u5.setCnpj("70.756.201/0001-07");
 			locadoraDAO.save(u5);
 		
 			Locacao loc1 = new Locacao();

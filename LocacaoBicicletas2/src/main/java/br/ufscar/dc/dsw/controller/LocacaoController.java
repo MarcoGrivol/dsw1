@@ -5,12 +5,10 @@ import java.util.List;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -20,7 +18,6 @@ import br.ufscar.dc.dsw.domain.Locacao;
 import br.ufscar.dc.dsw.service.spec.ILocadoraService;
 import br.ufscar.dc.dsw.service.spec.IClienteService;
 import br.ufscar.dc.dsw.service.spec.ILocacaoService;
-import br.ufscar.dc.dsw.service.spec.IUsuarioService;
 import br.ufscar.dc.dsw.domain.Usuario;
 import br.ufscar.dc.dsw.security.UsuarioDetails;
 import java.util.ArrayList;
@@ -35,14 +32,8 @@ public class LocacaoController {
 	@Autowired
 	private ILocadoraService locadoraService;
 	
-	@Autowired
-	private IUsuarioService userService;
-	
 	@Autowired 
 	private IClienteService clienteService;
-	
-	@Autowired
-	private BCryptPasswordEncoder encoder;
 
 	@GetMapping("/cadastrar")
 	public String cadastrar(Locacao locacao ,ModelMap model) {
@@ -59,8 +50,7 @@ public class LocacaoController {
 	public String salvar(@Valid Locacao locacao, BindingResult result, RedirectAttributes attr, ModelMap model) {
 		locacao.setCliente((Cliente)this.getUsuario());
 		if (result.hasErrors()) {
-	        System.out.println(result);
-			return "locacao/cadastro";
+			return "redirect:/locacao/cadastrar";
 		}
 	
 		List<Locacao> locacoes_no_dia_e_hora = new ArrayList<>();
@@ -68,7 +58,6 @@ public class LocacaoController {
 		for (Locacao locacao_ja_feita : locacoes_no_dia_e_hora){
 	
 			if((locacao_ja_feita.getCliente().getId().equals(locacao.getCliente().getId()) ) || (locacao_ja_feita.getLocadora().getId() == locacao.getLocadora().getId())){				
-				System.out.println("Deu conflito");
 				attr.addFlashAttribute("fail", "Conflito de horarios");
 				return "redirect:/locacao/cadastrar";
 			}
