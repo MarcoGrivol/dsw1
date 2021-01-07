@@ -30,9 +30,10 @@ public class Cliente extends Usuario {
 	@Column(nullable = false, unique = false, length = 20)
 	private String sexo;
 	
-	@NotNull
-	@Column(nullable = false, unique = false)
-	private Date dataNascimento;
+	@NotBlank
+	@Size(min = 10, max = 10)
+	@Column(nullable = false, unique = false, length = 10)
+	private String dataNascimento;
 	
 	public Cliente() {
 		super();
@@ -66,11 +67,11 @@ public class Cliente extends Usuario {
 		this.sexo = sexo;
 	}
 	
-	public Date getDataNascimento() {
+	public String getDataNascimento() {
 		return this.dataNascimento;
 	}
 
-	public void setDataNascimento(Date dataNascimento) {
+	public void setDataNascimento(String dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 	

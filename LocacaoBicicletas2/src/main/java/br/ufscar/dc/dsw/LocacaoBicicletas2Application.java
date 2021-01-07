@@ -45,7 +45,7 @@ public class LocacaoBicicletas2Application {
 			u2.setRole("ROLE_USER");
 			u2.setEnabled(false);
 			u2.setCpf("986.187.740-14");
-			u2.setDataNascimento(new Date(System.currentTimeMillis()));
+			u2.setDataNascimento("11/11/1111");
 			u2.setSexo("sexo1");
 			u2.setTelefone("(11)1111-1111");
 			clienteDAO.save(u2);

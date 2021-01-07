@@ -15,7 +15,7 @@ public class Locadora extends Usuario
 {
 	@NotBlank
 	@Size(min = 18, max = 18)
-	@CNPJ
+	@CNPJ(message="{CNPJ.locadora}")
 	@Column(nullable = false, unique = true, length = 18)
 	private String cnpj;
 	
