@@ -31,7 +31,7 @@ public class LocacaoBicicletas2Application {
 		return (args) -> {
 
 			Usuario u1 = new Usuario();
-			u1.setEmail("admin");
+			u1.setEmail("admin@admin.com");
 			u1.setSenha(encoder.encode("admin"));
 			u1.setNome("Administrador");
 			u1.setRole("ROLE_ADMIN");

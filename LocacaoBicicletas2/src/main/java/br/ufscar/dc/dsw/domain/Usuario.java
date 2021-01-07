@@ -3,8 +3,10 @@ package br.ufscar.dc.dsw.domain;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.UniqueElements;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
@@ -16,6 +18,7 @@ public class Usuario extends AbstractEntity<Long> {
 
 	@NotBlank
 	@Size(min = 2, max = 64)
+	@Email
 	@Column(nullable = false, unique = true, length = 64)
 	private String email;
 
