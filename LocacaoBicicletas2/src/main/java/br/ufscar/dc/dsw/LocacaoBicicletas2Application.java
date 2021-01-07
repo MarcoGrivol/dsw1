@@ -1,5 +1,7 @@
 package br.ufscar.dc.dsw;
 
+import java.util.Date;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -7,7 +9,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import br.ufscar.dc.dsw.dao.IClienteDAO;
+import br.ufscar.dc.dsw.dao.ILocacaoDAO;
 import br.ufscar.dc.dsw.domain.Cliente;
+import br.ufscar.dc.dsw.domain.Locacao;
 import br.ufscar.dc.dsw.domain.Locadora;
 import br.ufscar.dc.dsw.domain.Usuario;
 import br.ufscar.dc.dsw.dao.IUsuarioDAO;
@@ -21,7 +25,9 @@ public class LocacaoBicicletas2Application {
 	}
 
 	@Bean
-	public CommandLineRunner demo(IUsuarioDAO usuarioDAO, IClienteDAO clienteDAO, ILocadoraDAO locadoraDAO, BCryptPasswordEncoder encoder) {
+	public CommandLineRunner demo(IUsuarioDAO usuarioDAO, IClienteDAO clienteDAO, 
+								 ILocadoraDAO locadoraDAO, ILocacaoDAO locacaoDAO, 
+								 BCryptPasswordEncoder encoder) {
 		return (args) -> {
 
 			Usuario u1 = new Usuario();
@@ -48,7 +54,7 @@ public class LocacaoBicicletas2Application {
 			u3.setEmail("l1@l1.com");
 			u3.setSenha(encoder.encode("l1"));
 			u3.setNome("locadora 1");
-			u3.setRole("ROLE_USER");
+			u3.setRole("ROLE_LOCADORA");
 			u3.setEnabled(false);
 			u3.setCidade("Sao Paulo");
 			u3.setCnpj("11.111.111/1111-11");
@@ -58,7 +64,7 @@ public class LocacaoBicicletas2Application {
 			u4.setEmail("l2@l2.com");
 			u4.setSenha(encoder.encode("l2"));
 			u4.setNome("locadora 2");
-			u4.setRole("ROLE_USER");
+			u4.setRole("ROLE_LOCADORA");
 			u4.setEnabled(false);
 			u4.setCidade("Ribeirao Preto");
 			u4.setCnpj("11.111.111/1111-12");
@@ -68,12 +74,18 @@ public class LocacaoBicicletas2Application {
 			u5.setEmail("l3@l3.com");
 			u5.setSenha(encoder.encode("l3"));
 			u5.setNome("locadora 3");
-			u5.setRole("ROLE_USER");
+			u5.setRole("ROLE_LOCADORA");
 			u5.setEnabled(false);
 			u5.setCidade("Sao Paulo");
 			u5.setCnpj("11.111.111/1111-13");
 			locadoraDAO.save(u5);
 		
+			Locacao loc1 = new Locacao();
+			loc1.setCliente(u2);
+			loc1.setData(new Date(System.currentTimeMillis()));
+			loc1.setHorario(12);
+			loc1.setLocadora(u3);
+			locacaoDAO.save(loc1);
 		};
 	}
 

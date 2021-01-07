@@ -84,4 +84,15 @@ public class LocacaoController {
 		return "locacao/lista";
 	}
 	
+	// lista apenas as locacoes da locadora logada 
+	// chamado por sidebar.html quando o usuario tem role=LOCADORA
+	@GetMapping("/listar/porLocadora")
+	public String listarPorLocadora(ModelMap model) {
+		Usuario user = (Locadora)this.getUsuario();
+		Locadora locadora = locadoraService.buscarPorId(user.getId());
+		model.addAttribute("locacoes", service.buscarLocacaoPorLocadora(locadora));
+		System.out.println(user.getId());
+		return "locacao/lista";
+	}
+	
 }
