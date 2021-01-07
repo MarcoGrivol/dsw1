@@ -1,7 +1,5 @@
 package br.ufscar.dc.dsw.controller;
 
-import java.util.List;
-
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
