@@ -45,7 +45,7 @@ protected void configure(HttpSecurity http) throws Exception {
         .antMatchers("/image/**", "/webjars/**").permitAll()
         .antMatchers("/locadoras/listar/**").permitAll()  	
 		.antMatchers("/admin/**", "/cliente/**", "/locadora/**").hasRole("ADMIN")
-   		.antMatchers("/user/**","/locacao/**").hasRole("USER")
+   		.antMatchers("/user/**","/locacao/**").hasAnyAuthority("ROLE_USER", "ROLE_LOCADORA")
    		.anyRequest().authenticated()
    	.and()
    		.formLogin()

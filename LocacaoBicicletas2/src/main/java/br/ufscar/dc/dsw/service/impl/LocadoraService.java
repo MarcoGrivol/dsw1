@@ -55,4 +55,6 @@ public class LocadoraService implements ILocadoraService {
 	public List<Locadora> buscarTodasPorCidade(String cidade) {
 		return dao.getAllByCidade(cidade);
 	}
+
+	
 }

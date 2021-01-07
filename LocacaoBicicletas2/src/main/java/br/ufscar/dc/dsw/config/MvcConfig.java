@@ -10,10 +10,19 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
+import org.springframework.format.FormatterRegistry;
+
+import br.ufscar.dc.dsw.conversor.DataConversor;
+import br.ufscar.dc.dsw.conversor.LocadoraConversor;
 
 @Configuration
 @ComponentScan(basePackages = "br.ufscar.dc.dsw.config")
 public class MvcConfig implements WebMvcConfigurer {
+
+    @Override
+    public void addFormatters(FormatterRegistry registry) {
+        registry.addConverter(new DataConversor());
+    }
 
 	public void addViewControllers(ViewControllerRegistry registry) {
 		registry.addViewController("/").setViewName("redirect:/home");

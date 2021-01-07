@@ -81,12 +81,12 @@
 							<span th:errors="*{cidade}"></span>
 						</div>
 					</div>
-					<div class="form-group col-md-6">
+					<div style="display: none;">
 						<label th:text="#{locadora.role.label}" for="role"></label> <select
 							id="role" class="form-control" th:field="*{role}"
 							th:classappend="${#fields.hasErrors('role')} ? is-invalid">
 							<!-- <option value="ROLE_ADMIN">ROLE_ADMIN</option> -->
-							<option value="ROLE_USER">ROLE_USER</option>
+							<option value="ROLE_LOCADORA">ROLE_LOCADORA</option>
 						</select>
 
 						<div class="invalid-feedback">

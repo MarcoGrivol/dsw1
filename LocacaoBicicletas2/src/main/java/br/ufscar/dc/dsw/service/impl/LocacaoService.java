@@ -8,6 +8,7 @@ import br.ufscar.dc.dsw.dao.ILocacaoDAO;
 import br.ufscar.dc.dsw.domain.Locacao;
 import br.ufscar.dc.dsw.domain.Cliente;
 import br.ufscar.dc.dsw.domain.Locadora;
+import java.util.Date;
 import br.ufscar.dc.dsw.service.spec.ILocacaoService;
 
 @Service
@@ -19,6 +20,7 @@ public class LocacaoService implements ILocacaoService {
 
 	public void salvar(Locacao locacao)
 	{
+		
 		dao.save(locacao);
 	}
 	
@@ -39,14 +41,18 @@ public class LocacaoService implements ILocacaoService {
 	}
 	
 	@Transactional(readOnly = true)
-	public Locacao buscarLocacaoPorCliente(Cliente cliente) {
+	public List<Locacao> buscarLocacaoPorCliente(Cliente cliente) {
 		return dao.getLocacaoByCliente(cliente);
 	}
 	
 	@Transactional(readOnly = true)
-	public Locacao buscarLocacaoPorLocadora(Locadora locadora) {
+	public List<Locacao> buscarLocacaoPorLocadora(Locadora locadora) {
 		return dao.getLocacaoByLocadora(locadora);
 	}
 	
+	@Transactional(readOnly = true)
+	public List<Locacao> buscarPorDataeHorario(Date data, Integer horario){
+		return dao.getLocacaoByDataeHorario(data,horario);
+	}
 	
 }

@@ -47,12 +47,12 @@ public class ClienteController {
 		if (service.buscarClientePorCpf(cliente.getCpf()) != null
 				|| userService.buscarUsuarioPorEmail(cliente.getEmail()) != null)
 		{
-			// Acusar erro, cliente.jaExiste.label 
-			return "cliente/cadastro";
+			attr.addFlashAttribute("fail", "cliente.erroJaExiste.label");
+			return "redirect:/clientes/cadastrar";
 		}
 		cliente.setSenha(encoder.encode(cliente.getSenha()));
 		service.salvar(cliente);
-		attr.addFlashAttribute("success", "Cliente Inserida com sucesso.");
+		attr.addFlashAttribute("success", "cliente.sucessoCadastro.label");
 		return "redirect:/clientes/listar";
 	}
 
@@ -71,14 +71,14 @@ public class ClienteController {
 		}
 
 		service.salvar(cliente);
-		attr.addFlashAttribute("sucess", "Cliente editado com sucesso.");
+		attr.addFlashAttribute("success", "cliente.sucessoEditado.label");
 		return "redirect:/clientes/listar";
 	}
 
 	@GetMapping("/excluir/{id}")
 	public String excluir(@PathVariable("id") Long id, ModelMap model) {
 		service.excluir(id);
-		model.addAttribute("success", "Cliente excluido com sucesso.");
+		model.addAttribute("success", "cliente.sucessoRemovido.label");
 		return listar(model);
 	}
 }

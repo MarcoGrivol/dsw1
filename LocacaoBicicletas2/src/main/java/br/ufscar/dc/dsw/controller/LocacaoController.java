@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -17,9 +18,12 @@ import br.ufscar.dc.dsw.domain.Locadora;
 import br.ufscar.dc.dsw.domain.Cliente;
 import br.ufscar.dc.dsw.domain.Locacao;
 import br.ufscar.dc.dsw.service.spec.ILocadoraService;
+import br.ufscar.dc.dsw.service.spec.IClienteService;
 import br.ufscar.dc.dsw.service.spec.ILocacaoService;
 import br.ufscar.dc.dsw.service.spec.IUsuarioService;
-
+import br.ufscar.dc.dsw.domain.Usuario;
+import br.ufscar.dc.dsw.security.UsuarioDetails;
+import java.util.ArrayList;
 
 @Controller
 @RequestMapping("/locacao")
@@ -34,6 +38,9 @@ public class LocacaoController {
 	@Autowired
 	private IUsuarioService userService;
 	
+	@Autowired 
+	private IClienteService clienteService;
+	
 	@Autowired
 	private BCryptPasswordEncoder encoder;
 
@@ -42,18 +49,54 @@ public class LocacaoController {
         model.addAttribute("locadoras",locadoraService.buscarTodos());
 		return "locacao/cadastro";
 	}
-
-
-	@PostMapping("/salvar")
-	public String salvar(@Valid Locacao locacao, BindingResult result, RedirectAttributes attr) {
-		if (result.hasErrors()) {
-			return "locacao/cadastro";
-		}
-		
-		service.salvar(locacao);
-		attr.addFlashAttribute("success", "Locadora Inserida com sucesso.");
-		return "redirect:/locacao/listar";
+	
+	private Usuario getUsuario() {
+		UsuarioDetails usuarioDetails = (UsuarioDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		return usuarioDetails.getUsuario();
 	}
 
+	@PostMapping("/salvar")
+	public String salvar(@Valid Locacao locacao, BindingResult result, RedirectAttributes attr, ModelMap model) {
+		locacao.setCliente((Cliente)this.getUsuario());
+		if (result.hasErrors()) {
+	        System.out.println(result);
+			return "locacao/cadastro";
+		}
 	
+		List<Locacao> locacoes_no_dia_e_hora = new ArrayList<>();
+		locacoes_no_dia_e_hora = service.buscarPorDataeHorario(locacao.getData(),locacao.getHorario());
+		for (Locacao locacao_ja_feita : locacoes_no_dia_e_hora){
+	
+			if((locacao_ja_feita.getCliente().getId().equals(locacao.getCliente().getId()) ) || (locacao_ja_feita.getLocadora().getId() == locacao.getLocadora().getId())){				
+				System.out.println("Deu conflito");
+				attr.addFlashAttribute("fail", "Conflito de horarios");
+				return "redirect:/locacao/cadastrar";
+			}
+		}
+		service.salvar(locacao);
+		attr.addFlashAttribute("sucess", "Locadora Inserida com sucesso.");
+		return "redirect:/locacao/listar";
+		
+			
+	}
+
+
+
+	@GetMapping("/listar")
+	public String listar(ModelMap model) {
+		Usuario user = this.getUsuario();
+		if (user.getRole().equals("ROLE_USER")) // usuario is cliente
+		{
+			Cliente cliente = clienteService.buscarPorId(user.getId());
+			model.addAttribute("locacoes", service.buscarLocacaoPorCliente(cliente));
+		}
+		else if (user.getRole().equals("ROLE_LOCADORA")) // usuario is locadora
+		{
+			Locadora locadora = locadoraService.buscarPorId(user.getId());
+			model.addAttribute("locacoes", service.buscarLocacaoPorLocadora(locadora));
+		}
+		
+//		model.addAttribute("locacoes", service.buscarTodos());
+		return "locacao/lista";
+	}
 }

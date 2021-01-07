@@ -18,6 +18,7 @@ import br.ufscar.dc.dsw.service.spec.ILocadoraService;
 import br.ufscar.dc.dsw.service.spec.IUsuarioService;
 
 
+
 @Controller
 @RequestMapping("/locadoras")
 public class LocadoraController {
@@ -56,15 +57,19 @@ public class LocadoraController {
 			return "locadora/cadastro";
 		}
 
-		if (service.buscarLocadoraPorCnpj(locadora.getCnpj()) != null
-				|| userService.buscarUsuarioPorEmail(locadora.getEmail()) != null)
+		if (service.buscarLocadoraPorCnpj(locadora.getCnpj()) != null)
 		{
-			// Acusar erro locadora.jaExiste.label
-			return "locadora/cadastro";
+			attr.addFlashAttribute("fail", "locadora.erroJaExisteCNPJ.label");
+			return "redirect:/locadoras/cadastrar";
+		}
+		if (userService.buscarUsuarioPorEmail(locadora.getEmail()) != null)
+		{
+			attr.addFlashAttribute("fail", "locadora.erroJaExisteEmail.label");
+			return "redirect:/locadoras/cadastrar";
 		}
 		locadora.setSenha(encoder.encode(locadora.getSenha()));
 		service.salvar(locadora);
-		attr.addFlashAttribute("success", "Locadora Inserida com sucesso.");
+		attr.addFlashAttribute("success", "locadora.sucessoCadastro.label");
 		return "redirect:/locadoras/listar";
 	}
 
@@ -82,14 +87,14 @@ public class LocadoraController {
 		}
 
 		service.salvar(locadora);
-		attr.addFlashAttribute("sucess", "Locadora editado com sucesso.");
+		attr.addFlashAttribute("sucsess", "locadora.sucessoEditar.label");
 		return "redirect:/locadoras/listar";
 	}
 
 	@GetMapping("/excluir/{id}")
 	public String excluir(@PathVariable("id") Long id, ModelMap model) {
 		service.excluir(id);
-		model.addAttribute("success", "locadora excluido com sucesso.");
+		model.addAttribute("success", "locadora.sucessoRemover.label");
 		return listar(model);
 	}
 }

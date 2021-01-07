@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -16,28 +17,32 @@ import br.ufscar.dc.dsw.domain.Locadora;
 @Table(name = "Locacao")
 public class Locacao extends AbstractEntity<Long> 
 {
-	@NotBlank
 	@ManyToOne
 	@JoinColumn(name="cliente_id")
 	private Cliente cliente;
 	
-	@NotBlank
+	@NotNull
 	@ManyToOne
 	@JoinColumn(name="locadora_id")
 	private Locadora locadora;
 	
-	@NotBlank
+	@NotNull
 	@Column(nullable = false, unique = false)
 	private Date data;
+
+	@NotNull
+	@Column(nullable = false, unique = false)
+	private Integer horario;
 
 	public Locacao() {
 		
 	}
 
-	public Locacao(Cliente cliente, Locadora locadora, Date data) {
+	public Locacao(Cliente cliente, Locadora locadora, Date data,Integer horario) {
 		this.cliente = cliente;
 		this.locadora = locadora;
 		this.data = data;
+		this.horario = horario;
 	}
 
 
@@ -69,6 +74,16 @@ public class Locacao extends AbstractEntity<Long>
 	public void setData(Date data)
 	{
 		this.data = data;
+	}
+
+	public Integer getHorario()
+	{
+		return this.horario;
+	}
+	
+	public void setHorario(Integer horario)
+	{
+		this.horario = horario;
 	}
 	
 }
