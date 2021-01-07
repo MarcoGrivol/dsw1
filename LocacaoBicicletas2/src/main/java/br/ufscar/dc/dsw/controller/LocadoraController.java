@@ -47,7 +47,14 @@ public class LocadoraController {
 	@GetMapping("/listar/{cidade}")
 	public String listarCidade(@PathVariable("cidade") String cidade, ModelMap model) {
 		model.addAttribute("cidades", service.buscarTodasCidades());
-		model.addAttribute("locadoras", service.buscarTodasPorCidade(cidade));
+		if (cidade.equals("todas"))
+		{
+			model.addAttribute("locadoras", service.buscarTodos());
+		}
+		else
+		{
+			model.addAttribute("locadoras", service.buscarTodasPorCidade(cidade));
+		}
 		return "locadora/lista";
 	}
 
