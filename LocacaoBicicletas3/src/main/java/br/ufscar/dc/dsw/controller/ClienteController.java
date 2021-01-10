@@ -82,7 +82,7 @@ public class ClienteController {
 	@GetMapping("/excluir/{id}")
 	public String excluir(@PathVariable("id") Long id, ModelMap model) {
 		Cliente cliente = service.buscarPorId(id);
-		if (locacaoService.buscarLocacaoPorCliente(cliente) != null)
+		if (!locacaoService.buscarLocacaoPorCliente(cliente).isEmpty())
 		{
 			model.addAttribute("fail", "cliente.erroExisteLocacao.label");
 			return listar(model);
