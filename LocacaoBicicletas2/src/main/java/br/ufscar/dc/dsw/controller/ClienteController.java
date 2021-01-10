@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import br.ufscar.dc.dsw.domain.Cliente;
 import br.ufscar.dc.dsw.service.spec.IClienteService;
+import br.ufscar.dc.dsw.service.spec.ILocacaoService;
 import br.ufscar.dc.dsw.service.spec.IUsuarioService;
 
 @Controller
@@ -24,6 +25,9 @@ public class ClienteController {
 	
 	@Autowired
 	private IUsuarioService userService;
+	
+	@Autowired           
+	private ILocacaoService locacaoService;
 	
 	@Autowired
 	private BCryptPasswordEncoder encoder;
@@ -77,6 +81,12 @@ public class ClienteController {
 
 	@GetMapping("/excluir/{id}")
 	public String excluir(@PathVariable("id") Long id, ModelMap model) {
+		Cliente cliente = service.buscarPorId(id);
+		if (locacaoService.buscarLocacaoPorCliente(cliente) != null)
+		{
+			model.addAttribute("fail", "cliente.erroExisteLocacao.label");
+			return listar(model);
+		}
 		service.excluir(id);
 		model.addAttribute("success", "cliente.sucessoRemovido.label");
 		return listar(model);

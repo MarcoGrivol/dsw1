@@ -1,0 +1,24 @@
+
+
+------------------Clientes:-------------------------
+cadastro:
+{
+	"email": "c2@c2.com",
+	"senha": "c2",
+	"nome": "cliente 2",
+	"cpf": "638.639.440-20",
+	"dataNascimento": "02/01/2000",
+	"sexo": "sexo c2",
+	"telefone": "(22)2222-2222"
+}
+
+atualizacao
+{
+	"email": "c2@c2.com",
+	"senha": "c2",
+	"nome": "cliente 2 ATUALIZADO",
+	"cpf": "638.639.440-20",
+	"dataNascimento": "02/01/2000",
+	"sexo": "sexo c2",
+	"telefone": "(22)2222-2222"
+}
