@@ -124,7 +124,7 @@ public class ClienteRestController {
 		Cliente cliente = service.buscarPorId(id);
 		if (cliente == null) {
 			return ResponseEntity.notFound().build();
-		} else if (locacaoService.buscarLocacaoPorCliente(cliente) != null) {
+		} else if (!locacaoService.buscarLocacaoPorCliente(cliente).isEmpty()) {
 			return ResponseEntity.badRequest().body("Erro! Cliente possui uma locação.");
 		} else {
 			service.excluir(id);
