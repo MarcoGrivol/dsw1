@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import br.ufscar.dc.dsw.domain.Cliente;
 import br.ufscar.dc.dsw.service.spec.IClienteService;
+import br.ufscar.dc.dsw.service.spec.ILocacaoService;
 
 @CrossOrigin
 @RestController
@@ -29,6 +30,9 @@ public class ClienteRestController {
 
 	@Autowired
 	private IClienteService service;
+
+	@Autowired
+	private ILocacaoService locacaoService;
 
 	private boolean isJSONValid(String jsonInString) {
 		try {
@@ -54,7 +58,7 @@ public class ClienteRestController {
 		cliente.setNome((String) json.get("nome"));
 		cliente.setRole("USER");
 		cliente.setSenha(encoder.encode((String) json.get("nome")));
-		cliente.setSexo((String) json.get("senha"));
+		cliente.setSexo((String) json.get("sexo"));
 		cliente.setTelefone((String) json.get("telefone"));
 	}
 
@@ -65,6 +69,67 @@ public class ClienteRestController {
 			return ResponseEntity.notFound().build();
 		}
 		return ResponseEntity.ok(lista);
+	}
+
+	@GetMapping(path = "/clientes/{id}")
+	public ResponseEntity<Cliente> lista(@PathVariable("id") long id) {
+		Cliente cliente = service.buscarPorId(id);
+		if (cliente == null) {
+			return ResponseEntity.notFound().build();
+		}
+		return ResponseEntity.ok(cliente);
+	}
+
+	@PostMapping(path = "/clientes")
+	@ResponseBody
+	public ResponseEntity<Cliente> cria(@RequestBody JSONObject json) {
+		try {
+			if (isJSONValid(json.toString())) {
+				Cliente cliente = new Cliente();
+				parse(cliente, json);
+				service.salvar(cliente);
+				return ResponseEntity.ok(cliente);
+			} else {
+				return ResponseEntity.badRequest().body(null);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(null);
+		}
+	}
+
+	@PutMapping(path = "/clientes/{id}")
+	public ResponseEntity<Cliente> atualiza(@PathVariable("id") long id, @RequestBody JSONObject json) {
+		try {
+			if (isJSONValid(json.toString())) {
+				Cliente cliente = service.buscarPorId(id);
+				if (cliente == null) {
+					return ResponseEntity.notFound().build();
+				} else {
+					parse(cliente, json);
+					service.salvar(cliente);
+					return ResponseEntity.ok(cliente);
+				}
+			} else {
+				return ResponseEntity.badRequest().body(null);
+			}
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(null);
+		}
+	}
+
+	@DeleteMapping(path = "/clientes/{id}")
+	public ResponseEntity<String> remove(@PathVariable("id") long id) {
+
+		Cliente cliente = service.buscarPorId(id);
+		if (cliente == null) {
+			return ResponseEntity.notFound().build();
+		} else if (locacaoService.buscarLocacaoPorCliente(cliente) != null) {
+			return ResponseEntity.badRequest().body("Erro! Cliente possui uma locação.");
+		} else {
+			service.excluir(id);
+			return ResponseEntity.accepted().body("Cliente removido com sucesso.");
+		}
 	}
 
 }
