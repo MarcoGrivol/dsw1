@@ -22,3 +22,32 @@ atualizacao
 	"sexo": "sexo c2",
 	"telefone": "(22)2222-2222"
 }
+
+------------------Locadora:-------------------------
+cadastro:
+{
+	"email": "l5@l5.com",
+	"senha": "l5",
+	"nome": "locadora 5",
+	"cnpj": "94.602.606/0001-40",
+	"cidade": "Aguas de Lindoia"
+}
+
+lista por cidade: exemplo: 
+http://localhost:8080/locadoras/cidades/Ribeirao Preto
+
+atualizacao
+{
+	"email": "l5@l5.com",
+	"senha": "l5",
+	"nome": "locadora 5 ATUALIZADA",
+	"cnpj": "94.602.606/0001-40",
+	"cidade": "Aguas de Lindoia"
+}
+
+------------------Locacoes:-------------------------
+listar por cliente exemplo
+http://localhost:8080/locacoes/clientes/2
+
+listar por locadora exemplo
+http://localhost:8080/locacoes/locadoras/3
